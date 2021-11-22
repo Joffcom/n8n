@@ -101,9 +101,12 @@ export async function quickBooksApiRequest(
 		options.headers!['Content-Type'] = 'application/json';
 	}
 
+	console.log(options);
+
 	try {
 		return await this.helpers.requestOAuth2!.call(this, 'quickBooksOAuth2Api', options);
 	} catch (error) {
+		console.log(error.response.data.Fault); // REMOVE
 		throw new NodeApiError(this.getNode(), error);
 	}
 }
@@ -132,12 +135,14 @@ export async function quickBooksApiRequestAllItems(
 	do {
 		qs.query = `${originalQuery} MAXRESULTS ${maxResults} STARTPOSITION ${startPosition}`;
 		responseData = await quickBooksApiRequest.call(this, method, endpoint, qs, body);
+		console.log(responseData);
 		try {
 			const nonResource = originalQuery.split(' ')?.pop();
 			if (nonResource === 'CreditMemo' || nonResource === 'Term') {
 				returnData.push(...responseData.QueryResponse[nonResource]);
 			} else {
-				returnData.push(...responseData.QueryResponse[capitalCase(resource)]);
+				if (resource === 'vendorcredit') resource = 'vendorCredit'; // This feels dirty
+				returnData.push(...responseData.QueryResponse[capitalCase(resource, {delimiter: ''})]);
 			}
 		} catch (error) {
 			return [];
@@ -146,7 +151,6 @@ export async function quickBooksApiRequestAllItems(
 		startPosition += maxResults;
 
 	} while (maxCount > returnData.length);
-
 	return returnData;
 }
 
@@ -190,7 +194,8 @@ export async function handleListing(
 		const limit = this.getNodeParameter('limit', i) as number;
 		qs.query += ` MAXRESULTS ${limit}`;
 		responseData = await quickBooksApiRequest.call(this, 'GET', endpoint, qs, {});
-		responseData = responseData.QueryResponse[capitalCase(resource)];
+		if (resource === 'vendorcredit') resource = 'VendorCredit'; // This feels dirty
+		responseData = responseData.QueryResponse[capitalCase(resource, {delimiter: ''})];
 		return responseData;
 	}
 }
@@ -206,7 +211,8 @@ export async function getSyncToken(
 ) {
 	const resourceId = this.getNodeParameter(`${resource}Id`, i);
 	const getEndpoint = `/v3/company/${companyId}/${resource}/${resourceId}`;
-	const propertyName = capitalCase(resource);
+	if (resource === 'vendorcredit') resource = 'VendorCredit'; // This feels dirty
+	const propertyName = capitalCase(resource,{delimiter: ''});
 	const { [propertyName]: { SyncToken } } = await quickBooksApiRequest.call(this, 'GET', getEndpoint, {}, {});
 
 	return SyncToken;
