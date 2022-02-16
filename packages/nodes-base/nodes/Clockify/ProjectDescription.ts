@@ -440,6 +440,12 @@ export const projectFields: INodeProperties[] = [
 		default: {},
 		options: [
 			{
+				displayName: 'Archived',
+				name: 'archived',
+				type: 'boolean',
+				default: false,
+			},
+			{
 				displayName: 'Billable',
 				name: 'billable',
 				type: 'boolean',
