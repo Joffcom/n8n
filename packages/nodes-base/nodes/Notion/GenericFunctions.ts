@@ -78,6 +78,10 @@ export async function notionApiRequestAllItems(this: IExecuteFunctions | ILoadOp
 
 	let responseData;
 
+	console.log(JSON.stringify(body));
+	console.log(method);
+	console.log(query);
+
 	do {
 		responseData = await notionApiRequest.call(this, method, endpoint, body, query);
 		const { next_cursor } = responseData;
@@ -565,7 +569,7 @@ export function getConditions() {
 		number: [
 			'equals',
 			'does_not_equal',
-			'grater_than',
+			'greater_than',
 			'less_than',
 			'greater_than_or_equal_to',
 			'less_than_or_equal_to',
