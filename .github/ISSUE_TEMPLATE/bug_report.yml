@@ -33,22 +33,12 @@ body:
     validations:
       required: true
   - type: input
-    id: os
-    attributes:
-      label: OS
-      description: 'e.g. Ubuntu Linux 22.04'
-  - type: input
     id: n8nVersion
     attributes:
       label: n8n Version
       description: 'e.g. 1.0.1'
     validations:
       required: true
-  - type: input
-    id: nodeVersion
-    attributes:
-      label: Node.js Version
-      description: e.g 18.16.0
   - type: dropdown
     id: database
     attributes:
@@ -72,3 +62,13 @@ body:
         - Own
     validations:
       required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: 'e.g. Ubuntu Linux 22.04'
+  - type: input
+    id: nodeVersion
+    attributes:
+      label: Node.js Version
+      description: e.g 18.16.0
