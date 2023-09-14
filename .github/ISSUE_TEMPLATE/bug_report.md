@@ -1,6 +1,8 @@
 name: Bug report
 description: Create a report to help us improve
 title: '[Bug]: '
+assignees:
+  - joffcom
 body:
   - type: textarea
     id: description
