@@ -36,12 +36,12 @@ body:
     id: os
     attributes:
       label: OS
-      description: '[e.g. Ubuntu Linux 22.04]'
+      description: 'e.g. Ubuntu Linux 22.04'
   - type: input
     id: n8nVersion
     attributes:
       label: n8n Version
-      description: '[e.g. 1.0.1]'
+      description: 'e.g. 1.0.1'
     validations:
       required: true
   - type: input
