@@ -1,5 +1,5 @@
 /* eslint-disable n8n-nodes-base/node-filename-against-convention */
-import type { INodeTypeDescription } from 'n8n-workflow';
+import { NodeConnectionType, type INodeTypeDescription } from 'n8n-workflow';
 
 import * as itemList from './itemList';
 
@@ -10,12 +10,12 @@ export const versionDescription: INodeTypeDescription = {
 	group: ['input'],
 	subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 	description: 'Helper for working with lists of items and transforming arrays',
-	version: 3,
+	version: [3, 3.1],
 	defaults: {
 		name: 'Item Lists',
 	},
-	inputs: ['main'],
-	outputs: ['main'],
+	inputs: [NodeConnectionType.Main],
+	outputs: [NodeConnectionType.Main],
 	credentials: [],
 	properties: [
 		{

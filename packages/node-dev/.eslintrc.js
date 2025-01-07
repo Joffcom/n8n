@@ -10,7 +10,7 @@ module.exports = {
 		'templates/**', // TODO: remove this
 	],
 	rules: {
-		'import/order': 'off', // TODO: remove this
 		'@typescript-eslint/ban-ts-comment': ['warn', { 'ts-ignore': true }],
+		'n8n-local-rules/no-plain-errors': 'off',
 	},
 };

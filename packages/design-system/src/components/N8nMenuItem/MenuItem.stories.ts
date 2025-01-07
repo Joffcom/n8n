@@ -1,6 +1,7 @@
-import N8nMenuItem from '.';
-import { ElMenu } from 'element-plus';
 import type { StoryFn } from '@storybook/vue3';
+import { ElMenu } from 'element-plus';
+
+import N8nMenuItem from '.';
 
 export default {
 	title: 'Atoms/MenuItem',
@@ -75,10 +76,9 @@ link.args = {
 		id: 'website',
 		icon: 'globe',
 		label: 'Website',
-		type: 'link',
-		properties: {
+		link: {
 			href: 'https://www.n8n.io',
-			newWindow: true,
+			target: '_blank',
 		},
 	},
 };
@@ -96,10 +96,9 @@ withChildren.args = {
 				id: 'quickstart',
 				icon: 'video',
 				label: 'Quickstart',
-				type: 'link',
-				properties: {
+				link: {
 					href: 'https://www.youtube.com/watch?v=RpjQTGKm-ok',
-					newWindow: true,
+					target: '_blank',
 				},
 			},
 		],

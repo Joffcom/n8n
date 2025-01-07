@@ -1,10 +1,11 @@
 import nock from 'nock';
+
 import {
 	setup,
 	equalityTest,
 	workflowToTests,
 	getWorkflowFilenames,
-	initBinaryDataManager,
+	initBinaryDataService,
 } from '@test/nodes/Helpers';
 
 describe('Test Binary Data Download', () => {
@@ -14,7 +15,7 @@ describe('Test Binary Data Download', () => {
 	const baseUrl = 'https://dummy.domain';
 
 	beforeAll(async () => {
-		await initBinaryDataManager();
+		await initBinaryDataService();
 
 		nock.disableNetConnect();
 
@@ -40,6 +41,6 @@ describe('Test Binary Data Download', () => {
 	const nodeTypes = setup(tests);
 
 	for (const testData of tests) {
-		test(testData.description, async () => equalityTest(testData, nodeTypes));
+		test(testData.description, async () => await equalityTest(testData, nodeTypes));
 	}
 });

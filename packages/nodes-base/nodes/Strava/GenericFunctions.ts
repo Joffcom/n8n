@@ -1,10 +1,10 @@
-import type { OptionsWithUri } from 'request';
-
 import type {
 	IDataObject,
 	IExecuteFunctions,
 	IHookFunctions,
+	IHttpRequestMethods,
 	ILoadOptionsFunctions,
+	IRequestOptions,
 	IWebhookFunctions,
 	JsonObject,
 } from 'n8n-workflow';
@@ -12,14 +12,14 @@ import { NodeApiError } from 'n8n-workflow';
 
 export async function stravaApiRequest(
 	this: IExecuteFunctions | ILoadOptionsFunctions | IHookFunctions | IWebhookFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	resource: string,
 	body: IDataObject = {},
 	qs: IDataObject = {},
 	uri?: string,
 	headers: IDataObject = {},
 ) {
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		method,
 		form: body,
 		qs,
@@ -36,14 +36,13 @@ export async function stravaApiRequest(
 
 		if (this.getNode().type.includes('Trigger') && resource.includes('/push_subscriptions')) {
 			const credentials = await this.getCredentials('stravaOAuth2Api');
-			if (method === 'GET') {
+			if (method === 'GET' || method === 'DELETE') {
 				qs.client_id = credentials.clientId;
 				qs.client_secret = credentials.clientSecret;
 			} else {
 				body.client_id = credentials.clientId;
 				body.client_secret = credentials.clientSecret;
 			}
-
 			return await this.helpers?.request(options);
 		} else {
 			return await this.helpers.requestOAuth2.call(this, 'stravaOAuth2Api', options, {
@@ -57,7 +56,7 @@ export async function stravaApiRequest(
 
 export async function stravaApiRequestAllItems(
 	this: IHookFunctions | ILoadOptionsFunctions | IExecuteFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	resource: string,
 
 	body: IDataObject = {},

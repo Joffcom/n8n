@@ -5,11 +5,12 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-
-import { connect, copyInputItems, destroy, execute } from './GenericFunctions';
-
+import { NodeConnectionType } from 'n8n-workflow';
 import snowflake from 'snowflake-sdk';
+
 import { getResolvables } from '@utils/utilities';
+
+import { connect, destroy, execute } from './GenericFunctions';
 
 export class Snowflake implements INodeType {
 	description: INodeTypeDescription = {
@@ -22,8 +23,9 @@ export class Snowflake implements INodeType {
 		defaults: {
 			name: 'Snowflake',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
+		parameterPane: 'wide',
 		credentials: [
 			{
 				name: 'snowflake',
@@ -206,7 +208,7 @@ export class Snowflake implements INodeType {
 			const query = `INSERT INTO ${table}(${columns.join(',')}) VALUES (${columns
 				.map((_column) => '?')
 				.join(',')})`;
-			const data = copyInputItems(items, columns);
+			const data = this.helpers.copyInputItems(items, columns);
 			const binds = data.map((element) => Object.values(element));
 			await execute(connection, query, binds as unknown as snowflake.InsertBinds);
 			data.forEach((d, i) => {
@@ -235,7 +237,7 @@ export class Snowflake implements INodeType {
 			const query = `UPDATE ${table} SET ${columns
 				.map((column) => `${column} = ?`)
 				.join(',')} WHERE ${updateKey} = ?;`;
-			const data = copyInputItems(items, columns);
+			const data = this.helpers.copyInputItems(items, columns);
 			const binds = data.map((element) => Object.values(element).concat(element[updateKey]));
 			for (let i = 0; i < binds.length; i++) {
 				await execute(connection, query, binds[i] as unknown as snowflake.InsertBinds);

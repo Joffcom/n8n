@@ -7,9 +7,10 @@ import type {
 } from 'n8n-workflow';
 
 import { updateDisplayOptions } from '@utils/utilities';
+
+import { setParentFolder } from '../../helpers/utils';
 import { googleApiRequest } from '../../transport';
 import { driveRLC, fileRLC, folderRLC } from '../common.descriptions';
-import { setParentFolder } from '../../helpers/utils';
 
 const properties: INodeProperties[] = [
 	{
@@ -48,7 +49,7 @@ const properties: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Option',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{

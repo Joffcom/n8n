@@ -1,7 +1,7 @@
-import N8nTabs from './Tabs.vue';
-
 import { action } from '@storybook/addon-actions';
 import type { StoryFn } from '@storybook/vue3';
+
+import N8nTabs from './Tabs.vue';
 
 export default {
 	title: 'Atoms/Tabs',
@@ -36,8 +36,12 @@ export const Example = Template.bind({});
 Example.args = {
 	options: [
 		{
-			label: 'Test',
-			value: 'test',
+			label: 'First',
+			value: 'first',
+		},
+		{
+			label: 'Second',
+			value: 'second',
 		},
 		{
 			label: 'Github',

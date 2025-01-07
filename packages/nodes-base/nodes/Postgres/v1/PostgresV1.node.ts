@@ -1,4 +1,3 @@
-/* eslint-disable n8n-nodes-base/node-filename-against-convention */
 import type {
 	ICredentialsDecrypted,
 	ICredentialTestFunctions,
@@ -10,13 +9,12 @@ import type {
 	INodeTypeBaseDescription,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
-
+import { NodeConnectionType, NodeOperationError } from 'n8n-workflow';
 import pgPromise from 'pg-promise';
 
-import { pgInsertV2, pgQueryV2, pgUpdate, wrapData } from './genericFunctions';
-
 import { oldVersionNotice } from '@utils/descriptions';
+
+import { pgInsertV2, pgQueryV2, pgUpdate, wrapData } from './genericFunctions';
 
 const versionDescription: INodeTypeDescription = {
 	displayName: 'Postgres',
@@ -28,8 +26,8 @@ const versionDescription: INodeTypeDescription = {
 	defaults: {
 		name: 'Postgres',
 	},
-	inputs: ['main'],
-	outputs: ['main'],
+	inputs: [NodeConnectionType.Main],
+	outputs: [NodeConnectionType.Main],
 	credentials: [
 		{
 			name: 'postgres',
@@ -322,7 +320,6 @@ export class PostgresV1 implements INodeType {
 
 					const db = pgp(config);
 					await db.connect();
-					pgp.end();
 				} catch (error) {
 					return {
 						status: 'Error',
@@ -411,15 +408,11 @@ export class PostgresV1 implements INodeType {
 
 			returnItems = wrapData(updateItems);
 		} else {
-			pgp.end();
 			throw new NodeOperationError(
 				this.getNode(),
 				`The operation "${operation}" is not supported!`,
 			);
 		}
-
-		// Close the connection
-		pgp.end();
 
 		return [returnItems];
 	}

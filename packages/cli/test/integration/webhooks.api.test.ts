@@ -1,25 +1,33 @@
 import { readFileSync } from 'fs';
-import type { SuperAgentTest } from 'supertest';
+import {
+	NodeConnectionType,
+	type INodeType,
+	type INodeTypeDescription,
+	type IWebhookFunctions,
+} from 'n8n-workflow';
 import { agent as testAgent } from 'supertest';
-import type { INodeType, INodeTypeDescription, IWebhookFunctions } from 'n8n-workflow';
-import { LoggerProxy } from 'n8n-workflow';
 
-import { AbstractServer } from '@/AbstractServer';
-import { ExternalHooks } from '@/ExternalHooks';
-import { InternalHooks } from '@/InternalHooks';
-import { getLogger } from '@/Logger';
-import { NodeTypes } from '@/NodeTypes';
+import type { WorkflowEntity } from '@/databases/entities/workflow-entity';
+import { ExternalHooks } from '@/external-hooks';
+import { NodeTypes } from '@/node-types';
 import { Push } from '@/push';
-import type { WorkflowEntity } from '@db/entities/WorkflowEntity';
+import { Telemetry } from '@/telemetry';
+import { WebhookServer } from '@/webhooks/webhook-server';
 
-import { mockInstance, initActiveWorkflowRunner } from './shared/utils';
-import * as testDb from './shared/testDb';
+import { createUser } from './shared/db/users';
+import { createWorkflow } from './shared/db/workflows';
+import * as testDb from './shared/test-db';
+import type { SuperAgentTest } from './shared/types';
+import { initActiveWorkflowManager } from './shared/utils';
+import { mockInstance } from '../shared/mocking';
+
+jest.unmock('node:fs');
+
+mockInstance(Telemetry);
 
 describe('Webhook API', () => {
 	mockInstance(ExternalHooks);
-	mockInstance(InternalHooks);
 	mockInstance(Push);
-	LoggerProxy.init(getLogger());
 
 	let agent: SuperAgentTest;
 
@@ -34,16 +42,16 @@ describe('Webhook API', () => {
 	describe('Content-Type support', () => {
 		beforeAll(async () => {
 			const node = new WebhookTestingNode();
-			const user = await testDb.createUser();
-			await testDb.createWorkflow(createWebhookWorkflow(node), user);
+			const user = await createUser();
+			await createWorkflow(createWebhookWorkflow(node), user);
 
 			const nodeTypes = mockInstance(NodeTypes);
 			nodeTypes.getByName.mockReturnValue(node);
 			nodeTypes.getByNameAndVersion.mockReturnValue(node);
 
-			await initActiveWorkflowRunner();
+			await initActiveWorkflowManager();
 
-			const server = new (class extends AbstractServer {})();
+			const server = new WebhookServer();
 			await server.start();
 			agent = testAgent(server.app);
 		});
@@ -116,36 +124,37 @@ describe('Webhook API', () => {
 				.field('field1', 'value1')
 				.field('field2', 'value2')
 				.field('field2', 'value3')
-				.attach('file', Buffer.from('random-text'))
+				.attach('file1', Buffer.from('random-text'))
+				.attach('file2', Buffer.from('random-text'))
+				.attach('file2', Buffer.from('random-text'))
 				.set('content-type', 'multipart/form-data');
 
 			expect(response.statusCode).toEqual(200);
 			expect(response.body.type).toEqual('multipart/form-data');
-			const {
-				data,
-				files: {
-					file: [file],
-				},
-			} = response.body.body;
+			const { data, files } = response.body.body;
 			expect(data).toEqual({ field1: 'value1', field2: ['value2', 'value3'] });
-			expect(file.mimetype).toEqual('application/octet-stream');
-			expect(readFileSync(file.filepath, 'utf-8')).toEqual('random-text');
+
+			expect(files.file1).not.toBeInstanceOf(Array);
+			expect(files.file1.mimetype).toEqual('application/octet-stream');
+			expect(readFileSync(files.file1.filepath, 'utf-8')).toEqual('random-text');
+			expect(files.file2).toBeInstanceOf(Array);
+			expect(files.file2.length).toEqual(2);
 		});
 	});
 
 	describe('Params support', () => {
 		beforeAll(async () => {
 			const node = new WebhookTestingNode();
-			const user = await testDb.createUser();
-			await testDb.createWorkflow(createWebhookWorkflow(node, ':variable', 'PATCH'), user);
+			const user = await createUser();
+			await createWorkflow(createWebhookWorkflow(node, ':variable', 'PATCH'), user);
 
 			const nodeTypes = mockInstance(NodeTypes);
 			nodeTypes.getByName.mockReturnValue(node);
 			nodeTypes.getByNameAndVersion.mockReturnValue(node);
 
-			await initActiveWorkflowRunner();
+			await initActiveWorkflowManager();
 
-			const server = new (class extends AbstractServer {})();
+			const server = new WebhookServer();
 			await server.start();
 			agent = testAgent(server.app);
 		});
@@ -180,7 +189,7 @@ describe('Webhook API', () => {
 			description: '',
 			defaults: {},
 			inputs: [],
-			outputs: ['main'],
+			outputs: [NodeConnectionType.Main],
 			webhooks: [
 				{
 					name: 'default',

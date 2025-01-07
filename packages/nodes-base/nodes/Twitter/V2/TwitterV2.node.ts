@@ -1,29 +1,29 @@
-import type {
-	IDataObject,
-	IExecuteFunctions,
-	ILoadOptionsFunctions,
-	INodeExecutionData,
-	INodeParameterResourceLocator,
-	INodePropertyOptions,
-	INodeType,
-	INodeTypeBaseDescription,
-	INodeTypeDescription,
-	JsonObject,
+import ISO6391 from 'iso-639-1';
+import { DateTime } from 'luxon';
+import {
+	NodeConnectionType,
+	type IDataObject,
+	type IExecuteFunctions,
+	type ILoadOptionsFunctions,
+	type INodeExecutionData,
+	type INodeParameterResourceLocator,
+	type INodePropertyOptions,
+	type INodeType,
+	type INodeTypeBaseDescription,
+	type INodeTypeDescription,
+	type JsonObject,
 } from 'n8n-workflow';
 
-import { directMessageOperations, directMessageFields } from './DirectMessageDescription';
-import { listOperations, listFields } from './ListDescription';
-import { tweetFields, tweetOperations } from './TweetDescription';
-import { userOperations, userFields } from './UserDescription';
-
-import ISO6391 from 'iso-639-1';
+import { directMessageFields, directMessageOperations } from './DirectMessageDescription';
 import {
 	returnId,
 	returnIdFromUsername,
 	twitterApiRequest,
 	twitterApiRequestAllItems,
 } from './GenericFunctions';
-import { DateTime } from 'luxon';
+import { listFields, listOperations } from './ListDescription';
+import { tweetFields, tweetOperations } from './TweetDescription';
+import { userFields, userOperations } from './UserDescription';
 
 export class TwitterV2 implements INodeType {
 	description: INodeTypeDescription;
@@ -36,10 +36,10 @@ export class TwitterV2 implements INodeType {
 				'Post, like, and search tweets, send messages, search users, and add users to lists',
 			subtitle: '={{$parameter["operation"] + ":" + $parameter["resource"]}}',
 			defaults: {
-				name: 'Twitter',
+				name: 'X',
 			},
-			inputs: ['main'],
-			outputs: ['main'],
+			inputs: [NodeConnectionType.Main],
+			outputs: [NodeConnectionType.Main],
 			credentials: [
 				{
 					name: 'twitterOAuth2Api',

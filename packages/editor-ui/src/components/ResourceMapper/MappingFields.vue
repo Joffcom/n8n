@@ -14,9 +14,22 @@ import ParameterIssues from '@/components//ParameterIssues.vue';
 import ParameterOptions from '@/components//ParameterOptions.vue';
 import { computed } from 'vue';
 import { i18n as locale } from '@/plugins/i18n';
-import { useNDVStore } from '@/stores';
-import { fieldCannotBeDeleted, isMatchingField, parseResourceMapperFieldName } from '@/utils';
-import { useNodeSpecificationValues } from '@/composables';
+import { useNDVStore } from '@/stores/ndv.store';
+import {
+	fieldCannotBeDeleted,
+	isMatchingField,
+	parseResourceMapperFieldName,
+} from '@/utils/nodeTypesUtils';
+import { useNodeSpecificationValues } from '@/composables/useNodeSpecificationValues';
+import {
+	N8nIcon,
+	N8nIconButton,
+	N8nInputLabel,
+	N8nOption,
+	N8nSelect,
+	N8nTooltip,
+} from 'n8n-design-system';
+import { useI18n } from '@/composables/useI18n';
 
 interface Props {
 	parameter: INodeProperties;
@@ -24,16 +37,20 @@ interface Props {
 	nodeValues: INodeParameters | undefined;
 	fieldsToMap: ResourceMapperField[];
 	paramValue: ResourceMapperValue;
-	labelSize: string;
+	labelSize: 'small' | 'medium';
 	showMatchingColumnsSelector: boolean;
 	showMappingModeSelect: boolean;
 	loading: boolean;
 	refreshInProgress: boolean;
 	teleported?: boolean;
+	isReadOnly?: boolean;
+	isDataStale?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
 	teleported: true,
+	isReadOnly: false,
+	isDataStale: false,
 });
 const FORCE_TEXT_INPUT_FOR_TYPES: FieldType[] = ['time', 'object', 'array'];
 
@@ -45,11 +62,13 @@ const {
 	pluralFieldWordCapitalized,
 } = useNodeSpecificationValues(props.parameter.typeOptions);
 
+const i18n = useI18n();
+
 const emit = defineEmits<{
-	(event: 'fieldValueChanged', value: IUpdateInformation): void;
-	(event: 'removeField', field: string): void;
-	(event: 'addField', field: string): void;
-	(event: 'refreshFieldList'): void;
+	fieldValueChanged: [value: IUpdateInformation];
+	removeField: [field: string];
+	addField: [field: string];
+	refreshFieldList: [];
 }>();
 
 const ndvStore = useNDVStore();
@@ -63,9 +82,9 @@ function markAsReadOnly(field: ResourceMapperField): boolean {
 	return field.readOnly || false;
 }
 
-const fieldsUi = computed<Array<Partial<INodeProperties> & { readOnly?: boolean }>>(() => {
+const fieldsUi = computed<Array<INodeProperties & { readOnly: boolean }>>(() => {
 	return props.fieldsToMap
-		.filter((field) => field.display !== false && field.removed !== true)
+		.filter((field) => field.display && field.removed !== true)
 		.map((field) => {
 			return {
 				displayName: getFieldLabel(field),
@@ -81,11 +100,11 @@ const fieldsUi = computed<Array<Partial<INodeProperties> & { readOnly?: boolean 
 		});
 });
 
-const orderedFields = computed<Array<Partial<INodeProperties> & { readOnly?: boolean }>>(() => {
+const orderedFields = computed<Array<INodeProperties & { readOnly: boolean }>>(() => {
 	// Sort so that matching columns are first
 	if (props.paramValue.matchingColumns) {
 		fieldsUi.value.forEach((field, i) => {
-			const fieldName = parseResourceMapperFieldName(field.name);
+			const fieldName = field.name && parseResourceMapperFieldName(field.name);
 			if (fieldName) {
 				if (props.paramValue.matchingColumns.includes(fieldName)) {
 					fieldsUi.value.splice(i, 1);
@@ -98,7 +117,7 @@ const orderedFields = computed<Array<Partial<INodeProperties> & { readOnly?: boo
 });
 
 const removedFields = computed<ResourceMapperField[]>(() => {
-	return props.fieldsToMap.filter((field) => field.removed === true && field.display !== false);
+	return props.fieldsToMap.filter((field) => field.removed === true && field.display);
 });
 
 const addFieldOptions = computed<Array<{ name: string; value: string; disabled?: boolean }>>(() => {
@@ -132,7 +151,7 @@ const parameterActions = computed<Array<{ label: string; value: string; disabled
 					interpolate: { fieldWord: pluralFieldWordCapitalized.value },
 				}),
 				value: 'removeAllFields',
-				disabled: isRemoveAllAvailable.value === false,
+				disabled: !isRemoveAllAvailable.value,
 			},
 		];
 	},
@@ -229,8 +248,8 @@ function getFieldIssues(field: INodeProperties): string[] {
 
 	let fieldIssues: string[] = [];
 	const key = `${props.parameter.name}.${fieldName}`;
-	if (nodeIssues['parameters'] && key in nodeIssues['parameters']) {
-		fieldIssues = fieldIssues.concat(nodeIssues['parameters'][key]);
+	if (nodeIssues.parameters && key in nodeIssues.parameters) {
+		fieldIssues = fieldIssues.concat(nodeIssues.parameters[key]);
 	}
 	return fieldIssues;
 }
@@ -281,29 +300,52 @@ defineExpose({
 
 <template>
 	<div class="mt-xs" data-test-id="mapping-fields-container">
-		<n8n-input-label
+		<N8nInputLabel
 			:label="valuesLabel"
 			:underline="true"
 			:size="labelSize"
-			:showOptions="true"
-			:showExpressionSelector="false"
-			inputName="columns"
+			:show-options="true"
+			:show-expression-selector="false"
+			input-name="columns"
 			color="text-dark"
 		>
 			<template #options>
-				<parameter-options
+				<ParameterOptions
 					:parameter="parameter"
-					:customActions="parameterActions"
+					:custom-actions="parameterActions"
 					:loading="props.refreshInProgress"
-					:loadingMessage="fetchingFieldsLabel"
-					@update:modelValue="onParameterActionSelected"
+					:loading-message="fetchingFieldsLabel"
+					:is-read-only="isReadOnly"
+					:value="props.paramValue"
+					@update:model-value="onParameterActionSelected"
 				/>
+				<div v-if="props.isDataStale && !props.refreshInProgress" :class="$style.staleDataWarning">
+					<N8nTooltip>
+						<template #content>
+							<span>{{
+								locale.baseText('resourceMapper.staleDataWarning.tooltip', {
+									interpolate: { fieldWord: pluralFieldWordCapitalized },
+								})
+							}}</span>
+						</template>
+						<N8nIcon icon="exclamation-triangle" size="small" color="warning" />
+					</N8nTooltip>
+					<N8nIconButton
+						icon="refresh"
+						type="tertiary"
+						size="small"
+						:text="true"
+						:title="locale.baseText('generic.refresh')"
+						:disabled="props.refreshInProgress"
+						@click="onParameterActionSelected('refreshFieldList')"
+					/>
+				</div>
 			</template>
-		</n8n-input-label>
+		</N8nInputLabel>
 		<div v-if="orderedFields.length === 0" class="mt-3xs mb-xs">
-			<n8n-text size="small">{{
-				$locale.baseText('fixedCollectionParameter.currentlyNoItemsExist')
-			}}</n8n-text>
+			<N8nText size="small">{{
+				i18n.baseText('fixedCollectionParameter.currentlyNoItemsExist')
+			}}</N8nText>
 		</div>
 		<div
 			v-for="field in orderedFields"
@@ -318,7 +360,7 @@ defineExpose({
 				v-if="resourceMapperMode === 'add' && field.required"
 				:class="['delete-option', 'mt-5xs', $style.parameterTooltipIcon]"
 			>
-				<n8n-tooltip placement="top">
+				<N8nTooltip placement="top">
 					<template #content>
 						<span>{{
 							locale.baseText('resourceMapper.mandatoryField.title', {
@@ -327,7 +369,7 @@ defineExpose({
 						}}</span>
 					</template>
 					<font-awesome-icon icon="question-circle" />
-				</n8n-tooltip>
+				</N8nTooltip>
 			</div>
 			<div
 				v-else-if="
@@ -337,61 +379,65 @@ defineExpose({
 						props.showMatchingColumnsSelector,
 					)
 				"
-				:class="['delete-option', 'clickable', 'mt-5xs']"
+				:class="['delete-option', 'mt-5xs']"
 			>
-				<font-awesome-icon
+				<N8nIconButton
+					type="tertiary"
+					text
+					size="mini"
 					icon="trash"
+					:data-test-id="`remove-field-button-${getParsedFieldName(field.name)}`"
 					:title="
 						locale.baseText('resourceMapper.removeField', {
 							interpolate: {
-								fieldWord: singularFieldWordCapitalized,
+								fieldWord: singularFieldWord,
 							},
 						})
 					"
-					:data-test-id="`remove-field-button-${getParsedFieldName(field.name)}`"
+					:disabled="isReadOnly"
 					@click="removeField(field.name)"
-				/>
+				></N8nIconButton>
 			</div>
 			<div :class="$style.parameterInput">
-				<parameter-input-full
+				<ParameterInputFull
 					:parameter="field"
 					:value="getParameterValue(field.name)"
-					:displayOptions="true"
+					:display-options="true"
 					:path="`${props.path}.${field.name}`"
-					:isReadOnly="refreshInProgress || field.readOnly"
-					:hideIssues="true"
-					:nodeValues="nodeValues"
+					:is-read-only="refreshInProgress || field.readOnly || isReadOnly"
+					:hide-issues="true"
+					:node-values="nodeValues"
 					:class="$style.parameterInputFull"
 					@update="onValueChanged"
 				/>
 			</div>
-			<parameter-issues
+			<ParameterIssues
 				v-if="getFieldIssues(field).length > 0"
 				:issues="getFieldIssues(field)"
 				:class="[$style.parameterIssues, 'ml-5xs']"
 			/>
 		</div>
 		<div :class="['add-option', $style.addOption]" data-test-id="add-fields-select">
-			<n8n-select
+			<N8nSelect
 				:placeholder="
 					locale.baseText('resourceMapper.addFieldToSend', {
-						interpolate: { fieldWord: singularFieldWordCapitalized },
+						interpolate: { fieldWord: singularFieldWord },
 					})
 				"
 				size="small"
 				:teleported="teleported"
-				:disabled="addFieldOptions.length == 0"
-				@update:modelValue="addField"
+				:disabled="addFieldOptions.length == 0 || isReadOnly"
+				@update:model-value="addField"
 			>
-				<n8n-option
+				<N8nOption
 					v-for="item in addFieldOptions"
 					:key="item.value"
 					:label="item.name"
 					:value="item.value"
 					:disabled="item.disabled"
 				>
-				</n8n-option>
-			</n8n-select>
+				</N8nOption>
+			</N8nSelect>
 		</div>
 	</div>
 </template>
@@ -425,5 +471,12 @@ defineExpose({
 .addOption {
 	margin-top: var(--spacing-l);
 	padding: 0 0 0 var(--spacing-s);
+}
+
+.staleDataWarning {
+	display: flex;
+	height: var(--spacing-m);
+	align-items: baseline;
+	gap: var(--spacing-5xs);
 }
 </style>

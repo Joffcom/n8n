@@ -12,7 +12,13 @@ export class OktaApi implements ICredentialType {
 
 	documentationUrl = 'okta';
 
-	icon = 'file:icons/Okta.svg';
+	icon = { light: 'file:icons/Okta.svg', dark: 'file:icons/Okta.dark.svg' } as const;
+
+	httpRequestNode = {
+		name: 'Okta',
+		docsUrl: 'https://developer.okta.com/docs/reference/',
+		apiBaseUrl: '',
+	};
 
 	properties: INodeProperties[] = [
 		{
@@ -24,12 +30,13 @@ export class OktaApi implements ICredentialType {
 			placeholder: 'https://dev-123456.okta.com',
 		},
 		{
-			displayName: 'SSWS Access Token',
+			displayName: 'Access Token',
 			name: 'accessToken',
 			type: 'string',
 			typeOptions: { password: true },
 			required: true,
 			default: '',
+			description: 'Secure Session Web Service Access Token',
 		},
 	];
 

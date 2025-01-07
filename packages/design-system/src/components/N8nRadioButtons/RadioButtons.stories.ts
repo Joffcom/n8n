@@ -1,7 +1,7 @@
-import N8nRadioButtons from './RadioButtons.vue';
-
 import { action } from '@storybook/addon-actions';
 import type { StoryFn } from '@storybook/vue3';
+
+import N8nRadioButtons from './RadioButtons.vue';
 
 export default {
 	title: 'Atoms/RadioButtons',
@@ -51,6 +51,22 @@ Example.args = {
 		{
 			label: 'Hello',
 			value: 'hello',
+		},
+	],
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+	modelValue: 'enabled',
+	options: [
+		{
+			label: 'Enabled',
+			value: 'enabled',
+		},
+		{
+			label: 'Disabled',
+			value: 'disabled',
+			disabled: true,
 		},
 	],
 };

@@ -1,21 +1,20 @@
+import type { IHttpRequestMethods } from 'n8n-workflow';
 import nock from 'nock';
 
 import * as search from '../../../../v2/actions/fileFolder/search.operation';
-
 import * as transport from '../../../../v2/transport';
-
 import { createMockExecuteFunction, driveNode } from '../helpers';
 
 jest.mock('../../../../v2/transport', () => {
 	const originalModule = jest.requireActual('../../../../v2/transport');
 	return {
 		...originalModule,
-		googleApiRequest: jest.fn(async function (method: string) {
+		googleApiRequest: jest.fn(async function (method: IHttpRequestMethods) {
 			if (method === 'GET') {
 				return {};
 			}
 		}),
-		googleApiRequestAllItems: jest.fn(async function (method: string) {
+		googleApiRequestAllItems: jest.fn(async function (method: IHttpRequestMethods) {
 			if (method === 'GET') {
 				return {};
 			}

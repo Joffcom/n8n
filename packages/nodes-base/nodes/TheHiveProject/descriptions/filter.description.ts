@@ -24,7 +24,7 @@ const field: INodeProperties[] = [
 			loadOptionsMethod: 'loadAlertFields',
 		},
 		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 		displayOptions: {
 			show: {
 				'/resource': ['alert'],
@@ -41,7 +41,7 @@ const field: INodeProperties[] = [
 			loadOptionsMethod: 'loadCaseFields',
 		},
 		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 		displayOptions: {
 			show: {
 				'/resource': ['case'],
@@ -58,7 +58,7 @@ const field: INodeProperties[] = [
 			loadOptionsMethod: 'loadTaskFields',
 		},
 		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 		displayOptions: {
 			show: {
 				'/resource': ['task'],
@@ -75,7 +75,7 @@ const field: INodeProperties[] = [
 			loadOptionsMethod: 'loadObservableFields',
 		},
 		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 		displayOptions: {
 			show: {
 				'/resource': ['observable'],
@@ -193,7 +193,7 @@ export const genericFiltersCollection: INodeProperties = {
 							description: 'Field is greater than value',
 						},
 						{
-							name: 'Greater Than Or Equal',
+							name: 'Greater Than Or Equal To',
 							value: '_gte',
 							description: 'Field is greater than or equal to value',
 						},
@@ -208,7 +208,7 @@ export const genericFiltersCollection: INodeProperties = {
 							description: 'Field is less than value',
 						},
 						{
-							name: 'Less Than Or Equal',
+							name: 'Less Than Or Equal To',
 							value: '_lte',
 							description: 'Field is less than or equal to value',
 						},

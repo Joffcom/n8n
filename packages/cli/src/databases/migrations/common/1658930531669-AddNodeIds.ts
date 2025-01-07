@@ -1,7 +1,8 @@
 import type { INode } from 'n8n-workflow';
-import type { WorkflowEntity } from '@db/entities/WorkflowEntity';
-import type { MigrationContext, ReversibleMigration } from '@db/types';
 import { v4 as uuid } from 'uuid';
+
+import type { WorkflowEntity } from '@/databases/entities/workflow-entity';
+import type { MigrationContext, ReversibleMigration } from '@/databases/types';
 
 type Workflow = Pick<WorkflowEntity, 'id'> & { nodes: string | INode[] };
 
@@ -18,11 +19,10 @@ export class AddNodeIds1658930531669 implements ReversibleMigration {
 					}
 				});
 
-				await runQuery(
-					`UPDATE ${tableName} SET nodes = :nodes WHERE id = :id`,
-					{ nodes: JSON.stringify(nodes) },
-					{ id: workflow.id },
-				);
+				await runQuery(`UPDATE ${tableName} SET nodes = :nodes WHERE id = :id`, {
+					nodes: JSON.stringify(nodes),
+					id: workflow.id,
+				});
 			});
 		});
 	}
@@ -33,11 +33,10 @@ export class AddNodeIds1658930531669 implements ReversibleMigration {
 		await runInBatches<Workflow>(workflowsQuery, async (workflows) => {
 			workflows.forEach(async (workflow) => {
 				const nodes = parseJson(workflow.nodes).map(({ id, ...rest }) => rest);
-				await runQuery(
-					`UPDATE ${tableName} SET nodes = :nodes WHERE id = :id`,
-					{ nodes: JSON.stringify(nodes) },
-					{ id: workflow.id },
-				);
+				await runQuery(`UPDATE ${tableName} SET nodes = :nodes WHERE id = :id`, {
+					nodes: JSON.stringify(nodes),
+					id: workflow.id,
+				});
 			});
 		});
 	}

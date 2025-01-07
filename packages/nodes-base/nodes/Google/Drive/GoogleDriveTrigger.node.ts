@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import type {
 	IPollFunctions,
 	IDataObject,
@@ -7,12 +8,10 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeApiError } from 'n8n-workflow';
+import { NodeConnectionType, NodeApiError } from 'n8n-workflow';
 
 import { extractId, googleApiRequest, googleApiRequestAllItems } from './v1/GenericFunctions';
-
-import moment from 'moment';
-import { fileSearch, folderSearch } from './v1/SearchFunctions';
+import { fileSearch, folderSearch } from './v2/methods/listSearch';
 import { GOOGLE_DRIVE_FILE_URL_REGEX, GOOGLE_DRIVE_FOLDER_URL_REGEX } from '../constants';
 
 export class GoogleDriveTrigger implements INodeType {
@@ -49,7 +48,7 @@ export class GoogleDriveTrigger implements INodeType {
 		],
 		polling: true,
 		inputs: [],
-		outputs: ['main'],
+		outputs: [NodeConnectionType.Main],
 		properties: [
 			{
 				displayName: 'Credential Type',
@@ -295,7 +294,7 @@ export class GoogleDriveTrigger implements INodeType {
 				default: 'root',
 				required: true,
 				description:
-					'The drive to monitor. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
+					'The drive to monitor. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 			},
 			{
 				displayName: 'Watch For',
@@ -344,7 +343,7 @@ export class GoogleDriveTrigger implements INodeType {
 						triggerOn: ['specificFile'],
 					},
 				},
-				placeholder: 'Add Option',
+				placeholder: 'Add option',
 				default: {},
 				options: [
 					{
@@ -429,7 +428,12 @@ export class GoogleDriveTrigger implements INodeType {
 		const event = this.getNodeParameter('event') as string;
 		const webhookData = this.getWorkflowStaticData('node');
 		const options = this.getNodeParameter('options', {}) as IDataObject;
-		const qs: IDataObject = {};
+		const qs: IDataObject = {
+			includeItemsFromAllDrives: true,
+			supportsAllDrives: true,
+			spaces: 'appDataFolder, drive',
+			corpora: 'allDrives',
+		};
 
 		const now = moment().utc().format();
 

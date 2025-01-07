@@ -1,4 +1,5 @@
 import type { INodeExecutionData, INodeProperties } from 'n8n-workflow';
+
 import { sendErrorPostReceive } from './GenericFunctions';
 
 export const chatOperations: INodeProperties[] = [
@@ -42,6 +43,7 @@ const completeOperations: INodeProperties[] = [
 			show: {
 				operation: ['complete'],
 				resource: ['chat'],
+				'@version': [1],
 			},
 		},
 		typeOptions: {
@@ -62,7 +64,69 @@ const completeOperations: INodeProperties[] = [
 							{
 								type: 'filter',
 								properties: {
-									pass: "={{ $responseItem.id.startsWith('gpt-') }}",
+									pass: "={{ $responseItem.id.startsWith('gpt-') && !$responseItem.id.startsWith('gpt-4-vision') }}",
+								},
+							},
+							{
+								type: 'setKeyValue',
+								properties: {
+									name: '={{$responseItem.id}}',
+									value: '={{$responseItem.id}}',
+								},
+							},
+							{
+								type: 'sort',
+								properties: {
+									key: 'name',
+								},
+							},
+						],
+					},
+				},
+			},
+		},
+		routing: {
+			send: {
+				type: 'body',
+				property: 'model',
+			},
+		},
+		default: 'gpt-3.5-turbo',
+	},
+	{
+		displayName: 'Model',
+		name: 'chatModel',
+		type: 'options',
+		description:
+			'The model which will generate the completion. <a href="https://beta.openai.com/docs/models/overview">Learn more</a>.',
+		displayOptions: {
+			show: {
+				operation: ['complete'],
+				resource: ['chat'],
+			},
+			hide: {
+				'@version': [1],
+			},
+		},
+		typeOptions: {
+			loadOptions: {
+				routing: {
+					request: {
+						method: 'GET',
+						url: '/v1/models',
+					},
+					output: {
+						postReceive: [
+							{
+								type: 'rootProperty',
+								properties: {
+									property: 'data',
+								},
+							},
+							{
+								type: 'filter',
+								properties: {
+									pass: "={{ $responseItem.id.startsWith('gpt-') && !$responseItem.id.startsWith('gpt-4-vision') }}",
 								},
 							},
 							{
@@ -202,7 +266,7 @@ const sharedOperations: INodeProperties[] = [
 	{
 		displayName: 'Options',
 		name: 'options',
-		placeholder: 'Add Option',
+		placeholder: 'Add option',
 		description: 'Additional options to add',
 		type: 'collection',
 		default: {},

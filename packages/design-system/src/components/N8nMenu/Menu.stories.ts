@@ -1,8 +1,9 @@
+import { action } from '@storybook/addon-actions';
+import type { StoryFn } from '@storybook/vue3';
+
 import N8nMenu from './Menu.vue';
 import N8nIcon from '../N8nIcon';
 import N8nText from '../N8nText';
-import type { StoryFn } from '@storybook/vue3';
-import { action } from '@storybook/addon-actions';
 
 export default {
 	title: 'Atoms/Menu',
@@ -114,10 +115,9 @@ const menuItems = [
 		id: 'website',
 		icon: 'globe',
 		label: 'Website',
-		type: 'link',
-		properties: {
+		link: {
 			href: 'https://www.n8n.io',
-			newWindow: true,
+			target: '_blank',
 		},
 		position: 'bottom',
 	},
@@ -140,10 +140,9 @@ const menuItems = [
 				id: 'quickstart',
 				icon: 'video',
 				label: 'Quickstart',
-				type: 'link',
-				properties: {
+				link: {
 					href: 'https://www.youtube.com/watch?v=RpjQTGKm-ok',
-					newWindow: true,
+					target: '_blank',
 				},
 			},
 		],

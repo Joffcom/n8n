@@ -1,21 +1,20 @@
-import type { OptionsWithUri } from 'request';
-
 import type {
 	IDataObject,
 	IExecuteFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
 	JsonObject,
+	IRequestOptions,
+	IHttpRequestMethods,
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
 import type { IContactUpdate } from './ContactInterface';
-
 import type { IFilterRules, ISearchConditions } from './FilterInterface';
 
 export async function agileCrmApiRequest(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	endpoint: string,
 	body: any = {},
 	query: IDataObject = {},
@@ -23,7 +22,7 @@ export async function agileCrmApiRequest(
 	sendAsForm?: boolean,
 ): Promise<any> {
 	const credentials = await this.getCredentials('agileCrmApi');
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		method,
 		headers: {
 			Accept: 'application/json',
@@ -56,7 +55,7 @@ export async function agileCrmApiRequest(
 
 export async function agileCrmApiRequestAllItems(
 	this: IHookFunctions | ILoadOptionsFunctions | IExecuteFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	resource: string,
 	body: any = {},
 	query: IDataObject = {},
@@ -95,15 +94,15 @@ export async function agileCrmApiRequestAllItems(
 
 export async function agileCrmApiRequestUpdate(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
-	method = 'PUT',
-	endpoint?: string,
+	method: IHttpRequestMethods = 'PUT',
+	_endpoint?: string,
 	body: any = {},
 	_query: IDataObject = {},
 	uri?: string,
 ): Promise<any> {
 	const credentials = await this.getCredentials('agileCrmApi');
 	const baseUri = `https://${credentials.subdomain}.agilecrm.com/dev/`;
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		method,
 		headers: {
 			Accept: 'application/json',

@@ -1,5 +1,5 @@
-import type { WorkflowEntity } from '@db/entities/WorkflowEntity';
-import type { MigrationContext, IrreversibleMigration } from '@db/types';
+import type { WorkflowEntity } from '@/databases/entities/workflow-entity';
+import type { MigrationContext, IrreversibleMigration } from '@/databases/types';
 
 interface Workflow {
 	id: number;
@@ -38,7 +38,7 @@ export class PurgeInvalidWorkflowConnections1675940580449 implements Irreversibl
 
 						// It filters out all connections that are connected to a node that cannot receive input
 						outputConnection.forEach((outputConnectionItem, outputConnectionItemIdx) => {
-							outputConnection[outputConnectionItemIdx] = outputConnectionItem.filter(
+							outputConnection[outputConnectionItemIdx] = (outputConnectionItem ?? []).filter(
 								(outgoingConnections) =>
 									!nodesThatCannotReceiveInput.includes(outgoingConnections.node),
 							);
@@ -47,10 +47,12 @@ export class PurgeInvalidWorkflowConnections1675940580449 implements Irreversibl
 				});
 
 				// Update database with new connections
-				return runQuery(
+				return await runQuery(
 					`UPDATE ${workflowsTable} SET connections = :connections WHERE id = :id`,
-					{ connections: JSON.stringify(connections) },
-					{ id: workflow.id },
+					{
+						connections: JSON.stringify(connections),
+						id: workflow.id,
+					},
 				);
 			}),
 		);

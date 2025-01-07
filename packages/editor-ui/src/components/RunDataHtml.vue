@@ -1,11 +1,5 @@
-<template>
-	<iframe class="__html-display" :srcdoc="html" />
-</template>
-
 <script lang="ts">
-import type { PropType } from 'vue';
 import sanitizeHtml, { defaults, type IOptions as SanitizeOptions } from 'sanitize-html';
-import type { INodeExecutionData } from 'n8n-workflow';
 
 const sanitizeOptions: SanitizeOptions = {
 	allowVulnerableTags: false,
@@ -24,18 +18,22 @@ const sanitizeOptions: SanitizeOptions = {
 export default {
 	name: 'RunDataHtml',
 	props: {
-		inputData: {
-			type: Array as PropType<INodeExecutionData[]>,
+		inputHtml: {
+			type: String,
+			required: true,
 		},
 	},
 	computed: {
-		html() {
-			const markup = (this.inputData?.[0].json.html as string) ?? '';
-			return sanitizeHtml(markup, sanitizeOptions);
+		sanitizedHtml() {
+			return sanitizeHtml(this.inputHtml, sanitizeOptions);
 		},
 	},
 };
 </script>
+
+<template>
+	<iframe class="__html-display" :srcdoc="sanitizedHtml" />
+</template>
 
 <style lang="scss">
 .__html-display {

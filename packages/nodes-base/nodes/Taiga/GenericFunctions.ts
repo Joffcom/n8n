@@ -1,5 +1,4 @@
-import type { OptionsWithUri } from 'request';
-
+import { createHash } from 'crypto';
 import type {
 	ICredentialDataDecryptedObject,
 	IDataObject,
@@ -8,10 +7,10 @@ import type {
 	ILoadOptionsFunctions,
 	IWebhookFunctions,
 	JsonObject,
+	IHttpRequestMethods,
+	IRequestOptions,
 } from 'n8n-workflow';
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
-
-import { createHash } from 'crypto';
 
 export async function getAuthorization(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions | IWebhookFunctions,
@@ -22,7 +21,7 @@ export async function getAuthorization(
 	}
 
 	const { password, username } = credentials;
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		headers: { 'Content-Type': 'application/json' },
 		method: 'POST',
 		body: {
@@ -45,7 +44,7 @@ export async function getAuthorization(
 
 export async function taigaApiRequest(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions | IWebhookFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	resource: string,
 	body = {},
 	query = {},
@@ -56,7 +55,7 @@ export async function taigaApiRequest(
 
 	const authToken = await getAuthorization.call(this, credentials);
 
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -86,7 +85,7 @@ export async function taigaApiRequest(
 
 export async function taigaApiRequestAllItems(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	resource: string,
 
 	body: IDataObject = {},
@@ -122,7 +121,7 @@ export function getAutomaticSecret(credentials: ICredentialDataDecryptedObject) 
 
 export async function handleListing(
 	this: IExecuteFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	endpoint: string,
 	body: IDataObject,
 	qs: IDataObject,
@@ -133,7 +132,7 @@ export async function handleListing(
 	const returnAll = this.getNodeParameter('returnAll', i);
 
 	if (returnAll) {
-		return taigaApiRequestAllItems.call(this, method, endpoint, body, qs);
+		return await taigaApiRequestAllItems.call(this, method, endpoint, body, qs);
 	} else {
 		qs.limit = this.getNodeParameter('limit', i);
 		responseData = await taigaApiRequestAllItems.call(this, method, endpoint, body, qs);
@@ -152,5 +151,5 @@ export function throwOnEmptyUpdate(this: IExecuteFunctions, resource: Resource) 
 }
 
 export async function getVersionForUpdate(this: IExecuteFunctions, endpoint: string) {
-	return taigaApiRequest.call(this, 'GET', endpoint).then((response) => response.version);
+	return await taigaApiRequest.call(this, 'GET', endpoint).then((response) => response.version);
 }

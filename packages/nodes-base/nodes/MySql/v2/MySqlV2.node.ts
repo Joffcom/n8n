@@ -6,11 +6,9 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-import { listSearch, credentialTest, loadOptions } from './methods';
-
-import { versionDescription } from './actions/versionDescription';
-
 import { router } from './actions/router';
+import { versionDescription } from './actions/versionDescription';
+import { listSearch, credentialTest, loadOptions } from './methods';
 
 export class MySqlV2 implements INodeType {
 	description: INodeTypeDescription;
@@ -25,6 +23,6 @@ export class MySqlV2 implements INodeType {
 	methods = { listSearch, loadOptions, credentialTest };
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		return router.call(this);
+		return await router.call(this);
 	}
 }

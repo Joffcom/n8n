@@ -1,20 +1,135 @@
+<script setup lang="ts">
+import { computed, defineAsyncComponent, ref } from 'vue';
+import VueJsonPretty from 'vue-json-pretty';
+import type { INodeExecutionData } from 'n8n-workflow';
+import Draggable from '@/components/Draggable.vue';
+import { executionDataToJson } from '@/utils/nodeTypesUtils';
+import { isString } from '@/utils/typeGuards';
+import { shorten } from '@/utils/typesUtils';
+import type { INodeUi } from '@/Interface';
+import { useNDVStore } from '@/stores/ndv.store';
+import MappingPill from './MappingPill.vue';
+import { getMappedExpression } from '@/utils/mappingUtils';
+import { nonExistingJsonPath } from '@/constants';
+import { useExternalHooks } from '@/composables/useExternalHooks';
+import TextWithHighlights from './TextWithHighlights.vue';
+import { useTelemetry } from '@/composables/useTelemetry';
+import { useElementSize } from '@vueuse/core';
+
+const LazyRunDataJsonActions = defineAsyncComponent(
+	async () => await import('@/components/RunDataJsonActions.vue'),
+);
+
+const props = withDefaults(
+	defineProps<{
+		editMode: { enabled?: boolean; value?: string };
+		pushRef: string;
+		paneType: string;
+		node: INodeUi;
+		inputData: INodeExecutionData[];
+		mappingEnabled?: boolean;
+		distanceFromActive: number;
+		runIndex: number | undefined;
+		totalRuns: number | undefined;
+		search: string | undefined;
+	}>(),
+	{
+		editMode: () => ({}),
+	},
+);
+
+const ndvStore = useNDVStore();
+
+const externalHooks = useExternalHooks();
+const telemetry = useTelemetry();
+
+const selectedJsonPath = ref(nonExistingJsonPath);
+const draggingPath = ref<null | string>(null);
+const displayMode = ref('json');
+const jsonDataContainer = ref(null);
+
+const { height } = useElementSize(jsonDataContainer);
+
+const jsonData = computed(() => executionDataToJson(props.inputData));
+
+const highlight = computed(() => ndvStore.highlightDraggables);
+
+const getShortKey = (el: HTMLElement) => {
+	if (!el) {
+		return '';
+	}
+
+	return shorten(el.dataset.name ?? '', 16, 2);
+};
+
+const getJsonParameterPath = (path: string) => {
+	const subPath = path.replace(/^(\["?\d"?])/, ''); // remove item position
+
+	return getMappedExpression({
+		nodeName: props.node.name,
+		distanceFromActive: props.distanceFromActive,
+		path: subPath,
+	});
+};
+
+const onDragStart = (el: HTMLElement) => {
+	if (el?.dataset.path) {
+		draggingPath.value = el.dataset.path;
+	}
+
+	ndvStore.resetMappingTelemetry();
+};
+
+const onDragEnd = (el: HTMLElement) => {
+	draggingPath.value = null;
+	const mappingTelemetry = ndvStore.mappingTelemetry;
+	const telemetryPayload = {
+		src_node_type: props.node.type,
+		src_field_name: el.dataset.name ?? '',
+		src_nodes_back: props.distanceFromActive,
+		src_run_index: props.runIndex,
+		src_runs_total: props.totalRuns,
+		src_field_nest_level: el.dataset.depth ?? 0,
+		src_view: 'json',
+		src_element: el,
+		success: false,
+		...mappingTelemetry,
+	};
+
+	setTimeout(() => {
+		void externalHooks.run('runDataJson.onDragEnd', telemetryPayload);
+		telemetry.track('User dragged data for mapping', telemetryPayload, {
+			withPostHog: true,
+		});
+	}, 1000); // ensure dest data gets set if drop
+};
+
+const getContent = (value: unknown) => {
+	return isString(value) ? `"${value}"` : JSON.stringify(value);
+};
+
+const getListItemName = (path: string) => {
+	return path.replace(/^(\["?\d"?]\.?)/g, '');
+};
+</script>
+
 <template>
-	<div :class="$style.jsonDisplay">
+	<div ref="jsonDataContainer" :class="[$style.jsonDisplay, { [$style.highlight]: highlight }]">
 		<Suspense>
-			<run-data-json-actions
+			<LazyRunDataJsonActions
 				v-if="!editMode.enabled"
 				:node="node"
-				:sessioId="sessionId"
-				:displayMode="displayMode"
-				:distanceFromActive="distanceFromActive"
-				:selectedJsonPath="selectedJsonPath"
-				:jsonData="jsonData"
-				:paneType="paneType"
+				:push-ref="pushRef"
+				:display-mode="displayMode"
+				:distance-from-active="distanceFromActive"
+				:selected-json-path="selectedJsonPath"
+				:json-data="jsonData"
+				:pane-type="paneType"
 			/>
 		</Suspense>
-		<draggable
+		<Draggable
 			type="mapping"
-			targetDataKey="mappable"
+			target-data-key="mappable"
 			:disabled="!mappingEnabled"
 			@dragstart="onDragStart"
 			@dragend="onDragEnd"
@@ -22,18 +137,22 @@
 			<template #preview="{ canDrop, el }">
 				<MappingPill v-if="el" :html="getShortKey(el)" :can-drop="canDrop" />
 			</template>
-			<vue-json-pretty
+			<VueJsonPretty
 				:data="jsonData"
 				:deep="10"
-				:showLength="true"
-				:selectedValue="selectedJsonPath"
-				rootPath=""
-				selectableType="single"
+				:show-length="true"
+				:selected-value="selectedJsonPath"
+				root-path=""
+				selectable-type="single"
 				class="json-data"
-				@update:selectedValue="selectedJsonPath = $event"
+				:virtual="true"
+				:height="height"
+				@update:selected-value="selectedJsonPath = $event"
 			>
 				<template #renderNodeKey="{ node }">
-					<span
+					<TextWithHighlights
+						:content="getContent(node.key)"
+						:search="search"
 						data-target="mappable"
 						:data-value="getJsonParameterPath(node.path)"
 						:data-name="node.key"
@@ -43,13 +162,18 @@
 							[$style.mappable]: mappingEnabled,
 							[$style.dragged]: draggingPath === node.path,
 						}"
-						>"{{ node.key }}"</span
-					>
+					/>
 				</template>
 				<template #renderNodeValue="{ node }">
-					<span v-if="isNaN(node.index)">{{ getContent(node.content) }}</span>
-					<span
+					<TextWithHighlights
+						v-if="isNaN(node.index)"
+						:content="getContent(node.content)"
+						:search="search"
+					/>
+					<TextWithHighlights
 						v-else
+						:content="getContent(node.content)"
+						:search="search"
 						data-target="mappable"
 						:data-value="getJsonParameterPath(node.path)"
 						:data-name="getListItemName(node.path)"
@@ -60,145 +184,12 @@
 							[$style.dragged]: draggingPath === node.path,
 						}"
 						class="ph-no-capture"
-						>{{ getContent(node.content) }}</span
-					>
+					/>
 				</template>
-			</vue-json-pretty>
-		</draggable>
+			</VueJsonPretty>
+		</Draggable>
 	</div>
 </template>
-
-<script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
-import type { PropType } from 'vue';
-import VueJsonPretty from 'vue-json-pretty';
-import type { IDataObject, INodeExecutionData } from 'n8n-workflow';
-import Draggable from '@/components/Draggable.vue';
-import { executionDataToJson, isString, shorten } from '@/utils';
-import type { INodeUi } from '@/Interface';
-import { externalHooks } from '@/mixins/externalHooks';
-import { mapStores } from 'pinia';
-import { useNDVStore } from '@/stores/ndv.store';
-import MappingPill from './MappingPill.vue';
-import { getMappedExpression } from '@/utils/mappingUtils';
-import { useWorkflowsStore } from '@/stores/workflows.store';
-import { nonExistingJsonPath } from '@/constants';
-
-const RunDataJsonActions = defineAsyncComponent(
-	async () => import('@/components/RunDataJsonActions.vue'),
-);
-
-export default defineComponent({
-	name: 'run-data-json',
-	mixins: [externalHooks],
-	components: {
-		VueJsonPretty,
-		Draggable,
-		RunDataJsonActions,
-		MappingPill,
-	},
-	props: {
-		editMode: {
-			type: Object as () => { enabled?: boolean; value?: string },
-		},
-		sessionId: {
-			type: String,
-		},
-		paneType: {
-			type: String,
-		},
-		node: {
-			type: Object as PropType<INodeUi>,
-		},
-		inputData: {
-			type: Array as PropType<INodeExecutionData[]>,
-		},
-		mappingEnabled: {
-			type: Boolean,
-		},
-		distanceFromActive: {
-			type: Number,
-		},
-		runIndex: {
-			type: Number,
-		},
-		totalRuns: {
-			type: Number,
-		},
-	},
-	setup() {
-		const selectedJsonPath = ref(nonExistingJsonPath);
-		const draggingPath = ref<null | string>(null);
-		const displayMode = ref('json');
-
-		return {
-			selectedJsonPath,
-			draggingPath,
-			displayMode,
-		};
-	},
-	computed: {
-		...mapStores(useNDVStore, useWorkflowsStore),
-		jsonData(): IDataObject[] {
-			return executionDataToJson(this.inputData);
-		},
-	},
-	methods: {
-		getShortKey(el: HTMLElement): string {
-			if (!el) {
-				return '';
-			}
-
-			return shorten(el.dataset.name || '', 16, 2);
-		},
-		getJsonParameterPath(path: string): string {
-			const subPath = path.replace(/^(\["?\d"?])/, ''); // remove item position
-
-			return getMappedExpression({
-				nodeName: this.node.name,
-				distanceFromActive: this.distanceFromActive,
-				path: subPath,
-			});
-		},
-		onDragStart(el: HTMLElement) {
-			if (el && el.dataset.path) {
-				this.draggingPath = el.dataset.path;
-			}
-
-			this.ndvStore.resetMappingTelemetry();
-		},
-		onDragEnd(el: HTMLElement) {
-			this.draggingPath = null;
-
-			setTimeout(() => {
-				const mappingTelemetry = this.ndvStore.mappingTelemetry;
-				const telemetryPayload = {
-					src_node_type: this.node.type,
-					src_field_name: el.dataset.name || '',
-					src_nodes_back: this.distanceFromActive,
-					src_run_index: this.runIndex,
-					src_runs_total: this.totalRuns,
-					src_field_nest_level: el.dataset.depth || 0,
-					src_view: 'json',
-					src_element: el,
-					success: false,
-					...mappingTelemetry,
-				};
-
-				void this.$externalHooks().run('runDataJson.onDragEnd', telemetryPayload);
-
-				this.$telemetry.track('User dragged data for mapping', telemetryPayload);
-			}, 1000); // ensure dest data gets set if drop
-		},
-		getContent(value: unknown): string {
-			return isString(value) ? `"${value}"` : JSON.stringify(value);
-		},
-		getListItemName(path: string): string {
-			return path.replace(/^(\["?\d"?]\.?)/g, '');
-		},
-	},
-});
-</script>
 
 <style lang="scss" module>
 .jsonDisplay {
@@ -207,12 +198,10 @@ export default defineComponent({
 	left: 0;
 	padding-left: var(--spacing-s);
 	right: 0;
-	overflow-y: auto;
+	overflow-y: hidden;
 	line-height: 1.5;
 	word-break: normal;
 	height: 100%;
-	padding-bottom: var(--spacing-3xl);
-	background-color: var(--color-background-base);
 
 	&:hover {
 		/* Shows .actionsGroup element from <run-data-json-actions /> child component */
@@ -220,20 +209,22 @@ export default defineComponent({
 			opacity: 1;
 		}
 	}
-}
 
-.mappable {
-	cursor: grab;
+	.mappable {
+		cursor: grab;
 
-	&:hover {
-		background-color: var(--color-json-highlight);
+		&:hover {
+			background-color: var(--color-json-highlight);
+		}
 	}
-}
 
-.dragged {
-	&,
-	&:hover {
-		background-color: var(--color-primary-tint-2);
+	&.highlight .mappable,
+	.dragged {
+		&,
+		&:hover {
+			background-color: var(--color-primary-tint-2);
+			color: var(--color-primary);
+		}
 	}
 }
 </style>
@@ -241,6 +232,7 @@ export default defineComponent({
 <style lang="scss">
 .vjs-tree {
 	color: var(--color-json-default);
+	--color-line-break: var(--color-code-line-break);
 }
 
 .vjs-tree-node {
@@ -311,5 +303,9 @@ export default defineComponent({
 
 .vjs-tree .vjs-tree__content.has-line {
 	border-left: 1px dotted var(--color-json-line);
+}
+
+.vjs-tree .vjs-tree-list-holder-inner {
+	padding-bottom: var(--spacing-3xl);
 }
 </style>

@@ -1,15 +1,15 @@
-import type { Readable } from 'stream';
-
-import { BINARY_ENCODING } from 'n8n-workflow';
+import { BINARY_ENCODING, NodeConnectionType } from 'n8n-workflow';
 import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
+import type { Readable } from 'stream';
 
 export class WriteBinaryFile implements INodeType {
 	description: INodeTypeDescription = {
+		hidden: true,
 		displayName: 'Write Binary File',
 		name: 'writeBinaryFile',
 		icon: 'fa:file-export',
@@ -20,8 +20,8 @@ export class WriteBinaryFile implements INodeType {
 			name: 'Write Binary File',
 			color: '#CC2233',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		properties: [
 			{
 				displayName: 'File Name',
@@ -45,7 +45,7 @@ export class WriteBinaryFile implements INodeType {
 				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Option',
+				placeholder: 'Add option',
 				default: {},
 				options: [
 					{
@@ -91,7 +91,7 @@ export class WriteBinaryFile implements INodeType {
 
 				let fileContent: Buffer | Readable;
 				if (binaryData.id) {
-					fileContent = this.helpers.getBinaryStream(binaryData.id);
+					fileContent = await this.helpers.getBinaryStream(binaryData.id);
 				} else {
 					fileContent = Buffer.from(binaryData.data, BINARY_ENCODING);
 				}

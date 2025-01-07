@@ -1,113 +1,88 @@
-import validator from 'validator';
-import { validateEntity } from '@/GenericHelpers';
-import { Authorized, Post, RestController } from '@/decorators';
-import { BadRequestError } from '@/ResponseHelper';
-import { hashPassword, validatePassword } from '@/UserManagement/UserManagementHelper';
-import { issueCookie } from '@/auth/jwt';
+import { DismissBannerRequestDto, OwnerSetupRequestDto } from '@n8n/api-types';
 import { Response } from 'express';
-import { ILogger } from 'n8n-workflow';
-import { Config } from '@/config';
-import { OwnerRequest } from '@/requests';
-import { IInternalHooksClass } from '@/Interfaces';
-import { SettingsRepository } from '@db/repositories';
+import { Logger } from 'n8n-core';
+
+import { AuthService } from '@/auth/auth.service';
+import config from '@/config';
+import { SettingsRepository } from '@/databases/repositories/settings.repository';
+import { UserRepository } from '@/databases/repositories/user.repository';
+import { Body, GlobalScope, Post, RestController } from '@/decorators';
+import { BadRequestError } from '@/errors/response-errors/bad-request.error';
+import { EventService } from '@/events/event.service';
+import { validateEntity } from '@/generic-helpers';
 import { PostHogClient } from '@/posthog';
+import { AuthenticatedRequest } from '@/requests';
+import { PasswordUtility } from '@/services/password.utility';
 import { UserService } from '@/services/user.service';
 
-@Authorized(['global', 'owner'])
 @RestController('/owner')
 export class OwnerController {
 	constructor(
-		private readonly config: Config,
-		private readonly logger: ILogger,
-		private readonly internalHooks: IInternalHooksClass,
+		private readonly logger: Logger,
+		private readonly eventService: EventService,
 		private readonly settingsRepository: SettingsRepository,
+		private readonly authService: AuthService,
 		private readonly userService: UserService,
-		private readonly postHog?: PostHogClient,
+		private readonly passwordUtility: PasswordUtility,
+		private readonly postHog: PostHogClient,
+		private readonly userRepository: UserRepository,
 	) {}
 
 	/**
 	 * Promote a shell into the owner of the n8n instance,
 	 * and enable `isInstanceOwnerSetUp` setting.
 	 */
-	@Post('/setup')
-	async setupOwner(req: OwnerRequest.Post, res: Response) {
-		const { email, firstName, lastName, password } = req.body;
-		const { id: userId, globalRole } = req.user;
+	@Post('/setup', { skipAuth: true })
+	async setupOwner(req: AuthenticatedRequest, res: Response, @Body payload: OwnerSetupRequestDto) {
+		const { email, firstName, lastName, password } = payload;
 
-		if (this.config.getEnv('userManagement.isInstanceOwnerSetUp')) {
+		if (config.getEnv('userManagement.isInstanceOwnerSetUp')) {
 			this.logger.debug(
 				'Request to claim instance ownership failed because instance owner already exists',
-				{
-					userId,
-				},
 			);
 			throw new BadRequestError('Instance owner already setup');
 		}
 
-		if (!email || !validator.isEmail(email)) {
-			this.logger.debug('Request to claim instance ownership failed because of invalid email', {
-				userId,
-				invalidEmail: email,
-			});
-			throw new BadRequestError('Invalid email address');
-		}
-
-		const validPassword = validatePassword(password);
-
-		if (!firstName || !lastName) {
-			this.logger.debug(
-				'Request to claim instance ownership failed because of missing first name or last name in payload',
-				{ userId, payload: req.body },
-			);
-			throw new BadRequestError('First and last names are mandatory');
-		}
-
-		// TODO: This check should be in a middleware outside this class
-		if (globalRole.scope === 'global' && globalRole.name !== 'owner') {
-			this.logger.debug(
-				'Request to claim instance ownership failed because user shell does not exist or has wrong role!',
-				{
-					userId,
-				},
-			);
-			throw new BadRequestError('Invalid request');
-		}
-
-		let owner = req.user;
-
-		Object.assign(owner, {
-			email,
-			firstName,
-			lastName,
-			password: await hashPassword(validPassword),
+		let owner = await this.userRepository.findOneOrFail({
+			where: { role: 'global:owner' },
 		});
+		owner.email = email;
+		owner.firstName = firstName;
+		owner.lastName = lastName;
+		owner.password = await this.passwordUtility.hash(password);
 
+		// TODO: move XSS validation out into the DTO class
 		await validateEntity(owner);
 
-		owner = await this.userService.save(owner);
+		owner = await this.userRepository.save(owner, { transaction: false });
 
-		this.logger.info('Owner was set up successfully', { userId });
+		this.logger.info('Owner was set up successfully');
 
 		await this.settingsRepository.update(
 			{ key: 'userManagement.isInstanceOwnerSetUp' },
 			{ value: JSON.stringify(true) },
 		);
 
-		this.config.set('userManagement.isInstanceOwnerSetUp', true);
+		config.set('userManagement.isInstanceOwnerSetUp', true);
 
-		this.logger.debug('Setting isInstanceOwnerSetUp updated successfully', { userId });
+		this.logger.debug('Setting isInstanceOwnerSetUp updated successfully');
 
-		await issueCookie(res, owner);
+		this.authService.issueCookie(res, owner, req.browserId);
 
-		void this.internalHooks.onInstanceOwnerSetup({ user_id: userId });
+		this.eventService.emit('instance-owner-setup', { userId: owner.id });
 
-		return this.userService.toPublic(owner, { posthog: this.postHog });
+		return await this.userService.toPublic(owner, { posthog: this.postHog, withScopes: true });
 	}
 
 	@Post('/dismiss-banner')
-	async dismissBanner(req: OwnerRequest.DismissBanner) {
-		const bannerName = 'banner' in req.body ? (req.body.banner as string) : '';
-		const response = await this.settingsRepository.dismissBanner({ bannerName });
-		return response;
+	@GlobalScope('banner:dismiss')
+	async dismissBanner(
+		_req: AuthenticatedRequest,
+		_res: Response,
+		@Body payload: DismissBannerRequestDto,
+	) {
+		const bannerName = payload.banner;
+		if (!bannerName) return;
+		return await this.settingsRepository.dismissBanner({ bannerName });
 	}
 }

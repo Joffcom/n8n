@@ -1,5 +1,6 @@
 import type { IDataObject, ILoadOptionsFunctions, INodePropertyOptions } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
+
 import { apiRequest } from '../transport';
 
 export async function getColumns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
@@ -20,7 +21,9 @@ export async function getColumns(this: ILoadOptionsFunctions): Promise<INodeProp
 	});
 
 	if (!tableData) {
-		throw new NodeOperationError(this.getNode(), 'Table information could not be found!');
+		throw new NodeOperationError(this.getNode(), 'Table information could not be found!', {
+			level: 'warning',
+		});
 	}
 
 	const result: INodePropertyOptions[] = [];
@@ -79,7 +82,9 @@ export async function getAttachmentColumns(
 	});
 
 	if (!tableData) {
-		throw new NodeOperationError(this.getNode(), 'Table information could not be found!');
+		throw new NodeOperationError(this.getNode(), 'Table information could not be found!', {
+			level: 'warning',
+		});
 	}
 
 	const result: INodePropertyOptions[] = [];

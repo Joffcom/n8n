@@ -1,8 +1,11 @@
-import type { SuperAgentTest } from 'supertest';
+import type { User } from '@/databases/entities/user';
+import { MessageEventBus } from '@/eventbus/message-event-bus/message-event-bus';
+import { ExecutionRecoveryService } from '@/executions/execution-recovery.service';
+
+import { createUser } from './shared/db/users';
+import type { SuperAgentTest } from './shared/types';
 import * as utils from './shared/utils/';
-import * as testDb from './shared/testDb';
-import type { Role } from '@db/entities/Role';
-import type { User } from '@db/entities/User';
+import { mockInstance } from '../shared/mocking';
 
 /**
  * NOTE: due to issues with mocking the MessageEventBus in multiple tests running in parallel,
@@ -10,18 +13,18 @@ import type { User } from '@db/entities/User';
  * The tests in this file are only checking endpoint permissions.
  */
 
-let globalOwnerRole: Role;
 let owner: User;
 let authOwnerAgent: SuperAgentTest;
 
+mockInstance(MessageEventBus);
+mockInstance(ExecutionRecoveryService);
 const testServer = utils.setupTestServer({
 	endpointGroups: ['eventBus'],
 	enabledFeatures: [], // do not enable logstreaming
 });
 
 beforeAll(async () => {
-	globalOwnerRole = await testDb.getGlobalOwnerRole();
-	owner = await testDb.createUser({ globalRole: globalOwnerRole });
+	owner = await createUser({ role: 'global:owner' });
 	authOwnerAgent = testServer.authAgentFor(owner);
 });
 

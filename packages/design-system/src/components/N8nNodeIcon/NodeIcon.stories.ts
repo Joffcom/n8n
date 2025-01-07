@@ -1,5 +1,6 @@
-import N8nNodeIcon from './NodeIcon.vue';
 import type { StoryFn } from '@storybook/vue3';
+
+import N8nNodeIcon from './NodeIcon.vue';
 
 export default {
 	title: 'Atoms/NodeIcon',
@@ -37,4 +38,12 @@ Hoverable.args = {
 	size: 200,
 	nodeTypeName: 'We ❤️ n8n',
 	showTooltip: true,
+};
+
+export const Unknown = DefaultTemplate.bind({});
+Unknown.args = {
+	type: 'unknown',
+	nodeTypeName: '',
+	size: 40,
+	color: 'red',
 };

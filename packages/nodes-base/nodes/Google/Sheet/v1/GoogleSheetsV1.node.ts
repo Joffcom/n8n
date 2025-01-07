@@ -13,6 +13,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
+import { googleApiRequest, hexToRgb } from './GenericFunctions';
 import type {
 	ILookupValues,
 	ISheetUpdateData,
@@ -21,10 +22,8 @@ import type {
 	ValueRenderOption,
 } from './GoogleSheet';
 import { GoogleSheet } from './GoogleSheet';
-
-import { googleApiRequest, hexToRgb } from './GenericFunctions';
-
 import { versionDescription } from './versionDescription';
+import { generatePairedItemData } from '../../../../utils/utilities';
 import { getGoogleAccessToken } from '../../GenericFunctions';
 
 export class GoogleSheetsV1 implements INodeType {
@@ -225,7 +224,7 @@ export class GoogleSheetsV1 implements INodeType {
 
 					for (const propertyName of Object.keys(deletePropertyToDimensions)) {
 						if (toDelete[propertyName] !== undefined) {
-							toDelete[propertyName]!.forEach((entry) => {
+							toDelete[propertyName].forEach((entry) => {
 								requests.push({
 									deleteDimension: {
 										range: {
@@ -295,7 +294,16 @@ export class GoogleSheetsV1 implements INodeType {
 						returnData = [];
 					}
 
-					return [this.helpers.returnJsonArray(returnData)];
+					const pairedItem = generatePairedItemData(items.length);
+
+					const lookupOutput = returnData.map((item) => {
+						return {
+							json: item,
+							pairedItem,
+						};
+					});
+
+					return [lookupOutput];
 				} catch (error) {
 					if (this.continueOnFail()) {
 						return [this.helpers.returnJsonArray({ error: error.message })];

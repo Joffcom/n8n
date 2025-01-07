@@ -1,16 +1,15 @@
-import type { OptionsWithUri } from 'request';
-
+import flow from 'lodash/flow';
+import sortBy from 'lodash/sortBy';
 import type {
 	IExecuteFunctions,
 	IHookFunctions,
 	IDataObject,
 	ILoadOptionsFunctions,
 	JsonObject,
+	IHttpRequestMethods,
+	IRequestOptions,
 } from 'n8n-workflow';
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
-
-import flow from 'lodash/flow';
-import sortBy from 'lodash/sortBy';
 
 import type {
 	AllFields,
@@ -41,17 +40,15 @@ export function throwOnErrorStatus(
 
 export async function zohoApiRequest(
 	this: IExecuteFunctions | IHookFunctions | ILoadOptionsFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	endpoint: string,
 	body: IDataObject = {},
 	qs: IDataObject = {},
 	uri?: string,
 ) {
-	const { oauthTokenData } = (await this.getCredentials(
-		'zohoOAuth2Api',
-	)) as ZohoOAuth2ApiCredentials;
+	const { oauthTokenData } = await this.getCredentials<ZohoOAuth2ApiCredentials>('zohoOAuth2Api');
 
-	const options: OptionsWithUri = {
+	const options: IRequestOptions = {
 		body: {
 			data: [body],
 		},
@@ -80,7 +77,7 @@ export async function zohoApiRequest(
 			? {
 					message: error.cause.data.message || 'The Zoho API returned an error.',
 					description: JSON.stringify(error.cause.data, null, 2),
-			  }
+				}
 			: undefined;
 		throw new NodeApiError(this.getNode(), error as JsonObject, args);
 	}
@@ -91,7 +88,7 @@ export async function zohoApiRequest(
  */
 export async function zohoApiRequestAllItems(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	endpoint: string,
 	body: IDataObject = {},
 	qs: IDataObject = {},
@@ -117,7 +114,7 @@ export async function zohoApiRequestAllItems(
  */
 export async function handleListing(
 	this: IExecuteFunctions,
-	method: string,
+	method: IHttpRequestMethods,
 	endpoint: string,
 	body: IDataObject = {},
 	qs: IDataObject = {},
@@ -125,7 +122,7 @@ export async function handleListing(
 	const returnAll = this.getNodeParameter('returnAll', 0);
 
 	if (returnAll) {
-		return zohoApiRequestAllItems.call(this, method, endpoint, body, qs);
+		return await zohoApiRequestAllItems.call(this, method, endpoint, body, qs);
 	}
 
 	const responseData = await zohoApiRequestAllItems.call(this, method, endpoint, body, qs);

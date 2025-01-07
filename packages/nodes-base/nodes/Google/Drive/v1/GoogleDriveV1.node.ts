@@ -1,4 +1,3 @@
-/* eslint-disable n8n-nodes-base/node-filename-against-convention */
 import type {
 	IBinaryKeyData,
 	IDataObject,
@@ -8,15 +7,14 @@ import type {
 	INodeTypeBaseDescription,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { BINARY_ENCODING } from 'n8n-workflow';
-
-import { googleApiRequest, googleApiRequestAllItems } from './GenericFunctions';
-
-import { v4 as uuid } from 'uuid';
+import { BINARY_ENCODING, NodeConnectionType } from 'n8n-workflow';
 import type { Readable } from 'stream';
-import { driveSearch, fileSearch, folderSearch } from './SearchFunctions';
+import { v4 as uuid } from 'uuid';
 
 import { oldVersionNotice } from '@utils/descriptions';
+
+import { googleApiRequest, googleApiRequestAllItems } from './GenericFunctions';
+import { driveSearch, fileSearch, folderSearch } from './SearchFunctions';
 import { GOOGLE_DRIVE_FILE_URL_REGEX, GOOGLE_DRIVE_FOLDER_URL_REGEX } from '../../constants';
 
 const UPLOAD_CHUNK_SIZE = 256 * 1024;
@@ -32,8 +30,8 @@ const versionDescription: INodeTypeDescription = {
 	defaults: {
 		name: 'Google Drive',
 	},
-	inputs: ['main'],
-	outputs: ['main'],
+	inputs: [NodeConnectionType.Main],
+	outputs: [NodeConnectionType.Main],
 	credentials: [
 		{
 			name: 'googleApi',
@@ -355,7 +353,7 @@ const versionDescription: INodeTypeDescription = {
 		//         file:download
 		// ----------------------------------
 		{
-			displayName: 'Binary Property',
+			displayName: 'Put Output File in Field',
 			name: 'binaryPropertyName',
 			type: 'string',
 			required: true,
@@ -366,13 +364,13 @@ const versionDescription: INodeTypeDescription = {
 					resource: ['file'],
 				},
 			},
-			description: 'Name of the binary property to which to write the data of the read file',
+			hint: 'The name of the output binary field to put the file in',
 		},
 		{
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -833,7 +831,7 @@ const versionDescription: INodeTypeDescription = {
 		},
 
 		{
-			displayName: 'Binary Data',
+			displayName: 'Binary File',
 			name: 'binaryData',
 			type: 'boolean',
 			default: false,
@@ -861,7 +859,7 @@ const versionDescription: INodeTypeDescription = {
 			description: 'The text content of the file to upload',
 		},
 		{
-			displayName: 'Binary Property',
+			displayName: 'Input Binary Field',
 			name: 'binaryPropertyName',
 			type: 'string',
 			default: 'data',
@@ -874,8 +872,7 @@ const versionDescription: INodeTypeDescription = {
 				},
 			},
 			placeholder: '',
-			description:
-				'Name of the binary property which contains the data for the file to be uploaded',
+			hint: 'The name of the input binary field containing the file to be uploaded',
 		},
 
 		// ----------------------------------
@@ -885,7 +882,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Update Fields',
 			name: 'updateFields',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -943,7 +940,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1109,7 +1106,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1544,7 +1541,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1775,7 +1772,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1832,7 +1829,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1866,7 +1863,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Update Fields',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -1936,7 +1933,7 @@ const versionDescription: INodeTypeDescription = {
 			displayName: 'Options',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Option',
+			placeholder: 'Add option',
 			default: {},
 			displayOptions: {
 				show: {
@@ -2442,7 +2439,7 @@ export class GoogleDriveV1 implements INodeType {
 							const binaryData = this.helpers.assertBinaryData(i, binaryPropertyName);
 							if (binaryData.id) {
 								// Stream data in 256KB chunks, and upload the via the resumable upload api
-								fileContent = this.helpers.getBinaryStream(binaryData.id, UPLOAD_CHUNK_SIZE);
+								fileContent = await this.helpers.getBinaryStream(binaryData.id, UPLOAD_CHUNK_SIZE);
 								const metadata = await this.helpers.getBinaryMetadata(binaryData.id);
 								contentLength = metadata.fileSize;
 								originalFilename = metadata.fileName;

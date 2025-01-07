@@ -1,10 +1,9 @@
+import { mock } from 'jest-mock-extended';
 import type { IDataObject, IExecuteFunctions, INode } from 'n8n-workflow';
+import pgPromise from 'pg-promise';
 
 import type { PgpDatabase } from '../../v2/helpers/interfaces';
 import { configureQueryRunner } from '../../v2/helpers/utils';
-
-import pgPromise from 'pg-promise';
-import { mock } from 'jest-mock-extended';
 
 const node: INode = {
 	id: '1',
@@ -50,7 +49,7 @@ describe('Test PostgresV2, runQueries', () => {
 
 		expect(result).toBeDefined();
 		expect(result).toHaveLength(1);
-		expect(result).toEqual([{ json: { success: true } }]);
+		expect(result).toEqual([{ json: { success: true }, pairedItem: [{ item: 0 }] }]);
 		expect(dbMultiSpy).toHaveBeenCalledWith('SELECT * FROM table');
 	});
 });

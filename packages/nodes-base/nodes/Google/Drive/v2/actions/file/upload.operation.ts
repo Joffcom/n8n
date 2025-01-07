@@ -6,14 +6,16 @@ import type {
 } from 'n8n-workflow';
 
 import { updateDisplayOptions } from '@utils/utilities';
-import { googleApiRequest } from '../../transport';
-import { driveRLC, folderRLC, updateCommonOptions } from '../common.descriptions';
+
 import {
 	getItemBinaryData,
 	setFileProperties,
 	setUpdateCommonParams,
 	setParentFolder,
+	processInChunks,
 } from '../../helpers/utils';
+import { googleApiRequest } from '../../transport';
+import { driveRLC, folderRLC, updateCommonOptions } from '../common.descriptions';
 
 const properties: INodeProperties[] = [
 	{
@@ -49,7 +51,7 @@ const properties: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Option',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			...updateCommonOptions,
@@ -123,21 +125,23 @@ export async function execute(this: IExecuteFunctions, i: number): Promise<INode
 			{ uploadType: 'resumable' },
 			undefined,
 			{
-				resolveWithFullResponse: true,
+				returnFullResponse: true,
 			},
 		);
+
 		const uploadUrl = resumableUpload.headers.location;
 
-		let offset = 0;
-		for await (const chunk of fileContent) {
-			const nextOffset = offset + Number(chunk.length);
+		// 2MB chunks, needs to be a multiple of 256kB for Google Drive API
+		const chunkSizeBytes = 2048 * 1024;
+
+		await processInChunks(fileContent, chunkSizeBytes, async (chunk, offset) => {
 			try {
 				const response = await this.helpers.httpRequest({
 					method: 'PUT',
 					url: uploadUrl,
 					headers: {
 						'Content-Length': chunk.length,
-						'Content-Range': `bytes ${offset}-${nextOffset - 1}/${contentLength}`,
+						'Content-Range': `bytes ${offset}-${offset + chunk.byteLength - 1}/${contentLength}`,
 					},
 					body: chunk,
 				});
@@ -145,8 +149,7 @@ export async function execute(this: IExecuteFunctions, i: number): Promise<INode
 			} catch (error) {
 				if (error.response?.status !== 308) throw error;
 			}
-			offset = nextOffset;
-		}
+		});
 	}
 
 	const options = this.getNodeParameter('options', i, {});

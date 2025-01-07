@@ -1,61 +1,22 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import lt from 'lodash/lt';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import unset from 'lodash/unset';
+import { NodeConnectionType, NodeOperationError, deepCopy } from 'n8n-workflow';
 import type {
 	IDataObject,
 	IExecuteFunctions,
-	INode,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeBaseDescription,
 	INodeTypeDescription,
+	IPairedItemData,
 } from 'n8n-workflow';
-import { NodeOperationError, deepCopy } from 'n8n-workflow';
 
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
-import isObject from 'lodash/isObject';
-import lt from 'lodash/lt';
-import merge from 'lodash/merge';
-import pick from 'lodash/pick';
-import reduce from 'lodash/reduce';
-import set from 'lodash/set';
-import unset from 'lodash/unset';
-
-const compareItems = (
-	obj: INodeExecutionData,
-	obj2: INodeExecutionData,
-	keys: string[],
-	disableDotNotation: boolean,
-	_node: INode,
-) => {
-	let result = true;
-	for (const key of keys) {
-		if (!disableDotNotation) {
-			if (!isEqual(get(obj.json, key), get(obj2.json, key))) {
-				result = false;
-				break;
-			}
-		} else {
-			if (!isEqual(obj.json[key], obj2.json[key])) {
-				result = false;
-				break;
-			}
-		}
-	}
-	return result;
-};
-
-const flattenKeys = (obj: IDataObject, path: string[] = []): IDataObject => {
-	return !isObject(obj)
-		? { [path.join('.')]: obj }
-		: reduce(obj, (cum, next, key) => merge(cum, flattenKeys(next as IDataObject, [...path, key])), {}); //prettier-ignore
-};
-
-const shuffleArray = (array: any[]) => {
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-};
+import { flattenKeys, shuffleArray, compareItems } from '@utils/utilities';
 
 import * as summarize from './summarize.operation';
 import { sortByCode } from '../V3/helpers/utils';
@@ -70,8 +31,8 @@ export class ItemListsV2 implements INodeType {
 			defaults: {
 				name: 'Item Lists',
 			},
-			inputs: ['main'],
-			outputs: ['main'],
+			inputs: [NodeConnectionType.Main],
+			outputs: [NodeConnectionType.Main],
 			credentials: [],
 			properties: [
 				{
@@ -597,7 +558,7 @@ export class ItemListsV2 implements INodeType {
 					type: 'string',
 					typeOptions: {
 						alwaysOpenEditWindow: true,
-						editor: 'code',
+						editor: 'jsEditor',
 						rows: 10,
 					},
 					default: `// The two items to compare are in the variables a and b
@@ -1103,6 +1064,7 @@ return 0;`,
 					return [returnData];
 				} else {
 					let newItems: IDataObject[] = items.map((item) => item.json);
+					let pairedItem: IPairedItemData[] = [];
 					const destinationFieldName = this.getNodeParameter('destinationFieldName', 0) as string;
 					const fieldsToExclude = (
 						this.getNodeParameter('fieldsToExclude.fields', 0, []) as IDataObject[]
@@ -1112,7 +1074,7 @@ return 0;`,
 					).map((entry) => entry.fieldName);
 
 					if (fieldsToExclude.length || fieldsToInclude.length) {
-						newItems = newItems.reduce((acc, item) => {
+						newItems = newItems.reduce((acc, item, index) => {
 							const newItem: IDataObject = {};
 							let outputFields = Object.keys(item);
 
@@ -1132,11 +1094,16 @@ return 0;`,
 							if (isEmpty(newItem)) {
 								return acc;
 							}
+							pairedItem.push({ item: index });
 							return acc.concat([newItem]);
 						}, [] as IDataObject[]);
+					} else {
+						pairedItem = Array.from({ length: newItems.length }, (_, item) => ({
+							item,
+						}));
 					}
 
-					return [[{ json: { [destinationFieldName]: newItems } }]];
+					return [[{ json: { [destinationFieldName]: newItems }, pairedItem }]];
 				}
 			} else if (operation === 'removeDuplicates') {
 				const compare = this.getNodeParameter('compare', 0) as string;
@@ -1266,7 +1233,7 @@ return 0;`,
 				const removedIndexes: number[] = [];
 				let temp = newItems[0];
 				for (let index = 1; index < newItems.length; index++) {
-					if (compareItems(newItems[index], temp, keys, disableDotNotation, this.getNode())) {
+					if (compareItems(newItems[index], temp, keys, disableDotNotation)) {
 						removedIndexes.push(newItems[index].json.__INDEX as unknown as number);
 					} else {
 						temp = newItems[index];
@@ -1424,7 +1391,7 @@ return 0;`,
 				}
 				return [newItems];
 			} else if (operation === 'summarize') {
-				return summarize.execute.call(this, items);
+				return await summarize.execute.call(this, items);
 			} else {
 				throw new NodeOperationError(this.getNode(), `Operation '${operation}' is not recognized`);
 			}

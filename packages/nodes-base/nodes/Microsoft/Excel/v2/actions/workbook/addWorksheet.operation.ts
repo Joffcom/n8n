@@ -4,7 +4,9 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 } from 'n8n-workflow';
+
 import { updateDisplayOptions } from '@utils/utilities';
+
 import { microsoftApiRequest } from '../../transport';
 import { workbookRLC } from '../common.descriptions';
 
@@ -14,7 +16,7 @@ const properties: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'additionalFields',
 		type: 'collection',
-		placeholder: 'Add Option',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{

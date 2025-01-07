@@ -1,16 +1,15 @@
+import type { IHttpRequestMethods } from 'n8n-workflow';
 import nock from 'nock';
 
 import * as move from '../../../../v2/actions/file/move.operation';
-
 import * as transport from '../../../../v2/transport';
-
 import { createMockExecuteFunction, driveNode } from '../helpers';
 
 jest.mock('../../../../v2/transport', () => {
 	const originalModule = jest.requireActual('../../../../v2/transport');
 	return {
 		...originalModule,
-		googleApiRequest: jest.fn(async function (method: string) {
+		googleApiRequest: jest.fn(async function (method: IHttpRequestMethods) {
 			if (method === 'GET') {
 				return {
 					parents: ['parentFolderIDxxxxxx'],
@@ -31,7 +30,7 @@ describe('test GoogleDriveV2: file move', () => {
 		jest.unmock('../../../../v2/transport');
 	});
 
-	it('shuold be called with', async () => {
+	it('should be called with', async () => {
 		const nodeParameters = {
 			operation: 'move',
 			fileId: {

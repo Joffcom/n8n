@@ -1,36 +1,10 @@
-<template>
-	<div :class="$style.searchContainer" data-test-id="search-bar">
-		<div :class="{ [$style.prefix]: true, [$style.active]: modelValue.length > 0 }">
-			<font-awesome-icon icon="search" size="sm" />
-		</div>
-		<div :class="$style.text">
-			<input
-				:placeholder="placeholder"
-				:value="modelValue"
-				:class="$style.input"
-				ref="inputRef"
-				autofocus
-				data-test-id="node-creator-search-bar"
-				tabindex="0"
-				@input="onInput"
-			/>
-		</div>
-		<div :class="$style.suffix" v-if="modelValue.length > 0" @click="clear">
-			<button :class="[$style.clear, $style.clickable]">
-				<font-awesome-icon icon="times-circle" />
-			</button>
-		</div>
-	</div>
-</template>
-
 <script setup lang="ts">
 import { onMounted, reactive, toRefs, onBeforeUnmount } from 'vue';
-import { useWebhooksStore } from '@/stores/webhooks.store';
-import { runExternalHook } from '@/utils';
+import { useExternalHooks } from '@/composables/useExternalHooks';
 
 export interface Props {
-	placeholder: string;
-	modelValue: string;
+	placeholder?: string;
+	modelValue?: string;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -39,12 +13,14 @@ withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-	(event: 'update:modelValue', value: string): void;
+	'update:modelValue': [value: string];
 }>();
 
 const state = reactive({
 	inputRef: null as HTMLInputElement | null,
 });
+
+const externalHooks = useExternalHooks();
 
 function focus() {
 	state.inputRef?.focus();
@@ -60,9 +36,7 @@ function clear() {
 }
 
 onMounted(() => {
-	void runExternalHook('nodeCreator_searchBar.mount', useWebhooksStore(), {
-		inputRef: state.inputRef,
-	});
+	void externalHooks.run('nodeCreatorSearchBar.mount', { inputRef: state.inputRef });
 	setTimeout(focus, 0);
 });
 
@@ -75,6 +49,31 @@ defineExpose({
 	focus,
 });
 </script>
+
+<template>
+	<div :class="$style.searchContainer" data-test-id="search-bar">
+		<div :class="{ [$style.prefix]: true, [$style.active]: modelValue.length > 0 }">
+			<font-awesome-icon icon="search" size="sm" />
+		</div>
+		<div :class="$style.text">
+			<input
+				ref="inputRef"
+				:placeholder="placeholder"
+				:value="modelValue"
+				:class="$style.input"
+				autofocus
+				data-test-id="node-creator-search-bar"
+				tabindex="0"
+				@input="onInput"
+			/>
+		</div>
+		<div v-if="modelValue.length > 0" :class="$style.suffix" @click="clear">
+			<button :class="[$style.clear, $style.clickable]">
+				<font-awesome-icon icon="times-circle" />
+			</button>
+		</div>
+	</div>
+</template>
 
 <style lang="scss" module>
 .searchContainer {
@@ -131,7 +130,7 @@ defineExpose({
 }
 
 .clear {
-	background-color: $node-creator-search-clear-color;
+	background-color: transparent;
 	padding: 0;
 	border: none;
 	cursor: pointer;

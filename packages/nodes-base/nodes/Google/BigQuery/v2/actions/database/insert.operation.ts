@@ -6,10 +6,12 @@ import type {
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 import { v4 as uuid } from 'uuid';
-import { updateDisplayOptions } from '@utils/utilities';
+
+import { generatePairedItemData, updateDisplayOptions } from '@utils/utilities';
+
 import type { TableSchema } from '../../helpers/interfaces';
 import { checkSchema, wrapData } from '../../helpers/utils';
-import { googleApiRequest } from '../../transport';
+import { googleBigQueryApiRequest } from '../../transport';
 
 const properties: INodeProperties[] = [
 	{
@@ -33,7 +35,7 @@ const properties: INodeProperties[] = [
 	},
 	{
 		displayName:
-			"In this mode, make sure the incoming data fields are named the same as the columns in BigQuery. (Use a 'set' node before this node to change them if required.)",
+			"In this mode, make sure the incoming data fields are named the same as the columns in BigQuery. (Use an 'Edit Fields' node before this node to change them if required.)",
 		name: 'info',
 		type: 'notice',
 		default: '',
@@ -63,7 +65,7 @@ const properties: INodeProperties[] = [
 						name: 'fieldId',
 						type: 'options',
 						description:
-							'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+							'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
 						typeOptions: {
 							loadOptionsDependsOn: ['projectId.value', 'datasetId.value', 'tableId.value'],
 							loadOptionsMethod: 'getSchema',
@@ -89,7 +91,7 @@ const properties: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Options',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
@@ -178,7 +180,7 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 	}
 
 	const schema = (
-		await googleApiRequest.call(
+		await googleBigQueryApiRequest.call(
 			this,
 			'GET',
 			`/v2/projects/${projectId}/datasets/${datasetId}/tables/${tableId}`,
@@ -225,11 +227,12 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 		}
 	}
 
+	const itemData = generatePairedItemData(items.length);
 	for (let i = 0; i < rows.length; i += batchSize) {
 		const batch = rows.slice(i, i + batchSize);
 		body.rows = batch;
 
-		const responseData = await googleApiRequest.call(
+		const responseData = await googleBigQueryApiRequest.call(
 			this,
 			'POST',
 			`/v2/projects/${projectId}/datasets/${datasetId}/tables/${tableId}/insertAll`,
@@ -274,12 +277,13 @@ export async function execute(this: IExecuteFunctions): Promise<INodeExecutionDa
 				: '';
 			throw new NodeOperationError(this.getNode(), `${failedMessage}${stoppedMessage}`, {
 				description: errors.join('\n, '),
+				itemIndex: i,
 			});
 		}
 
 		const executionData = this.helpers.constructExecutionMetaData(
 			wrapData(responseData as IDataObject[]),
-			{ itemData: { item: 0 } },
+			{ itemData },
 		);
 
 		returnData.push(...executionData);

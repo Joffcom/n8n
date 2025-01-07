@@ -7,6 +7,7 @@ import type {
 import { NodeOperationError } from 'n8n-workflow';
 
 import { updateDisplayOptions } from '@utils/utilities';
+
 import {
 	getItemBinaryData,
 	prepareQueryString,
@@ -57,7 +58,7 @@ const properties: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Option',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			...updateCommonOptions,
@@ -185,6 +186,7 @@ export async function execute(this: IExecuteFunctions, i: number): Promise<INode
 				fileContent,
 				{
 					uploadType: 'media',
+					supportsAllDrives: true,
 				},
 				undefined,
 				{
@@ -200,10 +202,10 @@ export async function execute(this: IExecuteFunctions, i: number): Promise<INode
 				'PATCH',
 				`/upload/drive/v3/files/${fileId}`,
 				undefined,
-				{ uploadType: 'resumable' },
+				{ uploadType: 'resumable', supportsAllDrives: true },
 				undefined,
 				{
-					resolveWithFullResponse: true,
+					returnFullResponse: true,
 				},
 			);
 			const uploadUrl = resumableUpload.headers.location;

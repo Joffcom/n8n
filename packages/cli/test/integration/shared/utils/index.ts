@@ -1,26 +1,32 @@
-import { Container } from 'typedi';
-import { randomBytes } from 'crypto';
-import { existsSync } from 'fs';
-import { BinaryDataManager, UserSettings } from 'n8n-core';
-import type { INode } from 'n8n-workflow';
-import { GithubApi } from 'n8n-nodes-base/credentials/GithubApi.credentials';
+import { Container } from '@n8n/di';
+import { mock } from 'jest-mock-extended';
+import {
+	BinaryDataService,
+	InstanceSettings,
+	UnrecognizedNodeTypeError,
+	type DirectoryLoader,
+} from 'n8n-core';
 import { Ftp } from 'n8n-nodes-base/credentials/Ftp.credentials';
+import { GithubApi } from 'n8n-nodes-base/credentials/GithubApi.credentials';
 import { Cron } from 'n8n-nodes-base/nodes/Cron/Cron.node';
+import { ScheduleTrigger } from 'n8n-nodes-base/nodes/Schedule/ScheduleTrigger.node';
 import { Set } from 'n8n-nodes-base/nodes/Set/Set.node';
 import { Start } from 'n8n-nodes-base/nodes/Start/Start.node';
+import type { INodeTypeData, INode } from 'n8n-workflow';
 import type request from 'supertest';
 import { v4 as uuid } from 'uuid';
 
 import config from '@/config';
-import * as Db from '@/Db';
-import { WorkflowEntity } from '@db/entities/WorkflowEntity';
-import { ActiveWorkflowRunner } from '@/ActiveWorkflowRunner';
 import { AUTH_COOKIE_NAME } from '@/constants';
+import { WorkflowEntity } from '@/databases/entities/workflow-entity';
+import { SettingsRepository } from '@/databases/repositories/settings.repository';
+import { ExecutionService } from '@/executions/execution.service';
+import { LoadNodesAndCredentials } from '@/load-nodes-and-credentials';
+import { Push } from '@/push';
 
-import { LoadNodesAndCredentials } from '@/LoadNodesAndCredentials';
+import { mockInstance } from '../../../shared/mocking';
 
-export { mockInstance } from './mocking';
-export { setupTestServer } from './testServer';
+export { setupTestServer } from './test-server';
 
 // ----------------------------------
 //          initializers
@@ -29,10 +35,17 @@ export { setupTestServer } from './testServer';
 /**
  * Initialize node types.
  */
-export async function initActiveWorkflowRunner(): Promise<ActiveWorkflowRunner> {
-	const workflowRunner = Container.get(ActiveWorkflowRunner);
-	await workflowRunner.init();
-	return workflowRunner;
+export async function initActiveWorkflowManager() {
+	mockInstance(InstanceSettings, {
+		isMultiMain: false,
+	});
+
+	mockInstance(Push);
+	mockInstance(ExecutionService);
+	const { ActiveWorkflowManager } = await import('@/active-workflow-manager');
+	const activeWorkflowManager = Container.get(ActiveWorkflowManager);
+	await activeWorkflowManager.init();
+	return activeWorkflowManager;
 }
 
 /**
@@ -55,7 +68,8 @@ export async function initCredentialsTypes(): Promise<void> {
  * Initialize node types.
  */
 export async function initNodeTypes() {
-	Container.get(LoadNodesAndCredentials).loaded.nodes = {
+	ScheduleTrigger.prototype.trigger = async () => ({});
+	const nodes: INodeTypeData = {
 		'n8n-nodes-base.start': {
 			type: new Start(),
 			sourcePath: '',
@@ -68,37 +82,44 @@ export async function initNodeTypes() {
 			type: new Set(),
 			sourcePath: '',
 		},
+		'n8n-nodes-base.scheduleTrigger': {
+			type: new ScheduleTrigger(),
+			sourcePath: '',
+		},
 	};
+	const loader = mock<DirectoryLoader>();
+	loader.getNode.mockImplementation((nodeType) => {
+		const node = nodes[`n8n-nodes-base.${nodeType}`];
+		if (!node) throw new UnrecognizedNodeTypeError('n8n-nodes-base', nodeType);
+		return node;
+	});
+
+	const loadNodesAndCredentials = Container.get(LoadNodesAndCredentials);
+	loadNodesAndCredentials.loaders = { 'n8n-nodes-base': loader };
+	loadNodesAndCredentials.loaded.nodes = nodes;
 }
 
 /**
- * Initialize a BinaryManager for test runs.
+ * Initialize a BinaryDataService for test runs.
  */
-export async function initBinaryManager() {
-	const binaryDataConfig = config.getEnv('binaryDataManager');
-	await BinaryDataManager.init(binaryDataConfig);
-}
-
-/**
- * Initialize a user settings config file if non-existent.
- */
-// TODO: this should be mocked
-export async function initEncryptionKey() {
-	const settingsPath = UserSettings.getUserSettingsPath();
-
-	if (!existsSync(settingsPath)) {
-		const userSettings = { encryptionKey: randomBytes(24).toString('base64') };
-		await UserSettings.writeUserSettings(userSettings, settingsPath);
-	}
+export async function initBinaryDataService(mode: 'default' | 'filesystem' = 'default') {
+	const binaryDataService = new BinaryDataService();
+	await binaryDataService.init({
+		mode,
+		availableModes: [mode],
+		localStoragePath: '',
+	});
+	Container.set(BinaryDataService, binaryDataService);
 }
 
 /**
  * Extract the value (token) of the auth cookie in a response.
  */
 export function getAuthToken(response: request.Response, authCookieName = AUTH_COOKIE_NAME) {
-	const cookies: string[] = response.headers['set-cookie'];
+	const cookiesHeader = response.headers['set-cookie'];
+	if (!cookiesHeader) return undefined;
 
-	if (!cookies) return undefined;
+	const cookies = Array.isArray(cookiesHeader) ? cookiesHeader : [cookiesHeader];
 
 	const authCookie = cookies.find((c) => c.startsWith(`${authCookieName}=`));
 
@@ -116,7 +137,7 @@ export function getAuthToken(response: request.Response, authCookieName = AUTH_C
 // ----------------------------------
 
 export async function isInstanceOwnerSetUp() {
-	const { value } = await Db.collections.Settings.findOneByOrFail({
+	const { value } = await Container.get(SettingsRepository).findOneByOrFail({
 		key: 'userManagement.isInstanceOwnerSetUp',
 	});
 
@@ -126,7 +147,7 @@ export async function isInstanceOwnerSetUp() {
 export const setInstanceOwnerSetUp = async (value: boolean) => {
 	config.set('userManagement.isInstanceOwnerSetUp', value);
 
-	await Db.collections.Settings.update(
+	await Container.get(SettingsRepository).update(
 		{ key: 'userManagement.isInstanceOwnerSetUp' },
 		{ value: JSON.stringify(value) },
 	);
@@ -136,7 +157,7 @@ export const setInstanceOwnerSetUp = async (value: boolean) => {
 //           community nodes
 // ----------------------------------
 
-export * from './communityNodes';
+export * from './community-nodes';
 
 // ----------------------------------
 //           workflow

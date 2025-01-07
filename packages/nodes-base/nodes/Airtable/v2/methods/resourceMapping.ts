@@ -7,6 +7,7 @@ import type {
 	ResourceMapperFields,
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
+
 import { apiRequest } from '../transport';
 
 type AirtableSchema = {
@@ -31,7 +32,6 @@ const airtableReadOnlyFields = [
 	'rollup',
 	'externalSyncSource',
 	'multipleLookupValues',
-	'multipleRecordLinks',
 ];
 
 const airtableTypesMap: TypesMap = {
@@ -40,9 +40,9 @@ const airtableTypesMap: TypesMap = {
 	boolean: ['checkbox'],
 	dateTime: ['dateTime', 'date'],
 	time: [],
-	object: ['multipleAttachments'],
+	object: [],
 	options: ['singleSelect'],
-	array: ['multipleSelects'],
+	array: ['multipleSelects', 'multipleRecordLinks', 'multipleAttachments'],
 };
 
 function mapForeignType(foreignType: string, typesMap: TypesMap): FieldType {
@@ -78,7 +78,9 @@ export async function getColumns(this: ILoadOptionsFunctions): Promise<ResourceM
 	});
 
 	if (!tableData) {
-		throw new NodeOperationError(this.getNode(), 'Table information could not be found!');
+		throw new NodeOperationError(this.getNode(), 'Table information could not be found!', {
+			level: 'warning',
+		});
 	}
 
 	const fields: ResourceMapperField[] = [];

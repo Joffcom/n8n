@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as qs from 'querystring';
-import { Agent } from 'https';
 import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
-import { getAuthError } from './utils';
+import { Agent } from 'https';
+import * as qs from 'querystring';
+
 import type { ClientOAuth2TokenData } from './ClientOAuth2Token';
 import { ClientOAuth2Token } from './ClientOAuth2Token';
 import { CodeFlow } from './CodeFlow';
 import { CredentialsFlow } from './CredentialsFlow';
 import type { Headers } from './types';
+import { getAuthError } from './utils';
 
 export interface ClientOAuth2RequestObject {
 	url: string;
@@ -26,6 +26,7 @@ export interface ClientOAuth2Options {
 	clientId: string;
 	clientSecret?: string;
 	accessTokenUri: string;
+	authentication?: 'header' | 'body';
 	authorizationUri?: string;
 	redirectUri?: string;
 	scopes?: string[];

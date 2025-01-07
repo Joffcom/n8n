@@ -1,12 +1,16 @@
 import { BasePage } from './base';
 
 export class WorkflowsPage extends BasePage {
-	url = '/workflows';
+	url = '/home/workflows';
+
 	getters = {
 		newWorkflowButtonCard: () => cy.getByTestId('new-workflow-card'),
 		newWorkflowTemplateCard: () => cy.getByTestId('new-workflow-template-card'),
 		searchBar: () => cy.getByTestId('resources-list-search'),
-		createWorkflowButton: () => cy.getByTestId('resources-list-add'),
+		createWorkflowButton: () => {
+			cy.getByTestId('add-resource-workflow').should('be.visible');
+			return cy.getByTestId('add-resource-workflow');
+		},
 		workflowCards: () => cy.getByTestId('resources-list-item'),
 		workflowCard: (workflowName: string) =>
 			this.getters
@@ -15,6 +19,8 @@ export class WorkflowsPage extends BasePage {
 				.parents('[data-test-id="resources-list-item"]'),
 		workflowTags: (workflowName: string) =>
 			this.getters.workflowCard(workflowName).findChildByTestId('workflow-card-tags'),
+		workflowCardContent: (workflowName: string) =>
+			this.getters.workflowCard(workflowName).findChildByTestId('card-content'),
 		workflowActivator: (workflowName: string) =>
 			this.getters.workflowCard(workflowName).findChildByTestId('workflow-card-activator'),
 		workflowActivatorStatus: (workflowName: string) =>
@@ -23,6 +29,16 @@ export class WorkflowsPage extends BasePage {
 			this.getters.workflowCard(workflowName).findChildByTestId('workflow-card-actions'),
 		workflowDeleteButton: () =>
 			cy.getByTestId('action-toggle-dropdown').filter(':visible').contains('Delete'),
+		workflowMoveButton: () =>
+			cy.getByTestId('action-toggle-dropdown').filter(':visible').contains('Move'),
+		workflowFilterButton: () => cy.getByTestId('resources-list-filters-trigger').filter(':visible'),
+		workflowTagsDropdown: () => cy.getByTestId('tags-dropdown'),
+		workflowTagItem: (tag: string) => cy.getByTestId('tag').contains(tag),
+		workflowStatusDropdown: () => cy.getByTestId('status-dropdown'),
+		workflowStatusItem: (status: string) => cy.getByTestId('status').contains(status),
+		workflowOwnershipDropdown: () => cy.getByTestId('user-select-trigger'),
+		workflowOwner: (email: string) => cy.getByTestId('user-email').contains(email),
+		workflowResetFilters: () => cy.getByTestId('workflows-filter-reset'),
 		// Not yet implemented
 		// myWorkflows: () => cy.getByTestId('my-workflows'),
 		// allWorkflows: () => cy.getByTestId('all-workflows'),

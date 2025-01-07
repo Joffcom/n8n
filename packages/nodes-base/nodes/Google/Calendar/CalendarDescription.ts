@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+
 import { TIMEZONE_VALIDATION_REGEX } from './GenericFunctions';
 
 export const calendarOperations: INodeProperties[] = [
@@ -106,7 +107,7 @@ export const calendarFields: INodeProperties[] = [
 		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Options',
+		placeholder: 'Add option',
 		displayOptions: {
 			show: {
 				operation: ['availability'],

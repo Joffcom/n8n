@@ -19,6 +19,14 @@
 		}
 	}
 
+	@include mixins.when(disabled) {
+		.el-tooltip__trigger {
+			opacity: 0.25;
+			cursor: not-allowed;
+			background: unset;
+		}
+	}
+
 	& .el-dropdown__caret-button {
 		padding-left: 5px;
 		padding-right: 5px;
@@ -81,7 +89,6 @@
 	background-color: var.$color-white;
 	border: 1px solid var(--border-color-light);
 	border-radius: var(--border-radius-base);
-	box-shadow: var.$dropdown-menu-box-shadow;
 	position: relative;
 	list-style: none;
 
@@ -92,7 +99,7 @@
 		margin: 0;
 		font-size: var.$font-size-base;
 		font-weight: var(--font-weight-regular);
-		color: var(--color-text-dark);
+		color: var(--color-text-base);
 		cursor: pointer;
 		outline: none;
 		white-space: nowrap;
@@ -117,14 +124,13 @@
 				content: '';
 				height: $divided-offset;
 				display: block;
-				margin: 0 -16px;
 				background-color: var.$color-white;
 			}
 		}
 
 		@include mixins.when(disabled) {
 			cursor: default;
-			color: var.$font-color-disabled-base;
+			color: var(--color-text-lighter);
 			pointer-events: none;
 		}
 	}
@@ -143,7 +149,6 @@
 
 				&:before {
 					height: $divided-offset;
-					margin: 0 -17px;
 				}
 			}
 		}
@@ -163,7 +168,6 @@
 
 				&:before {
 					height: $divided-offset;
-					margin: 0 -15px;
 				}
 			}
 		}
@@ -183,7 +187,6 @@
 
 				&:before {
 					height: $divided-offset;
-					margin: 0 -10px;
 				}
 			}
 		}

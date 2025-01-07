@@ -1,10 +1,19 @@
 import { WorkflowExecute } from 'n8n-core';
 import type { INodeTypes, IRun, IRunExecutionData } from 'n8n-workflow';
 import { createDeferredPromise, Workflow } from 'n8n-workflow';
+import nock from 'nock';
+
 import * as Helpers from './Helpers';
 import type { WorkflowTestData } from './types';
 
 export async function executeWorkflow(testData: WorkflowTestData, nodeTypes: INodeTypes) {
+	if (testData.nock) {
+		const { baseUrl, mocks } = testData.nock;
+		const agent = nock(baseUrl);
+		mocks.forEach(({ method, path, statusCode, requestBody, responseBody }) =>
+			agent[method](path, requestBody).reply(statusCode, responseBody),
+		);
+	}
 	const executionMode = testData.trigger?.mode ?? 'manual';
 	const workflowInstance = new Workflow({
 		id: 'test',
@@ -14,13 +23,9 @@ export async function executeWorkflow(testData: WorkflowTestData, nodeTypes: INo
 		nodeTypes,
 		settings: testData.input.workflowData.settings,
 	});
-	const waitPromise = await createDeferredPromise<IRun>();
+	const waitPromise = createDeferredPromise<IRun>();
 	const nodeExecutionOrder: string[] = [];
-	const additionalData = Helpers.WorkflowExecuteAdditionalData(
-		waitPromise,
-		nodeExecutionOrder,
-		testData,
-	);
+	const additionalData = Helpers.WorkflowExecuteAdditionalData(waitPromise, nodeExecutionOrder);
 
 	let executionData: IRun;
 	const runExecutionData: IRunExecutionData = {
@@ -28,6 +33,7 @@ export async function executeWorkflow(testData: WorkflowTestData, nodeTypes: INo
 			runData: {},
 		},
 		executionData: {
+			metadata: {},
 			contextData: {},
 			waitingExecution: {},
 			waitingExecutionSource: null,
@@ -45,6 +51,6 @@ export async function executeWorkflow(testData: WorkflowTestData, nodeTypes: INo
 	const workflowExecute = new WorkflowExecute(additionalData, executionMode, runExecutionData);
 	executionData = await workflowExecute.processRunExecutionData(workflowInstance);
 
-	const result = await waitPromise.promise();
+	const result = await waitPromise.promise;
 	return { executionData, result, nodeExecutionOrder };
 }

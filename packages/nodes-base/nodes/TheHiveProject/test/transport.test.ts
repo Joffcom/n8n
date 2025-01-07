@@ -1,9 +1,8 @@
 import type { IExecuteFunctions } from 'n8n-workflow';
-import * as transport from '../transport/requestApi';
+import nock from 'nock';
 
 import { theHiveApiQuery } from '../transport/queryHelper';
-
-import nock from 'nock';
+import * as transport from '../transport/requestApi';
 
 jest.mock('../transport/requestApi', () => {
 	const originalModule = jest.requireActual('../transport/requestApi');

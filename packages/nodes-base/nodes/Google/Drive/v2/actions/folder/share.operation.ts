@@ -6,6 +6,7 @@ import type {
 } from 'n8n-workflow';
 
 import { updateDisplayOptions } from '@utils/utilities';
+
 import { googleApiRequest } from '../../transport';
 import { folderNoRootRLC, permissionsOptions, shareOptions } from '../common.descriptions';
 

@@ -1,4 +1,5 @@
 import type { IExecuteFunctions, ILoadOptionsFunctions, IDataObject } from 'n8n-workflow';
+
 import type { IForm } from './FormInterface';
 import { cockpitApiRequest } from './GenericFunctions';
 
@@ -11,5 +12,5 @@ export async function submitForm(
 		form,
 	};
 
-	return cockpitApiRequest.call(this, 'post', `/forms/submit/${resourceName}`, body);
+	return await cockpitApiRequest.call(this, 'POST', `/forms/submit/${resourceName}`, body);
 }

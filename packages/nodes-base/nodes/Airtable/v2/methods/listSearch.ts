@@ -5,6 +5,7 @@ import type {
 	INodeListSearchResult,
 } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
+
 import { apiRequest } from '../transport';
 
 export async function baseSearch(
@@ -118,7 +119,9 @@ export async function viewSearch(
 	});
 
 	if (!tableData) {
-		throw new NodeOperationError(this.getNode(), 'Table information could not be found!');
+		throw new NodeOperationError(this.getNode(), 'Table information could not be found!', {
+			level: 'warning',
+		});
 	}
 
 	if (filter) {

@@ -1,5 +1,6 @@
-import type { MigrationContext, ReversibleMigration } from '@db/types';
 import { v4 as uuidv4 } from 'uuid';
+
+import type { MigrationContext, ReversibleMigration } from '@/databases/types';
 
 type Workflow = { id: number };
 
@@ -12,11 +13,10 @@ export class AddWorkflowVersionIdColumn1669739707124 implements ReversibleMigrat
 
 		const workflowIds: Workflow[] = await runQuery(`SELECT id FROM ${tableName}`);
 		for (const { id } of workflowIds) {
-			await runQuery(
-				`UPDATE ${tableName} SET ${columnName} = :versionId WHERE id = :id`,
-				{ versionId: uuidv4() },
-				{ id },
-			);
+			await runQuery(`UPDATE ${tableName} SET ${columnName} = :versionId WHERE id = :id`, {
+				versionId: uuidv4(),
+				id,
+			});
 		}
 	}
 

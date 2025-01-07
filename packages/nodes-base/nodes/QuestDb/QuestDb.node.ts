@@ -4,8 +4,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
-
+import { NodeConnectionType, NodeOperationError } from 'n8n-workflow';
 import pgPromise from 'pg-promise';
 
 import { pgInsert, pgQueryV2 } from '../Postgres/v1/genericFunctions';
@@ -22,8 +21,9 @@ export class QuestDb implements INodeType {
 		defaults: {
 			name: 'QuestDB',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
+		parameterPane: 'wide',
 		credentials: [
 			{
 				name: 'questDb',
@@ -255,15 +255,15 @@ export class QuestDb implements INodeType {
 
 			returnItems = this.helpers.returnJsonArray(insertData);
 		} else {
-			pgp.end();
+			await db.$pool.end();
 			throw new NodeOperationError(
 				this.getNode(),
 				`The operation "${operation}" is not supported!`,
 			);
 		}
 
-		// Close the connection
-		pgp.end();
+		// shuts down the connection pool associated with the db object to allow the process to finish
+		await db.$pool.end();
 
 		return [returnItems];
 	}

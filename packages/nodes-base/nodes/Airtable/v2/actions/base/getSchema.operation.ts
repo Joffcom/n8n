@@ -3,8 +3,11 @@ import type {
 	INodeExecutionData,
 	INodeProperties,
 	IExecuteFunctions,
+	NodeApiError,
 } from 'n8n-workflow';
+
 import { updateDisplayOptions, wrapData } from '../../../../../utils/utilities';
+import { processAirtableError } from '../../helpers/utils';
 import { apiRequest } from '../../transport';
 import { baseRLC } from '../common.descriptions';
 
@@ -45,6 +48,7 @@ export async function execute(
 
 			returnData.push(...executionData);
 		} catch (error) {
+			error = processAirtableError(error as NodeApiError, undefined, i);
 			if (this.continueOnFail()) {
 				returnData.push({ json: { error: error.message } });
 				continue;

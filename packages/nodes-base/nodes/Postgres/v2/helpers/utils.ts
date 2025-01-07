@@ -4,8 +4,9 @@ import type {
 	INode,
 	INodeExecutionData,
 	INodePropertyOptions,
+	NodeParameterValueType,
 } from 'n8n-workflow';
-import { NodeOperationError } from 'n8n-workflow';
+import { NodeOperationError, jsonParse } from 'n8n-workflow';
 
 import type {
 	ColumnInfo,
@@ -18,6 +19,24 @@ import type {
 	SortRule,
 	WhereClause,
 } from './interfaces';
+import { generatePairedItemData } from '../../../../utils/utilities';
+
+export function isJSON(str: string) {
+	try {
+		JSON.parse(str.trim());
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+export function stringToArray(str: NodeParameterValueType | undefined) {
+	if (str === undefined) return [];
+	return String(str)
+		.split(',')
+		.filter((entry) => entry)
+		.map((entry) => entry.trim());
+}
 
 export function wrapData(data: IDataObject | IDataObject[]): INodeExecutionData[] {
 	if (!Array.isArray(data)) {
@@ -146,7 +165,7 @@ export function addWhereClauses(
 		replacementIndex = replacementIndex + 1;
 
 		let valueReplacement = '';
-		if (clause.condition !== 'IS NULL') {
+		if (clause.condition !== 'IS NULL' && clause.condition !== 'IS NOT NULL') {
 			valueReplacement = ` $${replacementIndex}`;
 			values.push(clause.value);
 			replacementIndex = replacementIndex + 1;
@@ -217,7 +236,8 @@ export function configureQueryRunner(
 ) {
 	return async (queries: QueryWithValues[], items: INodeExecutionData[], options: IDataObject) => {
 		let returnData: INodeExecutionData[] = [];
-		const emptyReturnData = options.operation === 'select' ? [] : [{ json: { success: true } }];
+		const emptyReturnData: INodeExecutionData[] =
+			options.operation === 'select' ? [] : [{ json: { success: true } }];
 
 		const queryBatching = (options.queryBatching as QueryMode) || 'single';
 
@@ -232,12 +252,17 @@ export function configureQueryRunner(
 					.flat();
 
 				if (!returnData.length) {
+					const pairedItem = generatePairedItemData(queries.length);
+
 					if ((options?.nodeVersion as number) < 2.3) {
+						if (emptyReturnData.length) {
+							emptyReturnData[0].pairedItem = pairedItem;
+						}
 						returnData = emptyReturnData;
 					} else {
 						returnData = queries.every((query) => isSelectQuery(query.query))
 							? []
-							: [{ json: { success: true } }];
+							: [{ json: { success: true }, pairedItem }];
 					}
 				}
 			} catch (err) {
@@ -369,13 +394,45 @@ export function prepareItem(values: IDataObject[]) {
 	return item;
 }
 
+export async function columnFeatureSupport(
+	db: PgpDatabase,
+): Promise<{ identity_generation: boolean; is_generated: boolean }> {
+	const result = await db.any(
+		`SELECT EXISTS (
+			SELECT 1 FROM information_schema.columns WHERE table_name = 'columns' AND table_schema = 'information_schema' AND column_name = 'is_generated'
+		) as is_generated,
+		EXISTS (
+			SELECT 1 FROM information_schema.columns WHERE table_name = 'columns' AND table_schema = 'information_schema' AND column_name = 'identity_generation'
+		) as identity_generation;`,
+	);
+
+	return result[0];
+}
+
 export async function getTableSchema(
 	db: PgpDatabase,
 	schema: string,
 	table: string,
+	options?: { getColumnsForResourceMapper?: boolean },
 ): Promise<ColumnInfo[]> {
+	const select = ['column_name', 'data_type', 'is_nullable', 'udt_name', 'column_default'];
+
+	if (options?.getColumnsForResourceMapper) {
+		// Check if columns exist before querying (identity_generation was added in v10, is_generated in v12)
+		const supported = await columnFeatureSupport(db);
+
+		if (supported.identity_generation) {
+			select.push('identity_generation');
+		}
+
+		if (supported.is_generated) {
+			select.push('is_generated');
+		}
+	}
+
+	const selectString = select.join(', ');
 	const columns = await db.any(
-		'SELECT column_name, data_type, is_nullable, udt_name, column_default FROM information_schema.columns WHERE table_schema = $1 AND table_name = $2',
+		`SELECT ${selectString} FROM information_schema.columns WHERE table_schema = $1 AND table_name = $2`,
 		[schema, table],
 	);
 
@@ -470,4 +527,64 @@ export const configureTableSchemaUpdater = (initialSchema: string, initialTable:
 		}
 		return tableSchema;
 	};
+};
+
+/**
+ * If postgress column type is array we need to convert it to fornmat that postgres understands, original object data would be modified
+ * @param data the object with keys representing column names and values
+ * @param schema table schema
+ * @param node INode
+ * @param itemIndex the index of the current item
+ */
+export const convertArraysToPostgresFormat = (
+	data: IDataObject,
+	schema: ColumnInfo[],
+	node: INode,
+	itemIndex = 0,
+) => {
+	for (const columnInfo of schema) {
+		//in case column type is array we need to convert it to fornmat that postgres understands
+		if (columnInfo.data_type.toUpperCase() === 'ARRAY') {
+			let columnValue = data[columnInfo.column_name];
+
+			if (typeof columnValue === 'string') {
+				columnValue = jsonParse(columnValue);
+			}
+
+			if (Array.isArray(columnValue)) {
+				const arrayEntries = columnValue.map((entry) => {
+					if (typeof entry === 'number') {
+						return entry;
+					}
+
+					if (typeof entry === 'boolean') {
+						entry = String(entry);
+					}
+
+					if (typeof entry === 'object') {
+						entry = JSON.stringify(entry);
+					}
+
+					if (typeof entry === 'string') {
+						return `"${entry.replace(/"/g, '\\"')}"`; //escape double quotes
+					}
+
+					return entry;
+				});
+
+				//wrap in {} instead of [] as postgres does and join with ,
+				data[columnInfo.column_name] = `{${arrayEntries.join(',')}}`;
+			} else {
+				if (columnInfo.is_nullable === 'NO') {
+					throw new NodeOperationError(
+						node,
+						`Column '${columnInfo.column_name}' has to be an array`,
+						{
+							itemIndex,
+						},
+					);
+				}
+			}
+		}
+	}
 };

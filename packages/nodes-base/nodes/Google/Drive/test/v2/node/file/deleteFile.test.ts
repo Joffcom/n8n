@@ -1,9 +1,7 @@
 import nock from 'nock';
 
 import * as deleteFile from '../../../../v2/actions/file/deleteFile.operation';
-
 import * as transport from '../../../../v2/transport';
-
 import { createMockExecuteFunction, driveNode } from '../helpers';
 
 jest.mock('../../../../v2/transport', () => {
@@ -26,7 +24,7 @@ describe('test GoogleDriveV2: file deleteFile', () => {
 		jest.unmock('../../../../v2/transport');
 	});
 
-	it('shuold be called with', async () => {
+	it('should be called with', async () => {
 		const nodeParameters = {
 			operation: 'deleteFile',
 			fileId: {

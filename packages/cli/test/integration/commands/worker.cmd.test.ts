@@ -1,81 +1,67 @@
-import { mockInstance } from '../shared/utils/';
+process.argv[2] = 'worker';
+
+import { TaskRunnersConfig } from '@n8n/config';
+import { Container } from '@n8n/di';
+import { BinaryDataService } from 'n8n-core';
+
 import { Worker } from '@/commands/worker';
-import * as Config from '@oclif/config';
-import { LoggerProxy } from 'n8n-workflow';
+import config from '@/config';
+import { MessageEventBus } from '@/eventbus/message-event-bus/message-event-bus';
+import { LogStreamingEventRelay } from '@/events/relays/log-streaming.event-relay';
+import { ExternalHooks } from '@/external-hooks';
+import { ExternalSecretsManager } from '@/external-secrets.ee/external-secrets-manager.ee';
+import { License } from '@/license';
+import { LoadNodesAndCredentials } from '@/load-nodes-and-credentials';
+import { Push } from '@/push';
+import { Publisher } from '@/scaling/pubsub/publisher.service';
+import { Subscriber } from '@/scaling/pubsub/subscriber.service';
+import { ScalingService } from '@/scaling/scaling.service';
+import { OrchestrationService } from '@/services/orchestration.service';
+import { TaskRunnerProcess } from '@/task-runners/task-runner-process';
+import { TaskRunnerServer } from '@/task-runners/task-runner-server';
 import { Telemetry } from '@/telemetry';
-import { getLogger } from '@/Logger';
-import { ExternalSecretsManager } from '@/ExternalSecrets/ExternalSecretsManager.ee';
-import { BinaryDataManager } from 'n8n-core';
-import { CacheService } from '@/services/cache.service';
-import { RedisServicePubSubPublisher } from '@/services/redis/RedisServicePubSubPublisher';
-import { RedisServicePubSubSubscriber } from '@/services/redis/RedisServicePubSubSubscriber';
-import { MessageEventBus } from '@/eventbus/MessageEventBus/MessageEventBus';
-import { LoadNodesAndCredentials } from '@/LoadNodesAndCredentials';
-import { CredentialTypes } from '@/CredentialTypes';
-import { NodeTypes } from '@/NodeTypes';
-import { InternalHooks } from '@/InternalHooks';
-import { PostHogClient } from '@/posthog';
-import { RedisService } from '@/services/redis.service';
+import { setupTestCommand } from '@test-integration/utils/test-command';
 
-const config: Config.IConfig = new Config.Config({ root: __dirname });
+import { mockInstance } from '../../shared/mocking';
 
-beforeAll(async () => {
-	LoggerProxy.init(getLogger());
-	mockInstance(Telemetry);
-	mockInstance(PostHogClient);
-	mockInstance(InternalHooks);
-	mockInstance(CacheService);
-	mockInstance(ExternalSecretsManager);
-	mockInstance(BinaryDataManager);
-	mockInstance(MessageEventBus);
-	mockInstance(LoadNodesAndCredentials);
-	mockInstance(CredentialTypes);
-	mockInstance(NodeTypes);
-	mockInstance(RedisService);
-	mockInstance(RedisServicePubSubPublisher);
-	mockInstance(RedisServicePubSubSubscriber);
-});
+config.set('executions.mode', 'queue');
+config.set('binaryDataManager.availableModes', 'filesystem');
+Container.get(TaskRunnersConfig).enabled = true;
+mockInstance(LoadNodesAndCredentials);
+const binaryDataService = mockInstance(BinaryDataService);
+const externalHooks = mockInstance(ExternalHooks);
+const externalSecretsManager = mockInstance(ExternalSecretsManager);
+const license = mockInstance(License, { loadCertStr: async () => '' });
+const messageEventBus = mockInstance(MessageEventBus);
+const logStreamingEventRelay = mockInstance(LogStreamingEventRelay);
+const scalingService = mockInstance(ScalingService);
+const orchestrationService = mockInstance(OrchestrationService);
+const taskRunnerServer = mockInstance(TaskRunnerServer);
+const taskRunnerProcess = mockInstance(TaskRunnerProcess);
+mockInstance(Publisher);
+mockInstance(Subscriber);
+mockInstance(Telemetry);
+mockInstance(Push);
+
+const command = setupTestCommand(Worker);
 
 test('worker initializes all its components', async () => {
-	const worker = new Worker([], config);
+	config.set('executions.mode', 'regular'); // should be overridden
 
-	jest.spyOn(worker, 'init');
-	jest.spyOn(worker, 'initLicense').mockImplementation(async () => {});
-	jest.spyOn(worker, 'initBinaryManager').mockImplementation(async () => {});
-	jest.spyOn(worker, 'initExternalHooks').mockImplementation(async () => {});
-	jest.spyOn(worker, 'initExternalSecrets').mockImplementation(async () => {});
-	jest.spyOn(worker, 'initEventBus').mockImplementation(async () => {});
-	jest.spyOn(worker, 'initRedis');
-	jest.spyOn(RedisServicePubSubPublisher.prototype, 'init').mockImplementation(async () => {});
-	jest
-		.spyOn(RedisServicePubSubPublisher.prototype, 'publishToEventLog')
-		.mockImplementation(async () => {});
-	jest
-		.spyOn(RedisServicePubSubSubscriber.prototype, 'subscribeToCommandChannel')
-		.mockImplementation(async () => {});
-	jest
-		.spyOn(RedisServicePubSubSubscriber.prototype, 'addMessageHandler')
-		.mockImplementation(async () => {});
-	jest.spyOn(worker, 'initQueue').mockImplementation(async () => {});
+	await command.run();
 
-	await worker.init();
+	expect(license.init).toHaveBeenCalledTimes(1);
+	expect(binaryDataService.init).toHaveBeenCalledTimes(1);
+	expect(externalHooks.init).toHaveBeenCalledTimes(1);
+	expect(externalSecretsManager.init).toHaveBeenCalledTimes(1);
+	expect(messageEventBus.initialize).toHaveBeenCalledTimes(1);
+	expect(scalingService.setupQueue).toHaveBeenCalledTimes(1);
+	expect(scalingService.setupWorker).toHaveBeenCalledTimes(1);
+	expect(logStreamingEventRelay.init).toHaveBeenCalledTimes(1);
+	expect(orchestrationService.init).toHaveBeenCalledTimes(1);
+	expect(messageEventBus.send).toHaveBeenCalledTimes(1);
+	expect(taskRunnerServer.start).toHaveBeenCalledTimes(1);
+	expect(taskRunnerProcess.start).toHaveBeenCalledTimes(1);
 
-	expect(worker.uniqueInstanceId).toBeDefined();
-	expect(worker.uniqueInstanceId).toContain('worker');
-	expect(worker.uniqueInstanceId.length).toBeGreaterThan(15);
-	expect(worker.initLicense).toHaveBeenCalled();
-	expect(worker.initBinaryManager).toHaveBeenCalled();
-	expect(worker.initExternalHooks).toHaveBeenCalled();
-	expect(worker.initExternalSecrets).toHaveBeenCalled();
-	expect(worker.initEventBus).toHaveBeenCalled();
-	expect(worker.initRedis).toHaveBeenCalled();
-	expect(worker.redisPublisher).toBeDefined();
-	expect(worker.redisPublisher.init).toHaveBeenCalled();
-	expect(worker.redisPublisher.publishToEventLog).toHaveBeenCalled();
-	expect(worker.redisSubscriber).toBeDefined();
-	expect(worker.redisSubscriber.subscribeToCommandChannel).toHaveBeenCalled();
-	expect(worker.redisSubscriber.addMessageHandler).toHaveBeenCalled();
-	expect(worker.initQueue).toHaveBeenCalled();
-
-	jest.restoreAllMocks();
+	expect(config.getEnv('executions.mode')).toBe('queue');
 });

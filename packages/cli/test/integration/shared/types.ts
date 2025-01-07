@@ -1,61 +1,78 @@
 import type { Application } from 'express';
-import type { ICredentialDataDecryptedObject, ICredentialNodeAccess } from 'n8n-workflow';
-import type { SuperAgentTest } from 'supertest';
 import type { Server } from 'http';
+import type { ICredentialDataDecryptedObject } from 'n8n-workflow';
+import type TestAgent from 'supertest/lib/agent';
 
-import type { CredentialsEntity } from '@db/entities/CredentialsEntity';
-import type { User } from '@db/entities/User';
-import type { BooleanLicenseFeature, ICredentialsDb, IDatabaseCollections } from '@/Interfaces';
+import type { CredentialsEntity } from '@/databases/entities/credentials-entity';
+import type { Project } from '@/databases/entities/project';
+import type { User } from '@/databases/entities/user';
+import type { BooleanLicenseFeature, ICredentialsDb, NumericLicenseFeature } from '@/interfaces';
 
-export type CollectionName = keyof IDatabaseCollections;
+import type { LicenseMocker } from './license';
 
-export type EndpointGroup =
+type EndpointGroup =
+	| 'health'
 	| 'me'
 	| 'users'
 	| 'auth'
+	| 'oauth2'
 	| 'owner'
 	| 'passwordReset'
 	| 'credentials'
 	| 'workflows'
 	| 'publicApi'
-	| 'nodes'
+	| 'community-packages'
 	| 'ldap'
 	| 'saml'
 	| 'sourceControl'
 	| 'eventBus'
 	| 'license'
 	| 'variables'
+	| 'annotationTags'
 	| 'tags'
 	| 'externalSecrets'
 	| 'mfa'
-	| 'metrics';
+	| 'metrics'
+	| 'executions'
+	| 'workflowHistory'
+	| 'binaryData'
+	| 'invitations'
+	| 'debug'
+	| 'project'
+	| 'role'
+	| 'dynamic-node-parameters'
+	| 'apiKeys'
+	| 'evaluation'
+	| 'ai';
 
 export interface SetupProps {
-	applyAuth?: boolean;
 	endpointGroups?: EndpointGroup[];
 	enabledFeatures?: BooleanLicenseFeature[];
+	quotas?: Partial<{ [K in NumericLicenseFeature]: number }>;
 }
+
+export type SuperAgentTest = TestAgent;
 
 export interface TestServer {
 	app: Application;
 	httpServer: Server;
-	authAgentFor: (user: User) => SuperAgentTest;
-	publicApiAgentFor: (user: User) => SuperAgentTest;
-	authlessAgent: SuperAgentTest;
+	authAgentFor: (user: User) => TestAgent;
+	publicApiAgentFor: (user: User) => TestAgent;
+	publicApiAgentWithApiKey: (apiKey: string) => TestAgent;
+	publicApiAgentWithoutApiKey: () => TestAgent;
+	authlessAgent: TestAgent;
+	restlessAgent: TestAgent;
+	license: LicenseMocker;
 }
 
 export type CredentialPayload = {
 	name: string;
 	type: string;
-	nodesAccess?: ICredentialNodeAccess[];
 	data: ICredentialDataDecryptedObject;
+	isManaged?: boolean;
 };
 
 export type SaveCredentialFunction = (
 	credentialPayload: CredentialPayload,
-	{ user }: { user: User },
+	options: { user: User } | { project: Project },
 ) => Promise<CredentialsEntity & ICredentialsDb>;
-
-export type PostgresSchemaSection = {
-	[K in 'host' | 'port' | 'schema' | 'user' | 'password']: { env: string };
-};

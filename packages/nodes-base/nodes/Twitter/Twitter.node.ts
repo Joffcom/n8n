@@ -2,18 +2,17 @@ import type { INodeTypeBaseDescription, IVersionedNodeType } from 'n8n-workflow'
 import { VersionedNodeType } from 'n8n-workflow';
 
 import { TwitterV1 } from './V1/TwitterV1.node';
-
 import { TwitterV2 } from './V2/TwitterV2.node';
 
 export class Twitter extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'Twitter',
+			displayName: 'X (Formerly Twitter)',
 			name: 'twitter',
-			icon: 'file:twitter.svg',
+			icon: { light: 'file:x.svg', dark: 'file:x.dark.svg' },
 			group: ['output'],
 			subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-			description: 'Consume Twitter API',
+			description: 'Consume the X API',
 			defaultVersion: 2,
 		};
 
