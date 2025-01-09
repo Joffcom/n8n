@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "drafts_count",
+            "type": "integer",
+            "value": "",
+            "path": ".drafts_count"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "comment_karma",
+            "type": "integer",
+            "value": "",
+            "path": ".comment_karma"
+        },
+        {
+            "key": "link_karma",
+            "type": "integer",
+            "value": "",
+            "path": ".link_karma"
+        },
+        {
+            "key": "sr",
+            "type": "string",
+            "value": "",
+            "path": ".sr"
+        }
+    ],
+    "path": ""
+}
