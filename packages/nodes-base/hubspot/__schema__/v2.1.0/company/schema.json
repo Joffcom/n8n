@@ -1,0 +1,186 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "additionalDomains",
+            "type": "array",
+            "value": "",
+            "path": ".additionalDomains"
+        },
+        {
+            "key": "companyId",
+            "type": "integer",
+            "value": "",
+            "path": ".companyId"
+        },
+        {
+            "key": "isDeleted",
+            "type": "boolean",
+            "value": "",
+            "path": ".isDeleted"
+        },
+        {
+            "key": "mergeAudits",
+            "type": "array",
+            "value": "",
+            "path": ".mergeAudits"
+        },
+        {
+            "key": "portalId",
+            "type": "integer",
+            "value": "",
+            "path": ".portalId"
+        },
+        {
+            "key": "stateChanges",
+            "type": "array",
+            "value": "",
+            "path": ".stateChanges"
+        },
+        {
+            "key": "deleted",
+            "type": "boolean",
+            "value": "",
+            "path": ".deleted"
+        },
+        {
+            "key": "reason",
+            "type": "string",
+            "value": "",
+            "path": ".reason"
+        },
+        {
+            "key": "vid",
+            "type": "integer",
+            "value": "",
+            "path": ".vid"
+        },
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "createdAt",
+            "type": "string",
+            "value": "",
+            "path": ".createdAt"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "createdate",
+            "type": "string",
+            "value": "",
+            "path": ".createdate"
+        },
+        {
+            "key": "hs_object_id",
+            "type": "string",
+            "value": "",
+            "path": ".hs_object_id"
+        },
+        {
+            "key": "lastmodifieddate",
+            "type": "string",
+            "value": "",
+            "path": ".lastmodifieddate"
+        },
+        {
+            "key": "updatedAt",
+            "type": "string",
+            "value": "",
+            "path": ".updatedAt"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "discarded",
+            "type": "array",
+            "value": "",
+            "path": ".discarded"
+        },
+        {
+            "key": "invalidEmails",
+            "type": "array",
+            "value": "",
+            "path": ".invalidEmails"
+        },
+        {
+            "key": "invalidVids",
+            "type": "array",
+            "value": "",
+            "path": ".invalidVids"
+        },
+        {
+            "key": "updated",
+            "type": "array",
+            "value": "",
+            "path": ".updated"
+        },
+        {
+            "key": "dealId",
+            "type": "integer",
+            "value": "",
+            "path": ".dealId"
+        },
+        {
+            "key": "associations",
+            "type": "null",
+            "value": "",
+            "path": ".associations"
+        },
+        {
+            "key": "hs_lastmodifieddate",
+            "type": "string",
+            "value": "",
+            "path": ".hs_lastmodifieddate"
+        },
+        {
+            "key": "objectId",
+            "type": "integer",
+            "value": "",
+            "path": ".objectId"
+        },
+        {
+            "key": "objectType",
+            "type": "string",
+            "value": "",
+            "path": ".objectType"
+        },
+        {
+            "key": "dealstage",
+            "type": "string",
+            "value": "",
+            "path": ".dealstage"
+        },
+        {
+            "key": "isNew",
+            "type": "boolean",
+            "value": "",
+            "path": ".isNew"
+        }
+    ],
+    "path": ""
+}
