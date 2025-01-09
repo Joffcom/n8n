@@ -1,0 +1,73 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "_createTime",
+            "type": "string",
+            "value": "",
+            "path": "._createTime"
+        },
+        {
+            "key": "_id",
+            "type": "string",
+            "value": "",
+            "path": "._id"
+        },
+        {
+            "key": "_name",
+            "type": "string",
+            "value": "",
+            "path": "._name"
+        },
+        {
+            "key": "_updateTime",
+            "type": "string",
+            "value": "",
+            "path": "._updateTime"
+        },
+        {
+            "key": "updateTime",
+            "type": "string",
+            "value": "",
+            "path": ".updateTime"
+        },
+        {
+            "key": "status",
+            "type": "object",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "values",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".values.items"
+                }
+            ],
+            "path": ".values"
+        }
+    ],
+    "path": ""
+}
