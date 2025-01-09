@@ -1,0 +1,267 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "Product Title",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".Product Title.items"
+                }
+            ],
+            "path": ".Product Title"
+        },
+        {
+            "key": "createdTime",
+            "type": "string",
+            "value": "",
+            "path": ".createdTime"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "ends in con? modify",
+            "type": "string",
+            "value": "",
+            "path": ".ends in con? modify"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "tags_to_add",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tags_to_add.items"
+                }
+            ],
+            "path": ".tags_to_add"
+        },
+        {
+            "key": "tags_to_add_recordID",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tags_to_add_recordID.items"
+                }
+            ],
+            "path": ".tags_to_add_recordID"
+        },
+        {
+            "key": "end",
+            "type": "string",
+            "value": "",
+            "path": ".end"
+        },
+        {
+            "key": "sort",
+            "type": "string",
+            "value": "",
+            "path": ".sort"
+        },
+        {
+            "key": "start",
+            "type": "string",
+            "value": "",
+            "path": ".start"
+        },
+        {
+            "key": "appId",
+            "type": "integer",
+            "value": "",
+            "path": ".appId"
+        },
+        {
+            "key": "attemptNumber",
+            "type": "integer",
+            "value": "",
+            "path": ".attemptNumber"
+        },
+        {
+            "key": "changeSource",
+            "type": "string",
+            "value": "",
+            "path": ".changeSource"
+        },
+        {
+            "key": "contactId",
+            "type": "integer",
+            "value": "",
+            "path": ".contactId"
+        },
+        {
+            "key": "eventId",
+            "type": "integer",
+            "value": "",
+            "path": ".eventId"
+        },
+        {
+            "key": "occurredAt",
+            "type": "integer",
+            "value": "",
+            "path": ".occurredAt"
+        },
+        {
+            "key": "portalId",
+            "type": "integer",
+            "value": "",
+            "path": ".portalId"
+        },
+        {
+            "key": "subscriptionId",
+            "type": "integer",
+            "value": "",
+            "path": ".subscriptionId"
+        },
+        {
+            "key": "subscriptionType",
+            "type": "string",
+            "value": "",
+            "path": ".subscriptionType"
+        },
+        {
+            "key": "categorias_ids",
+            "type": "integer",
+            "value": "",
+            "path": ".categorias_ids"
+        },
+        {
+            "key": "complemento_prompt",
+            "type": "string",
+            "value": "",
+            "path": ".complemento_prompt"
+        },
+        {
+            "key": "data_prevista_agendamento",
+            "type": "string",
+            "value": "",
+            "path": ".data_prevista_agendamento"
+        },
+        {
+            "key": "id_post",
+            "type": "string",
+            "value": "",
+            "path": ".id_post"
+        },
+        {
+            "key": "link",
+            "type": "string",
+            "value": "",
+            "path": ".link"
+        },
+        {
+            "key": "link_imagem",
+            "type": "string",
+            "value": "",
+            "path": ".link_imagem"
+        },
+        {
+            "key": "palavras-chave",
+            "type": "string",
+            "value": "",
+            "path": ".palavras-chave"
+        },
+        {
+            "key": "qtd_capitulos",
+            "type": "string",
+            "value": "",
+            "path": ".qtd_capitulos"
+        },
+        {
+            "key": "resumo",
+            "type": "string",
+            "value": "",
+            "path": ".resumo"
+        },
+        {
+            "key": "row_number",
+            "type": "integer",
+            "value": "",
+            "path": ".row_number"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "tipo",
+            "type": "string",
+            "value": "",
+            "path": ".tipo"
+        },
+        {
+            "key": "titulo",
+            "type": "string",
+            "value": "",
+            "path": ".titulo"
+        },
+        {
+            "key": "count_manager_name",
+            "type": "integer",
+            "value": "",
+            "path": ".count_manager_name"
+        },
+        {
+            "key": "manager_name",
+            "type": "string",
+            "value": "",
+            "path": ".manager_name"
+        },
+        {
+            "key": "supervisor",
+            "type": "string",
+            "value": "",
+            "path": ".supervisor"
+        },
+        {
+            "key": "Product Name",
+            "type": "string",
+            "value": "",
+            "path": ".Product Name"
+        },
+        {
+            "key": "SKU",
+            "type": "string",
+            "value": "",
+            "path": ".SKU"
+        },
+        {
+            "key": "SKUv2",
+            "type": "string",
+            "value": "",
+            "path": ".SKUv2"
+        },
+        {
+            "key": "品名",
+            "type": "string",
+            "value": "",
+            "path": ".品名"
+        }
+    ],
+    "path": ""
+}
