@@ -1,0 +1,228 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "message",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".message.id"
+                },
+                {
+                    "key": "labelIds",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "items",
+                            "type": "string",
+                            "value": "",
+                            "path": ".message.labelIds.items"
+                        }
+                    ],
+                    "path": ".message.labelIds"
+                },
+                {
+                    "key": "threadId",
+                    "type": "string",
+                    "value": "",
+                    "path": ".message.threadId"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".message.required"
+                }
+            ],
+            "path": ".message"
+        },
+        {
+            "key": "messagesTotal",
+            "type": "integer",
+            "value": "",
+            "path": ".messagesTotal"
+        },
+        {
+            "key": "messagesUnread",
+            "type": "integer",
+            "value": "",
+            "path": ".messagesUnread"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "threadsTotal",
+            "type": "integer",
+            "value": "",
+            "path": ".threadsTotal"
+        },
+        {
+            "key": "threadsUnread",
+            "type": "integer",
+            "value": "",
+            "path": ".threadsUnread"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "labelListVisibility",
+            "type": "string",
+            "value": "",
+            "path": ".labelListVisibility"
+        },
+        {
+            "key": "messageListVisibility",
+            "type": "string",
+            "value": "",
+            "path": ".messageListVisibility"
+        },
+        {
+            "key": "labelIds",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".labelIds.items"
+                }
+            ],
+            "path": ".labelIds"
+        },
+        {
+            "key": "threadId",
+            "type": "string",
+            "value": "",
+            "path": ".threadId"
+        },
+        {
+            "key": "Subject",
+            "type": "string",
+            "value": "",
+            "path": ".Subject"
+        },
+        {
+            "key": "historyId",
+            "type": "string",
+            "value": "",
+            "path": ".historyId"
+        },
+        {
+            "key": "internalDate",
+            "type": "string",
+            "value": "",
+            "path": ".internalDate"
+        },
+        {
+            "key": "payload",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "mimeType",
+                    "type": "string",
+                    "value": "",
+                    "path": ".payload.mimeType"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".payload.required"
+                }
+            ],
+            "path": ".payload"
+        },
+        {
+            "key": "sizeEstimate",
+            "type": "integer",
+            "value": "",
+            "path": ".sizeEstimate"
+        },
+        {
+            "key": "snippet",
+            "type": "string",
+            "value": "",
+            "path": ".snippet"
+        },
+        {
+            "key": "From",
+            "type": "string",
+            "value": "",
+            "path": ".From"
+        },
+        {
+            "key": "To",
+            "type": "string",
+            "value": "",
+            "path": ".To"
+        },
+        {
+            "key": "labels",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".labels.items.id"
+                        },
+                        {
+                            "key": "name",
+                            "type": "string",
+                            "value": "",
+                            "path": ".labels.items.name"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".labels.items.required"
+                        }
+                    ],
+                    "path": ".labels.items"
+                }
+            ],
+            "path": ".labels"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "Cc",
+            "type": "string",
+            "value": "",
+            "path": ".Cc"
+        }
+    ],
+    "path": ""
+}
