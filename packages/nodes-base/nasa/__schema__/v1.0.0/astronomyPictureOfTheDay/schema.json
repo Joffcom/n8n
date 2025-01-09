@@ -1,0 +1,222 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "copyright",
+            "type": "string",
+            "value": "",
+            "path": ".copyright"
+        },
+        {
+            "key": "date",
+            "type": "string",
+            "value": "",
+            "path": ".date"
+        },
+        {
+            "key": "explanation",
+            "type": "string",
+            "value": "",
+            "path": ".explanation"
+        },
+        {
+            "key": "hdurl",
+            "type": "string",
+            "value": "",
+            "path": ".hdurl"
+        },
+        {
+            "key": "media_type",
+            "type": "string",
+            "value": "",
+            "path": ".media_type"
+        },
+        {
+            "key": "service_version",
+            "type": "string",
+            "value": "",
+            "path": ".service_version"
+        },
+        {
+            "key": "title",
+            "type": "string",
+            "value": "",
+            "path": ".title"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "eventTime",
+            "type": "string",
+            "value": "",
+            "path": ".eventTime"
+        },
+        {
+            "key": "hssID",
+            "type": "string",
+            "value": "",
+            "path": ".hssID"
+        },
+        {
+            "key": "instruments",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "displayName",
+                            "type": "string",
+                            "value": "",
+                            "path": ".instruments.items.displayName"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".instruments.items.required"
+                        }
+                    ],
+                    "path": ".instruments.items"
+                }
+            ],
+            "path": ".instruments"
+        },
+        {
+            "key": "link",
+            "type": "string",
+            "value": "",
+            "path": ".link"
+        },
+        {
+            "key": "linkedEvents",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "anyOf",
+                    "type": "object",
+                    "value": [
+                        {
+                            "key": "[0]",
+                            "type": "null",
+                            "value": "",
+                            "path": ".linkedEvents.anyOf.[0]"
+                        },
+                        {
+                            "key": "[1]",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "items",
+                                    "type": "Object",
+                                    "value": [
+                                        {
+                                            "key": "activityID",
+                                            "type": "string",
+                                            "value": "",
+                                            "path": ".linkedEvents.anyOf.[1].items.activityID"
+                                        },
+                                        {
+                                            "key": "required",
+                                            "type": "string",
+                                            "value": "",
+                                            "path": ".linkedEvents.anyOf.[1].items.required"
+                                        }
+                                    ],
+                                    "path": ".linkedEvents.anyOf.[1].items"
+                                }
+                            ],
+                            "path": ".linkedEvents.anyOf.[1]"
+                        }
+                    ],
+                    "path": ".linkedEvents.anyOf"
+                }
+            ],
+            "path": ".linkedEvents"
+        },
+        {
+            "key": "submissionTime",
+            "type": "string",
+            "value": "",
+            "path": ".submissionTime"
+        },
+        {
+            "key": "versionId",
+            "type": "integer",
+            "value": "",
+            "path": ".versionId"
+        },
+        {
+            "key": "activityID",
+            "type": "string",
+            "value": "",
+            "path": ".activityID"
+        },
+        {
+            "key": "catalog",
+            "type": "string",
+            "value": "",
+            "path": ".catalog"
+        },
+        {
+            "key": "location",
+            "type": "string",
+            "value": "",
+            "path": ".location"
+        },
+        {
+            "key": "beginTime",
+            "type": "string",
+            "value": "",
+            "path": ".beginTime"
+        },
+        {
+            "key": "classType",
+            "type": "string",
+            "value": "",
+            "path": ".classType"
+        },
+        {
+            "key": "endTime",
+            "type": "string",
+            "value": "",
+            "path": ".endTime"
+        },
+        {
+            "key": "flrID",
+            "type": "string",
+            "value": "",
+            "path": ".flrID"
+        },
+        {
+            "key": "note",
+            "type": "string",
+            "value": "",
+            "path": ".note"
+        },
+        {
+            "key": "peakTime",
+            "type": "string",
+            "value": "",
+            "path": ".peakTime"
+        },
+        {
+            "key": "sourceLocation",
+            "type": "string",
+            "value": "",
+            "path": ".sourceLocation"
+        }
+    ],
+    "path": ""
+}
