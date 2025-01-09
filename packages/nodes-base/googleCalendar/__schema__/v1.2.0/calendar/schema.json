@@ -1,0 +1,74 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "available",
+            "type": "boolean",
+            "value": "",
+            "path": ".available"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "end",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".end.required"
+                },
+                {
+                    "key": "dateTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".end.dateTime"
+                }
+            ],
+            "path": ".end"
+        },
+        {
+            "key": "start",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".start.required"
+                },
+                {
+                    "key": "dateTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".start.dateTime"
+                }
+            ],
+            "path": ".start"
+        },
+        {
+            "key": "summary",
+            "type": "string",
+            "value": "",
+            "path": ".summary"
+        }
+    ],
+    "path": ""
+}
