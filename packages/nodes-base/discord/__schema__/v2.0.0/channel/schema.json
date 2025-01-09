@@ -1,0 +1,207 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "flags",
+            "type": "integer",
+            "value": "",
+            "path": ".flags"
+        },
+        {
+            "key": "guild_id",
+            "type": "string",
+            "value": "",
+            "path": ".guild_id"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "parent_id",
+            "type": "null",
+            "value": "",
+            "path": ".parent_id"
+        },
+        {
+            "key": "permission_overwrites",
+            "type": "array",
+            "value": "",
+            "path": ".permission_overwrites"
+        },
+        {
+            "key": "position",
+            "type": "integer",
+            "value": "",
+            "path": ".position"
+        },
+        {
+            "key": "type",
+            "type": "integer",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "nsfw",
+            "type": "boolean",
+            "value": "",
+            "path": ".nsfw"
+        },
+        {
+            "key": "rate_limit_per_user",
+            "type": "integer",
+            "value": "",
+            "path": ".rate_limit_per_user"
+        },
+        {
+            "key": "topic",
+            "type": "null",
+            "value": "",
+            "path": ".topic"
+        },
+        {
+            "key": "last_message_id",
+            "type": "string",
+            "value": "",
+            "path": ".last_message_id"
+        },
+        {
+            "key": "roles",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".roles.items"
+                }
+            ],
+            "path": ".roles"
+        },
+        {
+            "key": "user",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "accent_color",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.accent_color"
+                },
+                {
+                    "key": "avatar",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.avatar"
+                },
+                {
+                    "key": "avatar_decoration_data",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.avatar_decoration_data"
+                },
+                {
+                    "key": "banner",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.banner"
+                },
+                {
+                    "key": "banner_color",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.banner_color"
+                },
+                {
+                    "key": "bot",
+                    "type": "boolean",
+                    "value": "",
+                    "path": ".user.bot"
+                },
+                {
+                    "key": "clan",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.clan"
+                },
+                {
+                    "key": "discriminator",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.discriminator"
+                },
+                {
+                    "key": "flags",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".user.flags"
+                },
+                {
+                    "key": "global_name",
+                    "type": "Array",
+                    "value": [
+                        {
+                            "key": "type",
+                            "type": "string",
+                            "value": "",
+                            "path": ".user.global_name.type"
+                        }
+                    ],
+                    "path": ".user.global_name"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.id"
+                },
+                {
+                    "key": "public_flags",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".user.public_flags"
+                },
+                {
+                    "key": "username",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.username"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.required"
+                }
+            ],
+            "path": ".user"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        }
+    ],
+    "path": ""
+}
