@@ -1,0 +1,333 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "clickedCount",
+            "type": "integer",
+            "value": "",
+            "path": ".clickedCount"
+        },
+        {
+            "key": "deliveredCount",
+            "type": "integer",
+            "value": "",
+            "path": ".deliveredCount"
+        },
+        {
+            "key": "interestedCount",
+            "type": "integer",
+            "value": "",
+            "path": ".interestedCount"
+        },
+        {
+            "key": "leadCompleted",
+            "type": "integer",
+            "value": "",
+            "path": ".leadCompleted"
+        },
+        {
+            "key": "leadInProgress",
+            "type": "integer",
+            "value": "",
+            "path": ".leadInProgress"
+        },
+        {
+            "key": "leadReadyToSend",
+            "type": "integer",
+            "value": "",
+            "path": ".leadReadyToSend"
+        },
+        {
+            "key": "leadToLaunch",
+            "type": "integer",
+            "value": "",
+            "path": ".leadToLaunch"
+        },
+        {
+            "key": "leadTotal",
+            "type": "integer",
+            "value": "",
+            "path": ".leadTotal"
+        },
+        {
+            "key": "openedCount",
+            "type": "integer",
+            "value": "",
+            "path": ".openedCount"
+        },
+        {
+            "key": "repliedCount",
+            "type": "integer",
+            "value": "",
+            "path": ".repliedCount"
+        },
+        {
+            "key": "sentCount",
+            "type": "integer",
+            "value": "",
+            "path": ".sentCount"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "data",
+            "type": "object",
+            "value": "",
+            "path": ".data"
+        },
+        {
+            "key": "enrichmentId",
+            "type": "string",
+            "value": "",
+            "path": ".enrichmentId"
+        },
+        {
+            "key": "enrichmentStatus",
+            "type": "string",
+            "value": "",
+            "path": ".enrichmentStatus"
+        },
+        {
+            "key": "input",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "companyDomain",
+                    "type": "string",
+                    "value": "",
+                    "path": ".input.companyDomain"
+                },
+                {
+                    "key": "firstName",
+                    "type": "string",
+                    "value": "",
+                    "path": ".input.firstName"
+                },
+                {
+                    "key": "lastName",
+                    "type": "string",
+                    "value": "",
+                    "path": ".input.lastName"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".input.required"
+                }
+            ],
+            "path": ".input"
+        },
+        {
+            "key": "_id",
+            "type": "string",
+            "value": "",
+            "path": "._id"
+        },
+        {
+            "key": "campaignId",
+            "type": "string",
+            "value": "",
+            "path": ".campaignId"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "firstName",
+            "type": "string",
+            "value": "",
+            "path": ".firstName"
+        },
+        {
+            "key": "isPaused",
+            "type": "boolean",
+            "value": "",
+            "path": ".isPaused"
+        },
+        {
+            "key": "lastName",
+            "type": "string",
+            "value": "",
+            "path": ".lastName"
+        },
+        {
+            "key": "beta",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".beta.items"
+                }
+            ],
+            "path": ".beta"
+        },
+        {
+            "key": "createdAt",
+            "type": "string",
+            "value": "",
+            "path": ".createdAt"
+        },
+        {
+            "key": "createdBy",
+            "type": "string",
+            "value": "",
+            "path": ".createdBy"
+        },
+        {
+            "key": "hooks",
+            "type": "array",
+            "value": "",
+            "path": ".hooks"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "userIds",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".userIds.items"
+                }
+            ],
+            "path": ".userIds"
+        },
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "hasError",
+            "type": "boolean",
+            "value": "",
+            "path": ".hasError"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "airtable_email_id",
+            "type": "string",
+            "value": "",
+            "path": ".airtable_email_id"
+        },
+        {
+            "key": "airtable_qualification_id",
+            "type": "string",
+            "value": "",
+            "path": ".airtable_qualification_id"
+        },
+        {
+            "key": "channel_name",
+            "type": "string",
+            "value": "",
+            "path": ".channel_name"
+        },
+        {
+            "key": "channel_url",
+            "type": "string",
+            "value": "",
+            "path": ".channel_url"
+        },
+        {
+            "key": "first_email_line",
+            "type": "string",
+            "value": "",
+            "path": ".first_email_line"
+        },
+        {
+            "key": "genre",
+            "type": "string",
+            "value": "",
+            "path": ".genre"
+        },
+        {
+            "key": "quick_remark",
+            "type": "string",
+            "value": "",
+            "path": ".quick_remark"
+        },
+        {
+            "key": "recommended_sponsors",
+            "type": "string",
+            "value": "",
+            "path": ".recommended_sponsors"
+        },
+        {
+            "key": "subject",
+            "type": "string",
+            "value": "",
+            "path": ".subject"
+        },
+        {
+            "key": "agency",
+            "type": "string",
+            "value": "",
+            "path": ".agency"
+        },
+        {
+            "key": "customDomain",
+            "type": "string",
+            "value": "",
+            "path": ".customDomain"
+        },
+        {
+            "key": "invitedUsers",
+            "type": "array",
+            "value": "",
+            "path": ".invitedUsers"
+        },
+        {
+            "key": "pictureId",
+            "type": "string",
+            "value": "",
+            "path": ".pictureId"
+        },
+        {
+            "key": "slackWebhook",
+            "type": "string",
+            "value": "",
+            "path": ".slackWebhook"
+        },
+        {
+            "key": "source",
+            "type": "string",
+            "value": "",
+            "path": ".source"
+        },
+        {
+            "key": "value",
+            "type": "string",
+            "value": "",
+            "path": ".value"
+        }
+    ],
+    "path": ""
+}
