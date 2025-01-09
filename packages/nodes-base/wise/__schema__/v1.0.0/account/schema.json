@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "code",
+            "type": "string",
+            "value": "",
+            "path": ".code"
+        },
+        {
+            "key": "hasBankDetails",
+            "type": "boolean",
+            "value": "",
+            "path": ".hasBankDetails"
+        },
+        {
+            "key": "payInAllowed",
+            "type": "boolean",
+            "value": "",
+            "path": ".payInAllowed"
+        },
+        {
+            "key": "sampleBankDetails",
+            "type": "null",
+            "value": "",
+            "path": ".sampleBankDetails"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "rate",
+            "type": "number",
+            "value": "",
+            "path": ".rate"
+        },
+        {
+            "key": "source",
+            "type": "string",
+            "value": "",
+            "path": ".source"
+        },
+        {
+            "key": "target",
+            "type": "string",
+            "value": "",
+            "path": ".target"
+        },
+        {
+            "key": "time",
+            "type": "string",
+            "value": "",
+            "path": ".time"
+        },
+        {
+            "key": "details",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "localizedInformation",
+                    "type": "array",
+                    "value": "",
+                    "path": ".details.localizedInformation"
+                },
+                {
+                    "key": "primaryAddress",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".details.primaryAddress"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".details.required"
+                }
+            ],
+            "path": ".details"
+        },
+        {
+            "key": "id",
+            "type": "integer",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        }
+    ],
+    "path": ""
+}
