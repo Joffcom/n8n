@@ -1,0 +1,234 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "created_at",
+            "type": "string",
+            "value": "",
+            "path": ".created_at"
+        },
+        {
+            "key": "description",
+            "type": "string",
+            "value": "",
+            "path": ".description"
+        },
+        {
+            "key": "id",
+            "type": "integer",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "parent_asset_type_id",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent_asset_type_id.type"
+                }
+            ],
+            "path": ".parent_asset_type_id"
+        },
+        {
+            "key": "updated_at",
+            "type": "string",
+            "value": "",
+            "path": ".updated_at"
+        },
+        {
+            "key": "visible",
+            "type": "boolean",
+            "value": "",
+            "path": ".visible"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "custom_fields",
+            "type": "object",
+            "value": "",
+            "path": ".custom_fields"
+        },
+        {
+            "key": "domains",
+            "type": "array",
+            "value": "",
+            "path": ".domains"
+        },
+        {
+            "key": "head_name",
+            "type": "string",
+            "value": "",
+            "path": ".head_name"
+        },
+        {
+            "key": "head_user_id",
+            "type": "integer",
+            "value": "",
+            "path": ".head_user_id"
+        },
+        {
+            "key": "prime_user_id",
+            "type": "null",
+            "value": "",
+            "path": ".prime_user_id"
+        },
+        {
+            "key": "prime_user_name",
+            "type": "null",
+            "value": "",
+            "path": ".prime_user_name"
+        },
+        {
+            "key": "address",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "city",
+                    "type": "string",
+                    "value": "",
+                    "path": ".address.city"
+                },
+                {
+                    "key": "country",
+                    "type": "Array",
+                    "value": [
+                        {
+                            "key": "type",
+                            "type": "string",
+                            "value": "",
+                            "path": ".address.country.type"
+                        }
+                    ],
+                    "path": ".address.country"
+                },
+                {
+                    "key": "line1",
+                    "type": "string",
+                    "value": "",
+                    "path": ".address.line1"
+                },
+                {
+                    "key": "line2",
+                    "type": "null",
+                    "value": "",
+                    "path": ".address.line2"
+                },
+                {
+                    "key": "state",
+                    "type": "null",
+                    "value": "",
+                    "path": ".address.state"
+                },
+                {
+                    "key": "zipcode",
+                    "type": "string",
+                    "value": "",
+                    "path": ".address.zipcode"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".address.required"
+                }
+            ],
+            "path": ".address"
+        },
+        {
+            "key": "contact_name",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".contact_name.type"
+                }
+            ],
+            "path": ".contact_name"
+        },
+        {
+            "key": "email",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".email.type"
+                }
+            ],
+            "path": ".email"
+        },
+        {
+            "key": "parent_location_id",
+            "type": "integer",
+            "value": "",
+            "path": ".parent_location_id"
+        },
+        {
+            "key": "phone",
+            "type": "null",
+            "value": "",
+            "path": ".phone"
+        },
+        {
+            "key": "primary_contact_id",
+            "type": "null",
+            "value": "",
+            "path": ".primary_contact_id"
+        },
+        {
+            "key": "asset_type_id",
+            "type": "integer",
+            "value": "",
+            "path": ".asset_type_id"
+        },
+        {
+            "key": "description_text",
+            "type": "string",
+            "value": "",
+            "path": ".description_text"
+        },
+        {
+            "key": "manufacturer",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".manufacturer.type"
+                }
+            ],
+            "path": ".manufacturer"
+        },
+        {
+            "key": "mode_of_procurement",
+            "type": "string",
+            "value": "",
+            "path": ".mode_of_procurement"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        }
+    ],
+    "path": ""
+}
