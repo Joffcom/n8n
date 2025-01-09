@@ -1,0 +1,86 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "gid",
+            "type": "string",
+            "value": "",
+            "path": ".gid"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "resource_type",
+            "type": "string",
+            "value": "",
+            "path": ".resource_type"
+        },
+        {
+            "key": "resource_subtype",
+            "type": "string",
+            "value": "",
+            "path": ".resource_subtype"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "workspaces",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "gid",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workspaces.items.gid"
+                        },
+                        {
+                            "key": "name",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workspaces.items.name"
+                        },
+                        {
+                            "key": "resource_type",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workspaces.items.resource_type"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workspaces.items.required"
+                        }
+                    ],
+                    "path": ".workspaces.items"
+                }
+            ],
+            "path": ".workspaces"
+        }
+    ],
+    "path": ""
+}
