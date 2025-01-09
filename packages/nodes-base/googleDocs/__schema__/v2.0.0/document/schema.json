@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "documentId",
+            "type": "string",
+            "value": "",
+            "path": ".documentId"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "kind",
+            "type": "string",
+            "value": "",
+            "path": ".kind"
+        },
+        {
+            "key": "mimeType",
+            "type": "string",
+            "value": "",
+            "path": ".mimeType"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "content",
+            "type": "string",
+            "value": "",
+            "path": ".content"
+        }
+    ],
+    "path": ""
+}
