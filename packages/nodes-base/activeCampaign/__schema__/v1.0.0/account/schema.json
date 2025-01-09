@@ -1,0 +1,383 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "createdTimestamp",
+            "type": "string",
+            "value": "",
+            "path": ".createdTimestamp"
+        },
+        {
+            "key": "fields",
+            "type": "array",
+            "value": "",
+            "path": ".fields"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "links",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "accountContacts",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.accountContacts"
+                },
+                {
+                    "key": "accountCustomFieldData",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.accountCustomFieldData"
+                },
+                {
+                    "key": "contactEmails",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.contactEmails"
+                },
+                {
+                    "key": "emailActivities",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.emailActivities"
+                },
+                {
+                    "key": "notes",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.notes"
+                },
+                {
+                    "key": "owner",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.owner"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.required"
+                },
+                {
+                    "key": "contact",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.contact"
+                },
+                {
+                    "key": "tag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.tag"
+                },
+                {
+                    "key": "contactGoalTags",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.contactGoalTags"
+                },
+                {
+                    "key": "templateTags",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.templateTags"
+                }
+            ],
+            "path": ".links"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "owner",
+            "type": "string",
+            "value": "",
+            "path": ".owner"
+        },
+        {
+            "key": "updatedTimestamp",
+            "type": "string",
+            "value": "",
+            "path": ".updatedTimestamp"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "account",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "accountUrl",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.accountUrl"
+                },
+                {
+                    "key": "createdTimestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.createdTimestamp"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.id"
+                },
+                {
+                    "key": "links",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "accountContacts",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.accountContacts"
+                        },
+                        {
+                            "key": "accountCustomFieldData",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.accountCustomFieldData"
+                        },
+                        {
+                            "key": "contactEmails",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.contactEmails"
+                        },
+                        {
+                            "key": "emailActivities",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.emailActivities"
+                        },
+                        {
+                            "key": "notes",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.notes"
+                        },
+                        {
+                            "key": "owner",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.owner"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".account.links.required"
+                        }
+                    ],
+                    "path": ".account.links"
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.name"
+                },
+                {
+                    "key": "owner",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.owner"
+                },
+                {
+                    "key": "updatedTimestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.updatedTimestamp"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".account.required"
+                }
+            ],
+            "path": ".account"
+        },
+        {
+            "key": "contactCount",
+            "type": "string",
+            "value": "",
+            "path": ".contactCount"
+        },
+        {
+            "key": "dealCount",
+            "type": "string",
+            "value": "",
+            "path": ".dealCount"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "cdate",
+            "type": "string",
+            "value": "",
+            "path": ".cdate"
+        },
+        {
+            "key": "tag",
+            "type": "string",
+            "value": [
+                {
+                    "key": "cdate",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.cdate"
+                },
+                {
+                    "key": "created_timestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.created_timestamp"
+                },
+                {
+                    "key": "deleted",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.deleted"
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.description"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.id"
+                },
+                {
+                    "key": "links",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "contactGoalTags",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.contactGoalTags"
+                        },
+                        {
+                            "key": "templateTags",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.templateTags"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.required"
+                        }
+                    ],
+                    "path": ".tag.links"
+                },
+                {
+                    "key": "subscriber_count",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.subscriber_count"
+                },
+                {
+                    "key": "tag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.tag"
+                },
+                {
+                    "key": "tagType",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.tagType"
+                },
+                {
+                    "key": "updated_timestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.updated_timestamp"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.required"
+                }
+            ],
+            "path": ".tag"
+        },
+        {
+            "key": "contact",
+            "type": "string",
+            "value": "",
+            "path": ".contact"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "created_timestamp",
+            "type": "string",
+            "value": "",
+            "path": ".created_timestamp"
+        },
+        {
+            "key": "deleted",
+            "type": "string",
+            "value": "",
+            "path": ".deleted"
+        },
+        {
+            "key": "description",
+            "type": "string",
+            "value": "",
+            "path": ".description"
+        },
+        {
+            "key": "subscriber_count",
+            "type": "string",
+            "value": "",
+            "path": ".subscriber_count"
+        },
+        {
+            "key": "tagType",
+            "type": "string",
+            "value": "",
+            "path": ".tagType"
+        },
+        {
+            "key": "updated_timestamp",
+            "type": "string",
+            "value": "",
+            "path": ".updated_timestamp"
+        }
+    ],
+    "path": ""
+}
