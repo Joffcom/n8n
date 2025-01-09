@@ -1,0 +1,313 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "external_urls",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "spotify",
+                    "type": "string",
+                    "value": "",
+                    "path": ".external_urls.spotify"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".external_urls.required"
+                }
+            ],
+            "path": ".external_urls"
+        },
+        {
+            "key": "followers",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "href",
+                    "type": "null",
+                    "value": "",
+                    "path": ".followers.href"
+                },
+                {
+                    "key": "total",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".followers.total"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".followers.required"
+                }
+            ],
+            "path": ".followers"
+        },
+        {
+            "key": "genres",
+            "type": "array",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".genres.items"
+                }
+            ],
+            "path": ".genres"
+        },
+        {
+            "key": "href",
+            "type": "string",
+            "value": "",
+            "path": ".href"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "images",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "height",
+                            "type": "integer",
+                            "value": "",
+                            "path": ".images.items.height"
+                        },
+                        {
+                            "key": "url",
+                            "type": "string",
+                            "value": "",
+                            "path": ".images.items.url"
+                        },
+                        {
+                            "key": "width",
+                            "type": "integer",
+                            "value": "",
+                            "path": ".images.items.width"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".images.items.required"
+                        }
+                    ],
+                    "path": ".images.items"
+                }
+            ],
+            "path": ".images"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "popularity",
+            "type": "integer",
+            "value": "",
+            "path": ".popularity"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "uri",
+            "type": "string",
+            "value": "",
+            "path": ".uri"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "actions",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "disallows",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "skipping_prev",
+                            "type": "boolean",
+                            "value": "",
+                            "path": ".actions.disallows.skipping_prev"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".actions.disallows.required"
+                        }
+                    ],
+                    "path": ".actions.disallows"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".actions.required"
+                }
+            ],
+            "path": ".actions"
+        },
+        {
+            "key": "context",
+            "type": "null",
+            "value": "",
+            "path": ".context"
+        },
+        {
+            "key": "currently_playing_type",
+            "type": "string",
+            "value": "",
+            "path": ".currently_playing_type"
+        },
+        {
+            "key": "is_playing",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_playing"
+        },
+        {
+            "key": "item",
+            "type": "null",
+            "value": "",
+            "path": ".item"
+        },
+        {
+            "key": "progress_ms",
+            "type": "integer",
+            "value": "",
+            "path": ".progress_ms"
+        },
+        {
+            "key": "timestamp",
+            "type": "integer",
+            "value": "",
+            "path": ".timestamp"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "snapshot_id",
+            "type": "string",
+            "value": "",
+            "path": ".snapshot_id"
+        },
+        {
+            "key": "acousticness",
+            "type": "number",
+            "value": "",
+            "path": ".acousticness"
+        },
+        {
+            "key": "analysis_url",
+            "type": "string",
+            "value": "",
+            "path": ".analysis_url"
+        },
+        {
+            "key": "danceability",
+            "type": "number",
+            "value": "",
+            "path": ".danceability"
+        },
+        {
+            "key": "duration_ms",
+            "type": "integer",
+            "value": "",
+            "path": ".duration_ms"
+        },
+        {
+            "key": "energy",
+            "type": "number",
+            "value": "",
+            "path": ".energy"
+        },
+        {
+            "key": "instrumentalness",
+            "type": "integer",
+            "value": "",
+            "path": ".instrumentalness"
+        },
+        {
+            "key": "key",
+            "type": "integer",
+            "value": "",
+            "path": ".key"
+        },
+        {
+            "key": "liveness",
+            "type": "number",
+            "value": "",
+            "path": ".liveness"
+        },
+        {
+            "key": "loudness",
+            "type": "number",
+            "value": "",
+            "path": ".loudness"
+        },
+        {
+            "key": "mode",
+            "type": "integer",
+            "value": "",
+            "path": ".mode"
+        },
+        {
+            "key": "speechiness",
+            "type": "number",
+            "value": "",
+            "path": ".speechiness"
+        },
+        {
+            "key": "tempo",
+            "type": "number",
+            "value": "",
+            "path": ".tempo"
+        },
+        {
+            "key": "time_signature",
+            "type": "integer",
+            "value": "",
+            "path": ".time_signature"
+        },
+        {
+            "key": "track_href",
+            "type": "string",
+            "value": "",
+            "path": ".track_href"
+        },
+        {
+            "key": "valence",
+            "type": "number",
+            "value": "",
+            "path": ".valence"
+        }
+    ],
+    "path": ""
+}
