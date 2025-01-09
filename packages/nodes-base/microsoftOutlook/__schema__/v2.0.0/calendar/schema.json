@@ -1,0 +1,313 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "@odata",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "context",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.context"
+                },
+                {
+                    "key": "etag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.etag"
+                },
+                {
+                    "key": "nextLink",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.nextLink"
+                },
+                {
+                    "key": "mediaContentType",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.mediaContentType"
+                },
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.type"
+                }
+            ],
+            "path": ".@odata"
+        },
+        {
+            "key": "allowedOnlineMeetingProviders",
+            "type": "array",
+            "value": "",
+            "path": ".allowedOnlineMeetingProviders"
+        },
+        {
+            "key": "canEdit",
+            "type": "boolean",
+            "value": "",
+            "path": ".canEdit"
+        },
+        {
+            "key": "canShare",
+            "type": "boolean",
+            "value": "",
+            "path": ".canShare"
+        },
+        {
+            "key": "canViewPrivateItems",
+            "type": "boolean",
+            "value": "",
+            "path": ".canViewPrivateItems"
+        },
+        {
+            "key": "changeKey",
+            "type": "string",
+            "value": "",
+            "path": ".changeKey"
+        },
+        {
+            "key": "color",
+            "type": "string",
+            "value": "",
+            "path": ".color"
+        },
+        {
+            "key": "defaultOnlineMeetingProvider",
+            "type": "string",
+            "value": "",
+            "path": ".defaultOnlineMeetingProvider"
+        },
+        {
+            "key": "hexColor",
+            "type": "string",
+            "value": "",
+            "path": ".hexColor"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "isDefaultCalendar",
+            "type": "boolean",
+            "value": "",
+            "path": ".isDefaultCalendar"
+        },
+        {
+            "key": "isRemovable",
+            "type": "boolean",
+            "value": "",
+            "path": ".isRemovable"
+        },
+        {
+            "key": "isTallyingResponses",
+            "type": "boolean",
+            "value": "",
+            "path": ".isTallyingResponses"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "owner",
+            "type": "null",
+            "value": "",
+            "path": ".owner"
+        },
+        {
+            "key": "emailAddresses",
+            "type": "array",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "address",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.address"
+                        },
+                        {
+                            "key": "name",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.name"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.required"
+                        }
+                    ],
+                    "path": ".emailAddresses.items"
+                }
+            ],
+            "path": ".emailAddresses"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "value",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "object",
+                    "value": [
+                        {
+                            "key": "@odata",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "etag",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".value.items.@odata.etag"
+                                }
+                            ],
+                            "path": ".value.items.@odata"
+                        },
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".value.items.id"
+                        },
+                        {
+                            "key": "start",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "dateTime",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".value.items.start.dateTime"
+                                },
+                                {
+                                    "key": "timeZone",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".value.items.start.timeZone"
+                                },
+                                {
+                                    "key": "required",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".value.items.start.required"
+                                }
+                            ],
+                            "path": ".value.items.start"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".value.items.required"
+                        }
+                    ],
+                    "path": ".value.items"
+                }
+            ],
+            "path": ".value"
+        },
+        {
+            "key": "childFolderCount",
+            "type": "integer",
+            "value": "",
+            "path": ".childFolderCount"
+        },
+        {
+            "key": "displayName",
+            "type": "string",
+            "value": "",
+            "path": ".displayName"
+        },
+        {
+            "key": "isHidden",
+            "type": "boolean",
+            "value": "",
+            "path": ".isHidden"
+        },
+        {
+            "key": "parentFolderId",
+            "type": "string",
+            "value": "",
+            "path": ".parentFolderId"
+        },
+        {
+            "key": "sizeInBytes",
+            "type": "integer",
+            "value": "",
+            "path": ".sizeInBytes"
+        },
+        {
+            "key": "totalItemCount",
+            "type": "integer",
+            "value": "",
+            "path": ".totalItemCount"
+        },
+        {
+            "key": "unreadItemCount",
+            "type": "integer",
+            "value": "",
+            "path": ".unreadItemCount"
+        },
+        {
+            "key": "hasAttachments",
+            "type": "boolean",
+            "value": "",
+            "path": ".hasAttachments"
+        },
+        {
+            "key": "contentType",
+            "type": "string",
+            "value": "",
+            "path": ".contentType"
+        },
+        {
+            "key": "isInline",
+            "type": "boolean",
+            "value": "",
+            "path": ".isInline"
+        },
+        {
+            "key": "lastModifiedDateTime",
+            "type": "string",
+            "value": "",
+            "path": ".lastModifiedDateTime"
+        },
+        {
+            "key": "size",
+            "type": "integer",
+            "value": "",
+            "path": ".size"
+        }
+    ],
+    "path": ""
+}
