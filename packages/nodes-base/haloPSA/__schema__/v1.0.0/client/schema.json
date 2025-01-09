@@ -1,0 +1,96 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "integer",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "is_vip",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_vip"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "website",
+            "type": "string",
+            "value": "",
+            "path": ".website"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "client_id",
+            "type": "integer",
+            "value": "",
+            "path": ".client_id"
+        },
+        {
+            "key": "agent_id",
+            "type": "integer",
+            "value": "",
+            "path": ".agent_id"
+        },
+        {
+            "key": "details",
+            "type": "string",
+            "value": "",
+            "path": ".details"
+        },
+        {
+            "key": "summary",
+            "type": "string",
+            "value": "",
+            "path": ".summary"
+        },
+        {
+            "key": "targetdate",
+            "type": "string",
+            "value": "",
+            "path": ".targetdate"
+        },
+        {
+            "key": "emailaddress",
+            "type": "string",
+            "value": "",
+            "path": ".emailaddress"
+        },
+        {
+            "key": "inactive",
+            "type": "boolean",
+            "value": "",
+            "path": ".inactive"
+        },
+        {
+            "key": "site_id",
+            "type": "integer",
+            "value": "",
+            "path": ".site_id"
+        },
+        {
+            "key": "surname",
+            "type": "string",
+            "value": "",
+            "path": ".surname"
+        }
+    ],
+    "path": ""
+}
