@@ -1,0 +1,164 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "errors",
+            "type": "null",
+            "value": "",
+            "path": ".errors"
+        },
+        {
+            "key": "result",
+            "type": "string",
+            "value": "",
+            "path": ".result"
+        },
+        {
+            "key": "warnings",
+            "type": "null",
+            "value": "",
+            "path": ".warnings"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "message",
+            "type": "string",
+            "value": "",
+            "path": ".message"
+        },
+        {
+            "key": "event",
+            "type": "string",
+            "value": "",
+            "path": ".event"
+        },
+        {
+            "key": "listener_count",
+            "type": "integer",
+            "value": "",
+            "path": ".listener_count"
+        },
+        {
+            "key": "errorLog",
+            "type": "string",
+            "value": "",
+            "path": ".errorLog"
+        },
+        {
+            "key": "entity_id",
+            "type": "string",
+            "value": "",
+            "path": ".entity_id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "state",
+            "type": "string",
+            "value": "",
+            "path": ".state"
+        },
+        {
+            "key": "when",
+            "type": "string",
+            "value": "",
+            "path": ".when"
+        },
+        {
+            "key": "attributes",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "current",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".attributes.current"
+                },
+                {
+                    "key": "friendly_name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.friendly_name"
+                },
+                {
+                    "key": "last_triggered",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.last_triggered"
+                },
+                {
+                    "key": "mode",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.mode"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.required"
+                }
+            ],
+            "path": ".attributes"
+        },
+        {
+            "key": "context",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".context.id"
+                },
+                {
+                    "key": "parent_id",
+                    "type": "null",
+                    "value": "",
+                    "path": ".context.parent_id"
+                },
+                {
+                    "key": "user_id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".context.user_id"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".context.required"
+                }
+            ],
+            "path": ".context"
+        },
+        {
+            "key": "last_changed",
+            "type": "string",
+            "value": "",
+            "path": ".last_changed"
+        },
+        {
+            "key": "last_reported",
+            "type": "string",
+            "value": "",
+            "path": ".last_reported"
+        },
+        {
+            "key": "last_updated",
+            "type": "string",
+            "value": "",
+            "path": ".last_updated"
+        }
+    ],
+    "path": ""
+}
