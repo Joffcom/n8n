@@ -1,0 +1,207 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "Active",
+            "type": "boolean",
+            "value": "",
+            "path": ".Active"
+        },
+        {
+            "key": "BillableTime",
+            "type": "boolean",
+            "value": "",
+            "path": ".BillableTime"
+        },
+        {
+            "key": "DisplayName",
+            "type": "string",
+            "value": "",
+            "path": ".DisplayName"
+        },
+        {
+            "key": "FamilyName",
+            "type": "string",
+            "value": "",
+            "path": ".FamilyName"
+        },
+        {
+            "key": "GivenName",
+            "type": "string",
+            "value": "",
+            "path": ".GivenName"
+        },
+        {
+            "key": "HiredDate",
+            "type": "string",
+            "value": "",
+            "path": ".HiredDate"
+        },
+        {
+            "key": "Id",
+            "type": "string",
+            "value": "",
+            "path": ".Id"
+        },
+        {
+            "key": "MetaData",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "CreateTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".MetaData.CreateTime"
+                },
+                {
+                    "key": "LastUpdatedTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".MetaData.LastUpdatedTime"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".MetaData.required"
+                }
+            ],
+            "path": ".MetaData"
+        },
+        {
+            "key": "PrimaryPhone",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "FreeFormNumber",
+                    "type": "string",
+                    "value": "",
+                    "path": ".PrimaryPhone.FreeFormNumber"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".PrimaryPhone.required"
+                }
+            ],
+            "path": ".PrimaryPhone"
+        },
+        {
+            "key": "PrintOnCheckName",
+            "type": "string",
+            "value": "",
+            "path": ".PrintOnCheckName"
+        },
+        {
+            "key": "SyncToken",
+            "type": "string",
+            "value": "",
+            "path": ".SyncToken"
+        },
+        {
+            "key": "domain",
+            "type": "string",
+            "value": "",
+            "path": ".domain"
+        },
+        {
+            "key": "sparse",
+            "type": "boolean",
+            "value": "",
+            "path": ".sparse"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "FullyQualifiedName",
+            "type": "string",
+            "value": "",
+            "path": ".FullyQualifiedName"
+        },
+        {
+            "key": "Name",
+            "type": "string",
+            "value": "",
+            "path": ".Name"
+        },
+        {
+            "key": "PurchaseCost",
+            "type": "integer",
+            "value": "",
+            "path": ".PurchaseCost"
+        },
+        {
+            "key": "Taxable",
+            "type": "boolean",
+            "value": "",
+            "path": ".Taxable"
+        },
+        {
+            "key": "TrackQtyOnHand",
+            "type": "boolean",
+            "value": "",
+            "path": ".TrackQtyOnHand"
+        },
+        {
+            "key": "Type",
+            "type": "string",
+            "value": "",
+            "path": ".Type"
+        },
+        {
+            "key": "UnitPrice",
+            "type": "integer",
+            "value": "",
+            "path": ".UnitPrice"
+        },
+        {
+            "key": "Balance",
+            "type": "integer",
+            "value": "",
+            "path": ".Balance"
+        },
+        {
+            "key": "CurrencyRef",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".CurrencyRef.name"
+                },
+                {
+                    "key": "value",
+                    "type": "string",
+                    "value": "",
+                    "path": ".CurrencyRef.value"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".CurrencyRef.required"
+                }
+            ],
+            "path": ".CurrencyRef"
+        },
+        {
+            "key": "Vendor1099",
+            "type": "boolean",
+            "value": "",
+            "path": ".Vendor1099"
+        }
+    ],
+    "path": ""
+}
