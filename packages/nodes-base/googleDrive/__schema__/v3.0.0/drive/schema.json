@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "kind",
+            "type": "string",
+            "value": "",
+            "path": ".kind"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "mimeType",
+            "type": "string",
+            "value": "",
+            "path": ".mimeType"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "role",
+            "type": "string",
+            "value": "",
+            "path": ".role"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "fileId",
+            "type": "string",
+            "value": "",
+            "path": ".fileId"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "allowFileDiscovery",
+            "type": "boolean",
+            "value": "",
+            "path": ".allowFileDiscovery"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,181 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "bytes",
+            "type": "null",
+            "value": "",
+            "path": ".bytes"
+        },
+        {
+            "key": "date",
+            "type": "string",
+            "value": "",
+            "path": ".date"
+        },
+        {
+            "key": "edgeColor",
+            "type": "null",
+            "value": "",
+            "path": ".edgeColor"
+        },
+        {
+            "key": "fileName",
+            "type": "string",
+            "value": "",
+            "path": ".fileName"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "idMember",
+            "type": "string",
+            "value": "",
+            "path": ".idMember"
+        },
+        {
+            "key": "isUpload",
+            "type": "boolean",
+            "value": "",
+            "path": ".isUpload"
+        },
+        {
+            "key": "limits",
+            "type": "object",
+            "value": "",
+            "path": ".limits"
+        },
+        {
+            "key": "mimeType",
+            "type": "string",
+            "value": "",
+            "path": ".mimeType"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "pos",
+            "type": "integer",
+            "value": "",
+            "path": ".pos"
+        },
+        {
+            "key": "previews",
+            "type": "array",
+            "value": "",
+            "path": ".previews"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "_value",
+            "type": "null",
+            "value": "",
+            "path": "._value"
+        },
+        {
+            "key": "fullName",
+            "type": "string",
+            "value": "",
+            "path": ".fullName"
+        },
+        {
+            "key": "username",
+            "type": "string",
+            "value": "",
+            "path": ".username"
+        },
+        {
+            "key": "customFieldItems",
+            "type": "array",
+            "value": "",
+            "path": ".customFieldItems"
+        },
+        {
+            "key": "pluginData",
+            "type": "array",
+            "value": "",
+            "path": ".pluginData"
+        },
+        {
+            "key": "color",
+            "type": "string",
+            "value": "",
+            "path": ".color"
+        },
+        {
+            "key": "idBoard",
+            "type": "string",
+            "value": "",
+            "path": ".idBoard"
+        },
+        {
+            "key": "uses",
+            "type": "integer",
+            "value": "",
+            "path": ".uses"
+        },
+        {
+            "key": "closed",
+            "type": "boolean",
+            "value": "",
+            "path": ".closed"
+        },
+        {
+            "key": "subscribed",
+            "type": "boolean",
+            "value": "",
+            "path": ".subscribed"
+        },
+        {
+            "key": "datasource",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "filter",
+                    "type": "boolean",
+                    "value": "",
+                    "path": ".datasource.filter"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".datasource.required"
+                }
+            ],
+            "path": ".datasource"
+        },
+        {
+            "key": "type",
+            "type": "null",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "softLimit",
+            "type": "null",
+            "value": "",
+            "path": ".softLimit"
+        }
+    ],
+    "path": ""
+}

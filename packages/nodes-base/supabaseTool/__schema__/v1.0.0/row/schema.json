@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "date_created",
+            "type": "string",
+            "value": "",
+            "path": ".date_created"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "openai_thread_id",
+            "type": "null",
+            "value": "",
+            "path": ".openai_thread_id"
+        },
+        {
+            "key": "telegram_id",
+            "type": "null",
+            "value": "",
+            "path": ".telegram_id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "nome",
+            "type": "string",
+            "value": "",
+            "path": ".nome"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,279 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "controlType",
+            "type": "string",
+            "value": "",
+            "path": ".controlType"
+        },
+        {
+            "key": "href",
+            "type": "string",
+            "value": "",
+            "path": ".href"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "parent",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "browserLink",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.browserLink"
+                },
+                {
+                    "key": "href",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.href"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.id"
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.name"
+                },
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.type"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.required"
+                },
+                {
+                    "key": "tableType",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.tableType"
+                }
+            ],
+            "path": ".parent"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "value",
+            "type": "string",
+            "value": "",
+            "path": ".value"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "format",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "isArray",
+                    "type": "boolean",
+                    "value": "",
+                    "path": ".format.isArray"
+                },
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".format.type"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".format.required"
+                },
+                {
+                    "key": "display",
+                    "type": "string",
+                    "value": "",
+                    "path": ".format.display"
+                },
+                {
+                    "key": "format",
+                    "type": "string",
+                    "value": "",
+                    "path": ".format.format"
+                }
+            ],
+            "path": ".format"
+        },
+        {
+            "key": "columnId",
+            "type": "string",
+            "value": "",
+            "path": ".columnId"
+        },
+        {
+            "key": "requestId",
+            "type": "string",
+            "value": "",
+            "path": ".requestId"
+        },
+        {
+            "key": "rowId",
+            "type": "string",
+            "value": "",
+            "path": ".rowId"
+        },
+        {
+            "key": "browserLink",
+            "type": "string",
+            "value": "",
+            "path": ".browserLink"
+        },
+        {
+            "key": "tableType",
+            "type": "string",
+            "value": "",
+            "path": ".tableType"
+        },
+        {
+            "key": "Action",
+            "type": "string",
+            "value": "",
+            "path": ".Action"
+        },
+        {
+            "key": "IG Story Challenge/Solution",
+            "type": "string",
+            "value": "",
+            "path": ".IG Story Challenge/Solution"
+        },
+        {
+            "key": "IG Story Pictures",
+            "type": "string",
+            "value": "",
+            "path": ".IG Story Pictures"
+        },
+        {
+            "key": "Idea",
+            "type": "string",
+            "value": "",
+            "path": ".Idea"
+        },
+        {
+            "key": "Metric Title",
+            "type": "string",
+            "value": "",
+            "path": ".Metric Title"
+        },
+        {
+            "key": "Description",
+            "type": "string",
+            "value": "",
+            "path": ".Description"
+        },
+        {
+            "key": "Label",
+            "type": "string",
+            "value": "",
+            "path": ".Label"
+        },
+        {
+            "key": "Type",
+            "type": "string",
+            "value": "",
+            "path": ".Type"
+        },
+        {
+            "key": "date",
+            "type": "string",
+            "value": "",
+            "path": ".date"
+        },
+        {
+            "key": "process_id",
+            "type": "integer",
+            "value": "",
+            "path": ".process_id"
+        },
+        {
+            "key": "processor",
+            "type": "string",
+            "value": "",
+            "path": ".processor"
+        },
+        {
+            "key": "processor_id",
+            "type": "integer",
+            "value": "",
+            "path": ".processor_id"
+        },
+        {
+            "key": "system_id",
+            "type": "string",
+            "value": "",
+            "path": ".system_id"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "values",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "Column 2",
+                    "type": "string",
+                    "value": "",
+                    "path": ".values.Column 2"
+                },
+                {
+                    "key": "Column 3",
+                    "type": "string",
+                    "value": "",
+                    "path": ".values.Column 3"
+                },
+                {
+                    "key": "Name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".values.Name"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".values.required"
+                }
+            ],
+            "path": ".values"
+        }
+    ],
+    "path": ""
+}

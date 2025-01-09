@@ -1,0 +1,122 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "friendly_name",
+            "type": "string",
+            "value": "",
+            "path": ".friendly_name"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "status",
+            "type": "integer",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "type",
+            "type": "integer",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "value",
+            "type": "string",
+            "value": "",
+            "path": ".value"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "create_datetime",
+            "type": "integer",
+            "value": "",
+            "path": ".create_datetime"
+        },
+        {
+            "key": "http_password",
+            "type": "string",
+            "value": "",
+            "path": ".http_password"
+        },
+        {
+            "key": "http_username",
+            "type": "string",
+            "value": "",
+            "path": ".http_username"
+        },
+        {
+            "key": "interval",
+            "type": "integer",
+            "value": "",
+            "path": ".interval"
+        },
+        {
+            "key": "keyword_case_type",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".keyword_case_type.type"
+                }
+            ],
+            "path": ".keyword_case_type"
+        },
+        {
+            "key": "keyword_type",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".keyword_type.type"
+                }
+            ],
+            "path": ".keyword_type"
+        },
+        {
+            "key": "keyword_value",
+            "type": "string",
+            "value": "",
+            "path": ".keyword_value"
+        },
+        {
+            "key": "port",
+            "type": "string",
+            "value": "",
+            "path": ".port"
+        },
+        {
+            "key": "sub_type",
+            "type": "string",
+            "value": "",
+            "path": ".sub_type"
+        },
+        {
+            "key": "timeout",
+            "type": "integer",
+            "value": "",
+            "path": ".timeout"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        }
+    ],
+    "path": ""
+}

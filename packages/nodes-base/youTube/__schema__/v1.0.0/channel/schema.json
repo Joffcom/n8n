@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "etag",
+            "type": "string",
+            "value": "",
+            "path": ".etag"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "kind",
+            "type": "string",
+            "value": "",
+            "path": ".kind"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "contentDetails",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "itemCount",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".contentDetails.itemCount"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".contentDetails.required"
+                },
+                {
+                    "key": "videoId",
+                    "type": "string",
+                    "value": "",
+                    "path": ".contentDetails.videoId"
+                },
+                {
+                    "key": "videoPublishedAt",
+                    "type": "string",
+                    "value": "",
+                    "path": ".contentDetails.videoPublishedAt"
+                }
+            ],
+            "path": ".contentDetails"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "snippet",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "assignable",
+                    "type": "boolean",
+                    "value": "",
+                    "path": ".snippet.assignable"
+                },
+                {
+                    "key": "channelId",
+                    "type": "string",
+                    "value": "",
+                    "path": ".snippet.channelId"
+                },
+                {
+                    "key": "title",
+                    "type": "string",
+                    "value": "",
+                    "path": ".snippet.title"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".snippet.required"
+                }
+            ],
+            "path": ".snippet"
+        }
+    ],
+    "path": ""
+}

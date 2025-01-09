@@ -1,0 +1,168 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "createdAt",
+            "type": "string",
+            "value": "",
+            "path": ".createdAt"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "updatedAt",
+            "type": "string",
+            "value": "",
+            "path": ".updatedAt"
+        },
+        {
+            "key": "additionalProperties",
+            "type": "boolean",
+            "value": "",
+            "path": ".additionalProperties"
+        },
+        {
+            "key": "deletedAt",
+            "type": "null",
+            "value": "",
+            "path": ".deletedAt"
+        },
+        {
+            "key": "finished",
+            "type": "boolean",
+            "value": "",
+            "path": ".finished"
+        },
+        {
+            "key": "mode",
+            "type": "string",
+            "value": "",
+            "path": ".mode"
+        },
+        {
+            "key": "retryOf",
+            "type": "null",
+            "value": "",
+            "path": ".retryOf"
+        },
+        {
+            "key": "retrySuccessId",
+            "type": "null",
+            "value": "",
+            "path": ".retrySuccessId"
+        },
+        {
+            "key": "startedAt",
+            "type": "string",
+            "value": "",
+            "path": ".startedAt"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "workflowId",
+            "type": "string",
+            "value": "",
+            "path": ".workflowId"
+        },
+        {
+            "key": "waitTill",
+            "type": "null",
+            "value": "",
+            "path": ".waitTill"
+        },
+        {
+            "key": "stoppedAt",
+            "type": "string",
+            "value": "",
+            "path": ".stoppedAt"
+        },
+        {
+            "key": "active",
+            "type": "boolean",
+            "value": "",
+            "path": ".active"
+        },
+        {
+            "key": "connections",
+            "type": "object",
+            "value": "",
+            "path": ".connections"
+        },
+        {
+            "key": "meta",
+            "type": "null",
+            "value": "",
+            "path": ".meta"
+        },
+        {
+            "key": "nodes",
+            "type": "array",
+            "value": "",
+            "path": ".nodes"
+        },
+        {
+            "key": "pinData",
+            "type": "null",
+            "value": "",
+            "path": ".pinData"
+        },
+        {
+            "key": "settings",
+            "type": "object",
+            "value": "",
+            "path": ".settings"
+        },
+        {
+            "key": "staticData",
+            "type": "null",
+            "value": "",
+            "path": ".staticData"
+        },
+        {
+            "key": "triggerCount",
+            "type": "integer",
+            "value": "",
+            "path": ".triggerCount"
+        },
+        {
+            "key": "versionId",
+            "type": "string",
+            "value": "",
+            "path": ".versionId"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        }
+    ],
+    "path": ""
+}

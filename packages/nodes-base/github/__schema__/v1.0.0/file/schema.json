@@ -1,0 +1,183 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "_links",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "git",
+                    "type": "string",
+                    "value": "",
+                    "path": "._links.git"
+                },
+                {
+                    "key": "html",
+                    "type": "string",
+                    "value": "",
+                    "path": "._links.html"
+                },
+                {
+                    "key": "self",
+                    "type": "string",
+                    "value": "",
+                    "path": "._links.self"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": "._links.required"
+                }
+            ],
+            "path": "._links"
+        },
+        {
+            "key": "git_url",
+            "type": "string",
+            "value": "",
+            "path": ".git_url"
+        },
+        {
+            "key": "html_url",
+            "type": "string",
+            "value": "",
+            "path": ".html_url"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "path",
+            "type": "string",
+            "value": "",
+            "path": ".path"
+        },
+        {
+            "key": "sha",
+            "type": "string",
+            "value": "",
+            "path": ".sha"
+        },
+        {
+            "key": "size",
+            "type": "integer",
+            "value": "",
+            "path": ".size"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "total_count",
+            "type": "integer",
+            "value": "",
+            "path": ".total_count"
+        },
+        {
+            "key": "workflows",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "badge_url",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.badge_url"
+                        },
+                        {
+                            "key": "created_at",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.created_at"
+                        },
+                        {
+                            "key": "html_url",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.html_url"
+                        },
+                        {
+                            "key": "id",
+                            "type": "integer",
+                            "value": "",
+                            "path": ".workflows.items.id"
+                        },
+                        {
+                            "key": "name",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.name"
+                        },
+                        {
+                            "key": "node_id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.node_id"
+                        },
+                        {
+                            "key": "path",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.path"
+                        },
+                        {
+                            "key": "state",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.state"
+                        },
+                        {
+                            "key": "updated_at",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.updated_at"
+                        },
+                        {
+                            "key": "url",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.url"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".workflows.items.required"
+                        }
+                    ],
+                    "path": ".workflows.items"
+                }
+            ],
+            "path": ".workflows"
+        }
+    ],
+    "path": ""
+}

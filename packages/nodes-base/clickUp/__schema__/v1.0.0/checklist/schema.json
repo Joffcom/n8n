@@ -1,0 +1,268 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "items",
+            "type": "array",
+            "value": "",
+            "path": ".items"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "orderindex",
+            "type": "integer",
+            "value": "",
+            "path": ".orderindex"
+        },
+        {
+            "key": "resolved",
+            "type": "integer",
+            "value": "",
+            "path": ".resolved"
+        },
+        {
+            "key": "task_id",
+            "type": "string",
+            "value": "",
+            "path": ".task_id"
+        },
+        {
+            "key": "unresolved",
+            "type": "integer",
+            "value": "",
+            "path": ".unresolved"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "assignee",
+            "type": "null",
+            "value": "",
+            "path": ".assignee"
+        },
+        {
+            "key": "comment",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "text",
+                            "type": "string",
+                            "value": "",
+                            "path": ".comment.items.text"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".comment.items.required"
+                        }
+                    ],
+                    "path": ".comment.items"
+                }
+            ],
+            "path": ".comment"
+        },
+        {
+            "key": "comment_text",
+            "type": "string",
+            "value": "",
+            "path": ".comment_text"
+        },
+        {
+            "key": "date",
+            "type": "string",
+            "value": "",
+            "path": ".date"
+        },
+        {
+            "key": "group_assignee",
+            "type": "null",
+            "value": "",
+            "path": ".group_assignee"
+        },
+        {
+            "key": "reactions",
+            "type": "array",
+            "value": "",
+            "path": ".reactions"
+        },
+        {
+            "key": "reply_count",
+            "type": "integer",
+            "value": "",
+            "path": ".reply_count"
+        },
+        {
+            "key": "user",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "color",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.color"
+                },
+                {
+                    "key": "email",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.email"
+                },
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".user.id"
+                },
+                {
+                    "key": "initials",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.initials"
+                },
+                {
+                    "key": "profilePicture",
+                    "type": "null",
+                    "value": "",
+                    "path": ".user.profilePicture"
+                },
+                {
+                    "key": "username",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.username"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".user.required"
+                }
+            ],
+            "path": ".user"
+        },
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "hidden",
+            "type": "boolean",
+            "value": "",
+            "path": ".hidden"
+        },
+        {
+            "key": "lists",
+            "type": "array",
+            "value": "",
+            "path": ".lists"
+        },
+        {
+            "key": "override_statuses",
+            "type": "boolean",
+            "value": "",
+            "path": ".override_statuses"
+        },
+        {
+            "key": "permission_level",
+            "type": "string",
+            "value": "",
+            "path": ".permission_level"
+        },
+        {
+            "key": "space",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "access",
+                    "type": "boolean",
+                    "value": "",
+                    "path": ".space.access"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".space.id"
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".space.name"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".space.required"
+                }
+            ],
+            "path": ".space"
+        },
+        {
+            "key": "statuses",
+            "type": "array",
+            "value": "",
+            "path": ".statuses"
+        },
+        {
+            "key": "task_count",
+            "type": "string",
+            "value": "",
+            "path": ".task_count"
+        },
+        {
+            "key": "date_created",
+            "type": "string",
+            "value": "",
+            "path": ".date_created"
+        },
+        {
+            "key": "hide_from_guests",
+            "type": "boolean",
+            "value": "",
+            "path": ".hide_from_guests"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "type_config",
+            "type": "object",
+            "value": "",
+            "path": ".type_config"
+        },
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,170 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "SendEmailResponse",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "$",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "xmlns",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.$.xmlns"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.$.required"
+                        }
+                    ],
+                    "path": ".SendEmailResponse.$"
+                },
+                {
+                    "key": "ResponseMetadata",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "RequestId",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.ResponseMetadata.RequestId"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.ResponseMetadata.required"
+                        }
+                    ],
+                    "path": ".SendEmailResponse.ResponseMetadata"
+                },
+                {
+                    "key": "SendEmailResult",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "MessageId",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.SendEmailResult.MessageId"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".SendEmailResponse.SendEmailResult.required"
+                        }
+                    ],
+                    "path": ".SendEmailResponse.SendEmailResult"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".SendEmailResponse.required"
+                }
+            ],
+            "path": ".SendEmailResponse"
+        },
+        {
+            "key": "$",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "xmlns",
+                    "type": "string",
+                    "value": "",
+                    "path": ".$.xmlns"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".$.required"
+                }
+            ],
+            "path": ".$"
+        },
+        {
+            "key": "CreateTemplateResult",
+            "type": "string",
+            "value": "",
+            "path": ".CreateTemplateResult"
+        },
+        {
+            "key": "ResponseMetadata",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "RequestId",
+                    "type": "string",
+                    "value": "",
+                    "path": ".ResponseMetadata.RequestId"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".ResponseMetadata.required"
+                }
+            ],
+            "path": ".ResponseMetadata"
+        },
+        {
+            "key": "GetTemplateResult",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "Template",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "HtmlPart",
+                            "type": "string",
+                            "value": "",
+                            "path": ".GetTemplateResult.Template.HtmlPart"
+                        },
+                        {
+                            "key": "SubjectPart",
+                            "type": "string",
+                            "value": "",
+                            "path": ".GetTemplateResult.Template.SubjectPart"
+                        },
+                        {
+                            "key": "TemplateName",
+                            "type": "string",
+                            "value": "",
+                            "path": ".GetTemplateResult.Template.TemplateName"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".GetTemplateResult.Template.required"
+                        }
+                    ],
+                    "path": ".GetTemplateResult.Template"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".GetTemplateResult.required"
+                }
+            ],
+            "path": ".GetTemplateResult"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,108 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "created",
+            "type": "integer",
+            "value": "",
+            "path": ".created"
+        },
+        {
+            "key": "duration",
+            "type": "string",
+            "value": "",
+            "path": ".duration"
+        },
+        {
+            "key": "duration_in_months",
+            "type": "null",
+            "value": "",
+            "path": ".duration_in_months"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "livemode",
+            "type": "boolean",
+            "value": "",
+            "path": ".livemode"
+        },
+        {
+            "key": "max_redemptions",
+            "type": "null",
+            "value": "",
+            "path": ".max_redemptions"
+        },
+        {
+            "key": "metadata",
+            "type": "object",
+            "value": "",
+            "path": ".metadata"
+        },
+        {
+            "key": "name",
+            "type": "null",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "object",
+            "type": "string",
+            "value": "",
+            "path": ".object"
+        },
+        {
+            "key": "redeem_by",
+            "type": "null",
+            "value": "",
+            "path": ".redeem_by"
+        },
+        {
+            "key": "times_redeemed",
+            "type": "integer",
+            "value": "",
+            "path": ".times_redeemed"
+        },
+        {
+            "key": "valid",
+            "type": "boolean",
+            "value": "",
+            "path": ".valid"
+        },
+        {
+            "key": "amount_off",
+            "type": "null",
+            "value": "",
+            "path": ".amount_off"
+        },
+        {
+            "key": "currency",
+            "type": "null",
+            "value": "",
+            "path": ".currency"
+        },
+        {
+            "key": "percent_off",
+            "type": "integer",
+            "value": "",
+            "path": ".percent_off"
+        },
+        {
+            "key": "deleted",
+            "type": "boolean",
+            "value": "",
+            "path": ".deleted"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,193 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "currencyCode",
+            "type": "string",
+            "value": "",
+            "path": ".currencyCode"
+        },
+        {
+            "key": "currencyId",
+            "type": "string",
+            "value": "",
+            "path": ".currencyId"
+        },
+        {
+            "key": "email",
+            "type": "null",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "workspaceId",
+            "type": "string",
+            "value": "",
+            "path": ".workspaceId"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "assigneeId",
+            "type": "null",
+            "value": "",
+            "path": ".assigneeId"
+        },
+        {
+            "key": "assigneeIds",
+            "type": "array",
+            "value": "",
+            "path": ".assigneeIds"
+        },
+        {
+            "key": "billable",
+            "type": "boolean",
+            "value": "",
+            "path": ".billable"
+        },
+        {
+            "key": "budgetEstimate",
+            "type": "integer",
+            "value": "",
+            "path": ".budgetEstimate"
+        },
+        {
+            "key": "costRate",
+            "type": "null",
+            "value": "",
+            "path": ".costRate"
+        },
+        {
+            "key": "duration",
+            "type": "string",
+            "value": "",
+            "path": ".duration"
+        },
+        {
+            "key": "estimate",
+            "type": "string",
+            "value": "",
+            "path": ".estimate"
+        },
+        {
+            "key": "hourlyRate",
+            "type": "null",
+            "value": "",
+            "path": ".hourlyRate"
+        },
+        {
+            "key": "projectId",
+            "type": "string",
+            "value": "",
+            "path": ".projectId"
+        },
+        {
+            "key": "status",
+            "type": "string",
+            "value": "",
+            "path": ".status"
+        },
+        {
+            "key": "userGroupIds",
+            "type": "array",
+            "value": "",
+            "path": ".userGroupIds"
+        },
+        {
+            "key": "customFieldValues",
+            "type": "array",
+            "value": "",
+            "path": ".customFieldValues"
+        },
+        {
+            "key": "description",
+            "type": "null",
+            "value": "",
+            "path": ".description"
+        },
+        {
+            "key": "isLocked",
+            "type": "boolean",
+            "value": "",
+            "path": ".isLocked"
+        },
+        {
+            "key": "kioskId",
+            "type": "null",
+            "value": "",
+            "path": ".kioskId"
+        },
+        {
+            "key": "tagIds",
+            "type": "null",
+            "value": "",
+            "path": ".tagIds"
+        },
+        {
+            "key": "timeInterval",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "duration",
+                    "type": "string",
+                    "value": "",
+                    "path": ".timeInterval.duration"
+                },
+                {
+                    "key": "end",
+                    "type": "string",
+                    "value": "",
+                    "path": ".timeInterval.end"
+                },
+                {
+                    "key": "start",
+                    "type": "string",
+                    "value": "",
+                    "path": ".timeInterval.start"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".timeInterval.required"
+                }
+            ],
+            "path": ".timeInterval"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "userId",
+            "type": "string",
+            "value": "",
+            "path": ".userId"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,152 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "address",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".address.type"
+                }
+            ],
+            "path": ".address"
+        },
+        {
+            "key": "created_at",
+            "type": "string",
+            "value": "",
+            "path": ".created_at"
+        },
+        {
+            "key": "currency",
+            "type": "string",
+            "value": "",
+            "path": ".currency"
+        },
+        {
+            "key": "id",
+            "type": "integer",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "is_active",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_active"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "statement_key",
+            "type": "string",
+            "value": "",
+            "path": ".statement_key"
+        },
+        {
+            "key": "updated_at",
+            "type": "string",
+            "value": "",
+            "path": ".updated_at"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "client",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "id",
+                    "type": "integer",
+                    "value": "",
+                    "path": ".client.id"
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "value": "",
+                    "path": ".client.name"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".client.required"
+                }
+            ],
+            "path": ".client"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "fax",
+            "type": "string",
+            "value": "",
+            "path": ".fax"
+        },
+        {
+            "key": "first_name",
+            "type": "string",
+            "value": "",
+            "path": ".first_name"
+        },
+        {
+            "key": "last_name",
+            "type": "string",
+            "value": "",
+            "path": ".last_name"
+        },
+        {
+            "key": "phone_mobile",
+            "type": "string",
+            "value": "",
+            "path": ".phone_mobile"
+        },
+        {
+            "key": "phone_office",
+            "type": "string",
+            "value": "",
+            "path": ".phone_office"
+        },
+        {
+            "key": "title",
+            "type": "null",
+            "value": "",
+            "path": ".title"
+        },
+        {
+            "key": "billable_by_default",
+            "type": "boolean",
+            "value": "",
+            "path": ".billable_by_default"
+        },
+        {
+            "key": "default_hourly_rate",
+            "type": "null",
+            "value": "",
+            "path": ".default_hourly_rate"
+        },
+        {
+            "key": "is_default",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_default"
+        }
+    ],
+    "path": ""
+}

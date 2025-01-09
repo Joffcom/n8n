@@ -1,0 +1,67 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "edit_history_tweet_ids",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".edit_history_tweet_ids.items"
+                }
+            ],
+            "path": ".edit_history_tweet_ids"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "text",
+            "type": "string",
+            "value": "",
+            "path": ".text"
+        },
+        {
+            "key": "deleted",
+            "type": "boolean",
+            "value": "",
+            "path": ".deleted"
+        },
+        {
+            "key": "liked",
+            "type": "boolean",
+            "value": "",
+            "path": ".liked"
+        },
+        {
+            "key": "rest_id",
+            "type": "string",
+            "value": "",
+            "path": ".rest_id"
+        },
+        {
+            "key": "retweeted",
+            "type": "boolean",
+            "value": "",
+            "path": ".retweeted"
+        }
+    ],
+    "path": ""
+}

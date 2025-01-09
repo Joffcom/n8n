@@ -1,0 +1,106 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "file_size",
+            "type": "integer",
+            "value": "",
+            "path": ".file_size"
+        },
+        {
+            "key": "messaging_product",
+            "type": "string",
+            "value": "",
+            "path": ".messaging_product"
+        },
+        {
+            "key": "mime_type",
+            "type": "string",
+            "value": "",
+            "path": ".mime_type"
+        },
+        {
+            "key": "sha256",
+            "type": "string",
+            "value": "",
+            "path": ".sha256"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "contacts",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "input",
+                            "type": "string",
+                            "value": "",
+                            "path": ".contacts.items.input"
+                        },
+                        {
+                            "key": "wa_id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".contacts.items.wa_id"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".contacts.items.required"
+                        }
+                    ],
+                    "path": ".contacts.items"
+                }
+            ],
+            "path": ".contacts"
+        },
+        {
+            "key": "messages",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".messages.items.id"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".messages.items.required"
+                        }
+                    ],
+                    "path": ".messages.items"
+                }
+            ],
+            "path": ".messages"
+        }
+    ],
+    "path": ""
+}

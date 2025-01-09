@@ -1,0 +1,205 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "board_kind",
+            "type": "string",
+            "value": "",
+            "path": ".board_kind"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "owners",
+            "type": "array",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".owners.items.id"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".owners.items.required"
+                        }
+                    ],
+                    "path": ".owners.items"
+                }
+            ],
+            "path": ".owners"
+        },
+        {
+            "key": "state",
+            "type": "string",
+            "value": "",
+            "path": ".state"
+        },
+        {
+            "key": "board_folder_id",
+            "type": "null",
+            "value": "",
+            "path": ".board_folder_id"
+        },
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "settings_str",
+            "type": "string",
+            "value": "",
+            "path": ".settings_str"
+        },
+        {
+            "key": "title",
+            "type": "string",
+            "value": "",
+            "path": ".title"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "color",
+            "type": "string",
+            "value": "",
+            "path": ".color"
+        },
+        {
+            "key": "position",
+            "type": "string",
+            "value": "",
+            "path": ".position"
+        },
+        {
+            "key": "column_values",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "column",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "archived",
+                                    "type": "boolean",
+                                    "value": "",
+                                    "path": ".column_values.items.column.archived"
+                                },
+                                {
+                                    "key": "settings_str",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".column_values.items.column.settings_str"
+                                },
+                                {
+                                    "key": "title",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".column_values.items.column.title"
+                                },
+                                {
+                                    "key": "required",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".column_values.items.column.required"
+                                }
+                            ],
+                            "path": ".column_values.items.column"
+                        },
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".column_values.items.id"
+                        },
+                        {
+                            "key": "type",
+                            "type": "string",
+                            "value": "",
+                            "path": ".column_values.items.type"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".column_values.items.required"
+                        },
+                        {
+                            "key": "value",
+                            "type": "Array",
+                            "value": [
+                                {
+                                    "key": "type",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".column_values.items.value.type"
+                                }
+                            ],
+                            "path": ".column_values.items.value"
+                        }
+                    ],
+                    "path": ".column_values.items"
+                }
+            ],
+            "path": ".column_values"
+        },
+        {
+            "key": "created_at",
+            "type": "string",
+            "value": "",
+            "path": ".created_at"
+        },
+        {
+            "key": "board",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".board.id"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".board.required"
+                }
+            ],
+            "path": ".board"
+        }
+    ],
+    "path": ""
+}

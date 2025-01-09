@@ -1,0 +1,145 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "data",
+            "type": "string",
+            "value": "",
+            "path": ".data"
+        },
+        {
+            "key": "elapsed",
+            "type": "number",
+            "value": "",
+            "path": ".elapsed"
+        },
+        {
+            "key": "hops",
+            "type": "integer",
+            "value": "",
+            "path": ".hops"
+        },
+        {
+            "key": "risk_check",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "dangerous",
+                    "type": "string",
+                    "value": "",
+                    "path": ".risk_check.dangerous"
+                },
+                {
+                    "key": "threats",
+                    "type": "array",
+                    "value": "",
+                    "path": ".risk_check.threats"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".risk_check.required"
+                }
+            ],
+            "path": ".risk_check"
+        },
+        {
+            "key": "trace",
+            "type": "array",
+            "value": "",
+            "path": ".trace"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "canonical",
+            "type": "string",
+            "value": "",
+            "path": ".canonical"
+        },
+        {
+            "key": "deliverability",
+            "type": "string",
+            "value": "",
+            "path": ".deliverability"
+        },
+        {
+            "key": "domain",
+            "type": "string",
+            "value": "",
+            "path": ".domain"
+        },
+        {
+            "key": "domain_has_valid_mx_records",
+            "type": "boolean",
+            "value": "",
+            "path": ".domain_has_valid_mx_records"
+        },
+        {
+            "key": "email",
+            "type": "string",
+            "value": "",
+            "path": ".email"
+        },
+        {
+            "key": "is_domain_valid",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_domain_valid"
+        },
+        {
+            "key": "is_email_disposable",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_email_disposable"
+        },
+        {
+            "key": "is_email_free",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_email_free"
+        },
+        {
+            "key": "is_email_role",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_email_role"
+        },
+        {
+            "key": "is_format_valid",
+            "type": "boolean",
+            "value": "",
+            "path": ".is_format_valid"
+        },
+        {
+            "key": "safe_to_register_as_user",
+            "type": "boolean",
+            "value": "",
+            "path": ".safe_to_register_as_user"
+        },
+        {
+            "key": "user",
+            "type": "string",
+            "value": "",
+            "path": ".user"
+        },
+        {
+            "key": "page",
+            "type": "string",
+            "value": "",
+            "path": ".page"
+        }
+    ],
+    "path": ""
+}

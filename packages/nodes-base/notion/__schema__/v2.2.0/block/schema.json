@@ -1,0 +1,245 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "has_more",
+            "type": "boolean",
+            "value": "",
+            "path": ".has_more"
+        },
+        {
+            "key": "next_cursor",
+            "type": "null",
+            "value": "",
+            "path": ".next_cursor"
+        },
+        {
+            "key": "object",
+            "type": "string",
+            "value": "",
+            "path": ".object"
+        },
+        {
+            "key": "request_id",
+            "type": "string",
+            "value": "",
+            "path": ".request_id"
+        },
+        {
+            "key": "results",
+            "type": "array",
+            "value": "",
+            "path": ".results"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "archived",
+            "type": "boolean",
+            "value": "",
+            "path": ".archived"
+        },
+        {
+            "key": "content",
+            "type": "string",
+            "value": "",
+            "path": ".content"
+        },
+        {
+            "key": "has_children",
+            "type": "boolean",
+            "value": "",
+            "path": ".has_children"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "in_trash",
+            "type": "boolean",
+            "value": "",
+            "path": ".in_trash"
+        },
+        {
+            "key": "last_edited_by",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".last_edited_by.id"
+                },
+                {
+                    "key": "object",
+                    "type": "string",
+                    "value": "",
+                    "path": ".last_edited_by.object"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".last_edited_by.required"
+                }
+            ],
+            "path": ".last_edited_by"
+        },
+        {
+            "key": "parent",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.type"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.required"
+                },
+                {
+                    "key": "page_id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".parent.page_id"
+                }
+            ],
+            "path": ".parent"
+        },
+        {
+            "key": "parent_id",
+            "type": "string",
+            "value": "",
+            "path": ".parent_id"
+        },
+        {
+            "key": "root_id",
+            "type": "string",
+            "value": "",
+            "path": ".root_id"
+        },
+        {
+            "key": "type",
+            "type": "string",
+            "value": "",
+            "path": ".type"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "person",
+            "type": "object",
+            "value": [
+                {
+                    "key": "email",
+                    "type": "string",
+                    "value": "",
+                    "path": ".person.email"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".person.required"
+                }
+            ],
+            "path": ".person"
+        },
+        {
+            "key": "property_description",
+            "type": "string",
+            "value": "",
+            "path": ".property_description"
+        },
+        {
+            "key": "property_events",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".property_events.items"
+                }
+            ],
+            "path": ".property_events"
+        },
+        {
+            "key": "property_founders",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "string",
+                    "value": "",
+                    "path": ".property_founders.items"
+                }
+            ],
+            "path": ".property_founders"
+        },
+        {
+            "key": "property_industries",
+            "type": "string",
+            "value": "",
+            "path": ".property_industries"
+        },
+        {
+            "key": "property_name",
+            "type": "string",
+            "value": "",
+            "path": ".property_name"
+        },
+        {
+            "key": "property_website",
+            "type": "null",
+            "value": "",
+            "path": ".property_website"
+        },
+        {
+            "key": "error",
+            "type": "string",
+            "value": "",
+            "path": ".error"
+        },
+        {
+            "key": "Categories",
+            "type": "array",
+            "value": "",
+            "path": ".Categories"
+        },
+        {
+            "key": "Created time",
+            "type": "string",
+            "value": "",
+            "path": ".Created time"
+        },
+        {
+            "key": "Title",
+            "type": "string",
+            "value": "",
+            "path": ".Title"
+        }
+    ],
+    "path": ""
+}

@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "assistant",
+            "type": "string",
+            "value": "",
+            "path": ".assistant"
+        },
+        {
+            "key": "chatId",
+            "type": "string",
+            "value": "",
+            "path": ".chatId"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "row_number",
+            "type": "integer",
+            "value": "",
+            "path": ".row_number"
+        }
+    ],
+    "path": ""
+}
