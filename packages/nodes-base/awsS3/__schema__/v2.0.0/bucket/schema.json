@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "success",
+            "type": "boolean",
+            "value": "",
+            "path": ".success"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "CreationDate",
+            "type": "string",
+            "value": "",
+            "path": ".CreationDate"
+        },
+        {
+            "key": "Name",
+            "type": "string",
+            "value": "",
+            "path": ".Name"
+        },
+        {
+            "key": "ETag",
+            "type": "string",
+            "value": "",
+            "path": ".ETag"
+        },
+        {
+            "key": "Key",
+            "type": "string",
+            "value": "",
+            "path": ".Key"
+        },
+        {
+            "key": "LastModified",
+            "type": "string",
+            "value": "",
+            "path": ".LastModified"
+        },
+        {
+            "key": "Size",
+            "type": "string",
+            "value": "",
+            "path": ".Size"
+        },
+        {
+            "key": "StorageClass",
+            "type": "string",
+            "value": "",
+            "path": ".StorageClass"
+        },
+        {
+            "key": "document",
+            "type": "string",
+            "value": "",
+            "path": ".document"
+        }
+    ],
+    "path": ""
+}
