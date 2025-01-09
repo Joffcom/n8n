@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "close",
+            "type": "number",
+            "value": "",
+            "path": ".close"
+        },
+        {
+            "key": "high",
+            "type": "number",
+            "value": "",
+            "path": ".high"
+        },
+        {
+            "key": "low",
+            "type": "number",
+            "value": "",
+            "path": ".low"
+        },
+        {
+            "key": "open",
+            "type": "number",
+            "value": "",
+            "path": ".open"
+        },
+        {
+            "key": "time",
+            "type": "string",
+            "value": "",
+            "path": ".time"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "name",
+            "type": "string",
+            "value": "",
+            "path": ".name"
+        },
+        {
+            "key": "symbol",
+            "type": "string",
+            "value": "",
+            "path": ".symbol"
+        },
+        {
+            "key": "price",
+            "type": "number",
+            "value": "",
+            "path": ".price"
+        },
+        {
+            "key": "totalVolume",
+            "type": "number",
+            "value": "",
+            "path": ".totalVolume"
+        }
+    ],
+    "path": ""
+}
