@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "Default",
+            "type": "null",
+            "value": "",
+            "path": ".Default"
+        },
+        {
+            "key": "Extra",
+            "type": "string",
+            "value": "",
+            "path": ".Extra"
+        },
+        {
+            "key": "Field",
+            "type": "string",
+            "value": "",
+            "path": ".Field"
+        },
+        {
+            "key": "Key",
+            "type": "string",
+            "value": "",
+            "path": ".Key"
+        },
+        {
+            "key": "Null",
+            "type": "string",
+            "value": "",
+            "path": ".Null"
+        },
+        {
+            "key": "Type",
+            "type": "string",
+            "value": "",
+            "path": ".Type"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
