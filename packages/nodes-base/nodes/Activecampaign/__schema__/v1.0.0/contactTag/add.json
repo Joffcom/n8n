@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "cdate",
+            "type": "string",
+            "value": "",
+            "path": ".cdate"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "links",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "contact",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.contact"
+                },
+                {
+                    "key": "tag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.tag"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".links.required"
+                }
+            ],
+            "path": ".links"
+        },
+        {
+            "key": "tag",
+            "type": "string",
+            "value": "",
+            "path": ".tag"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "contact",
+            "type": "string",
+            "value": "",
+            "path": ".contact"
+        }
+    ],
+    "path": ""
+}
