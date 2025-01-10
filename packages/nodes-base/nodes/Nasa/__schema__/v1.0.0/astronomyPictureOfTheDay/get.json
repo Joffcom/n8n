@@ -1,0 +1,60 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "copyright",
+            "type": "string",
+            "value": "",
+            "path": ".copyright"
+        },
+        {
+            "key": "date",
+            "type": "string",
+            "value": "",
+            "path": ".date"
+        },
+        {
+            "key": "explanation",
+            "type": "string",
+            "value": "",
+            "path": ".explanation"
+        },
+        {
+            "key": "hdurl",
+            "type": "string",
+            "value": "",
+            "path": ".hdurl"
+        },
+        {
+            "key": "media_type",
+            "type": "string",
+            "value": "",
+            "path": ".media_type"
+        },
+        {
+            "key": "service_version",
+            "type": "string",
+            "value": "",
+            "path": ".service_version"
+        },
+        {
+            "key": "title",
+            "type": "string",
+            "value": "",
+            "path": ".title"
+        },
+        {
+            "key": "url",
+            "type": "string",
+            "value": "",
+            "path": ".url"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
