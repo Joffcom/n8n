@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "@odata",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "etag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.etag"
+                }
+            ],
+            "path": ".@odata"
+        },
+        {
+            "key": "emailAddresses",
+            "type": "array",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "address",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.address"
+                        },
+                        {
+                            "key": "name",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.name"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".emailAddresses.items.required"
+                        }
+                    ],
+                    "path": ".emailAddresses.items"
+                }
+            ],
+            "path": ".emailAddresses"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
