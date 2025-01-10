@@ -1,0 +1,109 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "sys_id",
+            "type": "string",
+            "value": "",
+            "path": ".sys_id"
+        },
+        {
+            "key": "author",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "link",
+                    "type": "string",
+                    "value": "",
+                    "path": ".author.link"
+                },
+                {
+                    "key": "value",
+                    "type": "string",
+                    "value": "",
+                    "path": ".author.value"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".author.required"
+                }
+            ],
+            "path": ".author"
+        },
+        {
+            "key": "content",
+            "type": "string",
+            "value": "",
+            "path": ".content"
+        },
+        {
+            "key": "embedded_media",
+            "type": "string",
+            "value": "",
+            "path": ".embedded_media"
+        },
+        {
+            "key": "helpful_text",
+            "type": "string",
+            "value": "",
+            "path": ".helpful_text"
+        },
+        {
+            "key": "language",
+            "type": "string",
+            "value": "",
+            "path": ".language"
+        },
+        {
+            "key": "last_helpful_rating",
+            "type": "string",
+            "value": "",
+            "path": ".last_helpful_rating"
+        },
+        {
+            "key": "last_rating",
+            "type": "string",
+            "value": "",
+            "path": ".last_rating"
+        },
+        {
+            "key": "last_updated_on",
+            "type": "string",
+            "value": "",
+            "path": ".last_updated_on"
+        },
+        {
+            "key": "number",
+            "type": "string",
+            "value": "",
+            "path": ".number"
+        },
+        {
+            "key": "rating",
+            "type": "string",
+            "value": "",
+            "path": ".rating"
+        },
+        {
+            "key": "short_description",
+            "type": "string",
+            "value": "",
+            "path": ".short_description"
+        },
+        {
+            "key": "view_count",
+            "type": "string",
+            "value": "",
+            "path": ".view_count"
+        }
+    ],
+    "path": ""
+}
