@@ -1,0 +1,114 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "civility",
+            "type": "string",
+            "value": "",
+            "path": ".civility"
+        },
+        {
+            "key": "company",
+            "type": "string",
+            "value": "",
+            "path": ".company"
+        },
+        {
+            "key": "company_linkedin",
+            "type": "string",
+            "value": "",
+            "path": ".company_linkedin"
+        },
+        {
+            "key": "company_turnover",
+            "type": "integer",
+            "value": "",
+            "path": ".company_turnover"
+        },
+        {
+            "key": "country",
+            "type": "string",
+            "value": "",
+            "path": ".country"
+        },
+        {
+            "key": "first_name",
+            "type": "string",
+            "value": "",
+            "path": ".first_name"
+        },
+        {
+            "key": "full_name",
+            "type": "string",
+            "value": "",
+            "path": ".full_name"
+        },
+        {
+            "key": "last_name",
+            "type": "string",
+            "value": "",
+            "path": ".last_name"
+        },
+        {
+            "key": "naf5_code",
+            "type": "string",
+            "value": "",
+            "path": ".naf5_code"
+        },
+        {
+            "key": "naf5_des",
+            "type": "string",
+            "value": "",
+            "path": ".naf5_des"
+        },
+        {
+            "key": "nb_employees",
+            "type": "string",
+            "value": "",
+            "path": ".nb_employees"
+        },
+        {
+            "key": "phone",
+            "type": "string",
+            "value": "",
+            "path": ".phone"
+        },
+        {
+            "key": "siren",
+            "type": "string",
+            "value": "",
+            "path": ".siren"
+        },
+        {
+            "key": "siret",
+            "type": "string",
+            "value": "",
+            "path": ".siret"
+        },
+        {
+            "key": "siret_address",
+            "type": "string",
+            "value": "",
+            "path": ".siret_address"
+        },
+        {
+            "key": "vat",
+            "type": "string",
+            "value": "",
+            "path": ".vat"
+        },
+        {
+            "key": "website",
+            "type": "string",
+            "value": "",
+            "path": ".website"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
