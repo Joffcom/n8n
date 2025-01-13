@@ -1,0 +1,104 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "tag",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "cdate",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.cdate"
+                },
+                {
+                    "key": "created_timestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.created_timestamp"
+                },
+                {
+                    "key": "deleted",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.deleted"
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.description"
+                },
+                {
+                    "key": "id",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.id"
+                },
+                {
+                    "key": "links",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "contactGoalTags",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.contactGoalTags"
+                        },
+                        {
+                            "key": "templateTags",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.templateTags"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".tag.links.required"
+                        }
+                    ],
+                    "path": ".tag.links"
+                },
+                {
+                    "key": "subscriber_count",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.subscriber_count"
+                },
+                {
+                    "key": "tag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.tag"
+                },
+                {
+                    "key": "tagType",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.tagType"
+                },
+                {
+                    "key": "updated_timestamp",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.updated_timestamp"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".tag.required"
+                }
+            ],
+            "path": ".tag"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
