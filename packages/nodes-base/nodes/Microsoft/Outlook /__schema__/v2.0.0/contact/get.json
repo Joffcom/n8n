@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "@odata",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "context",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.context"
+                },
+                {
+                    "key": "etag",
+                    "type": "string",
+                    "value": "",
+                    "path": ".@odata.etag"
+                }
+            ],
+            "path": ".@odata"
+        },
+        {
+            "key": "businessPhones",
+            "type": "array",
+            "value": "",
+            "path": ".businessPhones"
+        },
+        {
+            "key": "displayName",
+            "type": "string",
+            "value": "",
+            "path": ".displayName"
+        },
+        {
+            "key": "emailAddresses",
+            "type": "array",
+            "value": "",
+            "path": ".emailAddresses"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "mobilePhone",
+            "type": "string",
+            "value": "",
+            "path": ".mobilePhone"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
