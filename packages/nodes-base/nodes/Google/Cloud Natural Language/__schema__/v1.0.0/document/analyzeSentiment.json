@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "documentSentiment",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "magnitude",
+                    "type": "number",
+                    "value": "",
+                    "path": ".documentSentiment.magnitude"
+                },
+                {
+                    "key": "score",
+                    "type": "number",
+                    "value": "",
+                    "path": ".documentSentiment.score"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".documentSentiment.required"
+                }
+            ],
+            "path": ".documentSentiment"
+        },
+        {
+            "key": "language",
+            "type": "string",
+            "value": "",
+            "path": ".language"
+        },
+        {
+            "key": "sentences",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "sentiment",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "magnitude",
+                                    "type": "number",
+                                    "value": "",
+                                    "path": ".sentences.items.sentiment.magnitude"
+                                },
+                                {
+                                    "key": "score",
+                                    "type": "number",
+                                    "value": "",
+                                    "path": ".sentences.items.sentiment.score"
+                                },
+                                {
+                                    "key": "required",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".sentences.items.sentiment.required"
+                                }
+                            ],
+                            "path": ".sentences.items.sentiment"
+                        },
+                        {
+                            "key": "text",
+                            "type": "Object",
+                            "value": [
+                                {
+                                    "key": "beginOffset",
+                                    "type": "integer",
+                                    "value": "",
+                                    "path": ".sentences.items.text.beginOffset"
+                                },
+                                {
+                                    "key": "content",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".sentences.items.text.content"
+                                },
+                                {
+                                    "key": "required",
+                                    "type": "string",
+                                    "value": "",
+                                    "path": ".sentences.items.text.required"
+                                }
+                            ],
+                            "path": ".sentences.items.text"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".sentences.items.required"
+                        }
+                    ],
+                    "path": ".sentences.items"
+                }
+            ],
+            "path": ".sentences"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
