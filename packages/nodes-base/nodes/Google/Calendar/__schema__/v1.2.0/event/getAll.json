@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "end",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".end.required"
+                },
+                {
+                    "key": "dateTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".end.dateTime"
+                }
+            ],
+            "path": ".end"
+        },
+        {
+            "key": "start",
+            "type": "Array",
+            "value": [
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".start.required"
+                },
+                {
+                    "key": "dateTime",
+                    "type": "string",
+                    "value": "",
+                    "path": ".start.dateTime"
+                }
+            ],
+            "path": ".start"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "summary",
+            "type": "string",
+            "value": "",
+            "path": ".summary"
+        }
+    ],
+    "path": ""
+}
