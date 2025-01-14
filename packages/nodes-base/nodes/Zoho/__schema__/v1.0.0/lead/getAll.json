@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "Email",
+            "type": "string",
+            "value": "",
+            "path": ".Email"
+        }
+    ],
+    "path": ""
+}
