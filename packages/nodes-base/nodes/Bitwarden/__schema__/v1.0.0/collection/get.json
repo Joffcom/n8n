@@ -1,0 +1,74 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "externalId",
+            "type": "null",
+            "value": "",
+            "path": ".externalId"
+        },
+        {
+            "key": "groups",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "items",
+                    "type": "Object",
+                    "value": [
+                        {
+                            "key": "hidePasswords",
+                            "type": "boolean",
+                            "value": "",
+                            "path": ".groups.items.hidePasswords"
+                        },
+                        {
+                            "key": "id",
+                            "type": "string",
+                            "value": "",
+                            "path": ".groups.items.id"
+                        },
+                        {
+                            "key": "manage",
+                            "type": "boolean",
+                            "value": "",
+                            "path": ".groups.items.manage"
+                        },
+                        {
+                            "key": "readOnly",
+                            "type": "boolean",
+                            "value": "",
+                            "path": ".groups.items.readOnly"
+                        },
+                        {
+                            "key": "required",
+                            "type": "string",
+                            "value": "",
+                            "path": ".groups.items.required"
+                        }
+                    ],
+                    "path": ".groups.items"
+                }
+            ],
+            "path": ".groups"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "object",
+            "type": "string",
+            "value": "",
+            "path": ".object"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
