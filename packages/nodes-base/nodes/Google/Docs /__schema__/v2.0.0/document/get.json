@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "content",
+            "type": "string",
+            "value": "",
+            "path": ".content"
+        },
+        {
+            "key": "documentId",
+            "type": "string",
+            "value": "",
+            "path": ".documentId"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}
