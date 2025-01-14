@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "Action",
+            "type": "string",
+            "value": "",
+            "path": ".Action"
+        },
+        {
+            "key": "IG Story Challenge/Solution",
+            "type": "string",
+            "value": "",
+            "path": ".IG Story Challenge/Solution"
+        },
+        {
+            "key": "IG Story Pictures",
+            "type": "string",
+            "value": "",
+            "path": ".IG Story Pictures"
+        },
+        {
+            "key": "Idea",
+            "type": "string",
+            "value": "",
+            "path": ".Idea"
+        },
+        {
+            "key": "Metric Title",
+            "type": "string",
+            "value": "",
+            "path": ".Metric Title"
+        },
+        {
+            "key": "id",
+            "type": "string",
+            "value": "",
+            "path": ".id"
+        },
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        }
+    ],
+    "path": ""
+}

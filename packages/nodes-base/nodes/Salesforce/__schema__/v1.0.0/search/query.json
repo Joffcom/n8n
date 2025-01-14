@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "value": [
+        {
+            "key": "required",
+            "type": "string",
+            "value": "",
+            "path": ".required"
+        },
+        {
+            "key": "attributes",
+            "type": "Object",
+            "value": [
+                {
+                    "key": "type",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.type"
+                },
+                {
+                    "key": "required",
+                    "type": "string",
+                    "value": "",
+                    "path": ".attributes.required"
+                }
+            ],
+            "path": ".attributes"
+        }
+    ],
+    "path": ""
+}
