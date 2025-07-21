@@ -1,16 +1,15 @@
-import './polyfills';
 import { Container } from '@n8n/di';
-import type { ErrorReporter } from 'n8n-core';
 import { ensureError, setGlobalState } from 'n8n-workflow';
 
 import { MainConfig } from './config/main-config';
 import type { HealthCheckServer } from './health-check-server';
 import { JsTaskRunner } from './js-task-runner/js-task-runner';
+import { TaskRunnerSentry } from './task-runner-sentry';
 
 let healthCheckServer: HealthCheckServer | undefined;
 let runner: JsTaskRunner | undefined;
 let isShuttingDown = false;
-let errorReporter: ErrorReporter | undefined;
+let sentry: TaskRunnerSentry | undefined;
 
 function createSignalHandler(signal: string, timeoutInS = 10) {
 	return async function onSignal() {
@@ -33,9 +32,9 @@ function createSignalHandler(signal: string, timeoutInS = 10) {
 				void healthCheckServer?.stop();
 			}
 
-			if (errorReporter) {
-				await errorReporter.shutdown();
-				errorReporter = undefined;
+			if (sentry) {
+				await sentry.shutdown();
+				sentry = undefined;
 			}
 		} catch (e) {
 			const error = ensureError(e);
@@ -54,16 +53,13 @@ void (async function start() {
 		defaultTimezone: config.baseRunnerConfig.timezone,
 	});
 
-	if (config.sentryConfig.sentryDsn) {
-		const { ErrorReporter } = await import('n8n-core');
-		errorReporter = Container.get(ErrorReporter);
-		await errorReporter.init('task_runner', config.sentryConfig.sentryDsn);
-	}
+	sentry = Container.get(TaskRunnerSentry);
+	await sentry.initIfEnabled();
 
 	runner = new JsTaskRunner(config);
 	runner.on('runner:reached-idle-timeout', () => {
 		// Use shorter timeout since we know we don't have any tasks running
-		void createSignalHandler('IDLE_TIMEOUT', 1)();
+		void createSignalHandler('IDLE_TIMEOUT', 3)();
 	});
 
 	const { enabled, host, port } = config.baseRunnerConfig.healthcheckServer;
